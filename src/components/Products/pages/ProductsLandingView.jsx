@@ -26,6 +26,8 @@ export default function ProductsLandingView({ onNavigate }) {
   const divisionCardsRef = useRef(null);
   const gridContainerRef = useRef(null);
 
+  const totalCount = PRODUCT_GROUPS.length;
+
   // Filter groups
   const filteredGroups = useMemo(() => {
     let list = PRODUCT_GROUPS;
