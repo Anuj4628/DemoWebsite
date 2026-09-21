@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="90" height="90" rx="16" fill="#003B73"/>
+    <text x="45" y="60" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="42" fill="#E31837">HP</text>
+    <text x="115" y="48" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#003B73">HINDUSTAN PETROLEUM</text>
+    <text x="115" y="74" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16" fill="#E31837" letter-spacing="1">HPCL CORPORATE</text>
+  </g>
+</svg>

@@ -1,0 +1,173 @@
+/* ===================================================
+   BUTTON COMPONENT STYLES - BOTTOM-TO-TOP RED FILL
+   =================================================== */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+  transition: border-color 0.35s ease,
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* Sizing */
+.btn-sm {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 0.8rem;
+  gap: 6px;
+}
+
+.btn-md {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 0.86rem;
+  gap: 8px;
+}
+
+.btn-lg {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 0.9rem;
+  gap: 10px;
+}
+
+/* Content & Icon Layout */
+.btn-content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-text {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.btn-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Micro-interaction on hover: subtle shift */
+.btn:hover .btn-icon-wrap {
+  transform: translateX(4px);
+}
+
+.btn:hover .btn-text {
+  transform: translateX(1px);
+}
+
+/* ===================================================
+   BOTTOM-TO-TOP REDCORE RED FILL ANIMATION LAYER
+   =================================================== */
+
+.btn-fill-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-red);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn:hover .btn-fill-bg {
+  transform: scaleY(1);
+}
+
+/* ===================================================
+   VARIANTS
+   =================================================== */
+
+/* Primary CTA: Redcore Red with Bright Red Expansion */
+.btn-primary {
+  background-color: var(--color-red);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(211, 18, 42, 0.35);
+}
+
+.btn-primary .btn-fill-bg {
+  background-color: var(--color-red-bright);
+}
+
+.btn-primary:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 24px rgba(232, 25, 53, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary CTA: Transparent Glass with Red Bottom-to-Top Fill */
+.btn-secondary {
+  background-color: rgba(15, 20, 28, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary .btn-fill-bg {
+  background-color: var(--color-red);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-red-bright);
+  box-shadow: 0 6px 24px rgba(211, 18, 42, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Nav Quote Button Variant */
+.btn-nav-quote {
+  background-color: var(--color-red);
+  color: #FFFFFF;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  font-weight: 650;
+  border: 1px solid rgba(211, 18, 42, 0.6);
+  box-shadow: 0 2px 10px rgba(211, 18, 42, 0.25);
+}
+
+.btn-nav-quote .btn-fill-bg {
+  background-color: var(--color-red-bright);
+}
+
+.btn-nav-quote:hover {
+  border-color: var(--color-red-bright);
+  box-shadow: 0 4px 18px rgba(232, 25, 53, 0.45);
+  transform: translateY(-1px);
+}

@@ -1,0 +1,340 @@
+/* ===================================================
+   CLIENT NETWORK SECTION - PREMIUM LOGO SHOWCASE & CONTINUOUS MARQUEES
+   =================================================== */
+
+.client-network-section {
+  position: relative;
+  padding: 75px 0 65px;
+  background: linear-gradient(180deg, #070D18 0%, #0A1424 50%, #060B14 100%);
+  color: #FFFFFF;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle Technical Blueprint Background Grid */
+.client-network-bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Ambient Center Radial Glow */
+.client-network-ambient-glow {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(211, 18, 42, 0.12) 0%, rgba(11, 22, 40, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Section Heading (Strong, Bold, Premium) */
+.client-network-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.client-network-header .section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.client-network-header .eyebrow-accent-bar {
+  width: 26px;
+  height: 2px;
+  background-color: var(--color-red, #D3122A);
+  box-shadow: 0 0 10px rgba(211, 18, 42, 0.6);
+}
+
+.client-network-header .eyebrow-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.client-network-header .section-display-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.6vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.client-network-header .text-highlight-red {
+  color: var(--color-red, #D3122A);
+  display: inline-block;
+}
+
+/* ===================================================
+   DUAL CONTINUOUS INFINITE MARQUEES
+   =================================================== */
+.client-marquees-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.client-marquee-row {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.client-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Row 1: Right to Left */
+.marquee-reverse .client-marquee-track {
+  animation: clientMarqueeLeft 42s linear infinite;
+}
+
+/* Row 2: Left to Right */
+.marquee-forward .client-marquee-track {
+  animation: clientMarqueeRight 44s linear infinite;
+}
+
+/* Pause on Hover */
+.client-marquee-row:hover .client-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes clientMarqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes clientMarqueeRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ===================================================
+   CLEAN LOGO + NAME SHOWCASE CARD
+   =================================================== */
+.client-logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 250px;
+  height: 125px;
+  background: rgba(18, 30, 50, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  padding: 14px 20px 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Top Edge Accent on Hover */
+.client-logo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-red, #D3122A), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+
+.client-logo-card:hover {
+  transform: translateY(-4px);
+  background: rgba(26, 44, 72, 0.85);
+  border-color: rgba(211, 18, 42, 0.45);
+  box-shadow: 
+    0 14px 32px rgba(0, 0, 0, 0.45),
+    0 0 16px rgba(211, 18, 42, 0.15);
+}
+
+.client-logo-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Logo Surface Container with Constant Height and Padding */
+.client-logo-surface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.35s ease;
+}
+
+.client-logo-card:hover .client-logo-surface {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+}
+
+/* Logo Image - Exact Aspect Ratio, Never Distorted */
+.partner-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  filter: contrast(1.05);
+  transition: transform 0.35s ease;
+}
+
+.client-logo-card:hover .partner-logo-img {
+  transform: scale(1.04);
+}
+
+/* Company Name */
+.partner-company-name {
+  font-family: var(--font-primary, sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.client-logo-card:hover .partner-company-name {
+  color: #FFFFFF;
+}
+
+/* ===================================================
+   RESPONSIVE BREAKPOINTS
+   =================================================== */
+@media (max-width: 900px) {
+  .client-network-section {
+    padding: 70px 0 60px;
+  }
+
+  .client-marquees-wrapper {
+    gap: 16px;
+  }
+
+  .client-logo-card {
+    width: 210px;
+    height: 110px;
+    padding: 10px 14px 8px;
+  }
+
+  .client-logo-surface {
+    height: 50px;
+  }
+
+  .partner-company-name {
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .client-network-section {
+    padding: 60px 0 50px;
+  }
+
+  .client-network-ambient-glow {
+    width: 320px;
+    height: 180px;
+  }
+
+  .client-network-header .section-display-heading {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .client-network-header {
+    margin-bottom: 28px;
+  }
+
+  .client-logo-card {
+    width: 175px;
+    height: 95px;
+    gap: 8px;
+    padding: 8px 10px 6px;
+  }
+
+  .client-logo-surface {
+    height: 44px;
+    padding: 4px 8px;
+  }
+
+  .partner-company-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .client-network-header .section-display-heading {
+    font-size: clamp(1.25rem, 6.8vw, 1.65rem);
+  }
+
+  .client-logo-card {
+    width: 155px;
+    height: 88px;
+    padding: 6px 8px 5px;
+  }
+
+  .client-logo-surface {
+    height: 40px;
+  }
+}
+

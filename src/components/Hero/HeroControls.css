@@ -1,0 +1,277 @@
+/* ===================================================
+   HERO PROGRESS & NAVIGATION CONTROLS - TRANSPARENT GLASS STYLE
+   =================================================== */
+
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  padding: 0 40px 48px; /* elevated margin from bottom */
+  background: linear-gradient(
+    0deg,
+    rgba(10, 14, 20, 0.5) 0%,
+    rgba(10, 14, 20, 0.15) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.hero-bottom-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  pointer-events: auto;
+}
+
+/* Progress Wrapper */
+.hero-progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(14, 19, 28, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 10px 22px;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Slide Counter */
+.hero-counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-mono);
+  user-select: none;
+}
+
+.counter-current {
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.counter-divider {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 2px;
+}
+
+.counter-total {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Segmented Indicators */
+.hero-progress-segments {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-segment-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 2px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.25s ease;
+}
+
+.progress-segment-track {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: background-color 0.25s ease, height 0.2s ease;
+}
+
+.progress-segment-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-red);
+  box-shadow: 0 0 8px var(--color-red-bright);
+  border-radius: 2px;
+  transition: width 0.08s linear;
+}
+
+.progress-segment-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease;
+}
+
+.progress-segment-btn:hover .progress-segment-track {
+  background: rgba(255, 255, 255, 0.4);
+  height: 4px;
+}
+
+.progress-segment-btn:hover .progress-segment-number {
+  color: #FFFFFF;
+}
+
+.progress-segment-btn.is-active .progress-segment-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 3px;
+}
+
+.progress-segment-btn.is-active .progress-segment-number {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Nav Controls (Arrows & Status) */
+.hero-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: 76px; /* Clean breathing room from floating action buttons on desktop */
+}
+
+.hero-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-arrow-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: rgba(14, 19, 28, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-arrow-btn:hover {
+  background: var(--color-red);
+  border-color: var(--color-red-bright);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(211, 18, 42, 0.4);
+  transform: translateY(-2px);
+}
+
+.hero-arrow-btn:active {
+  transform: translateY(0);
+}
+
+.hero-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(14, 19, 28, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-red);
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ===================================================
+   RESPONSIVE CONTROLS - PERFECT HARMONY WITH FLOATING ACTIONS
+   In tablet & mobile, group slider counter and arrows on the LEFT,
+   leaving the RIGHT side completely clear for floating WhatsApp & Call.
+   =================================================== */
+
+@media (max-width: 1024px) {
+  .hero-bottom-bar {
+    padding: 0 24px 24px;
+  }
+
+  .hero-bottom-container {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+  }
+
+  .hero-nav-controls {
+    margin-right: 0;
+  }
+
+  .hero-progress-segments {
+    display: none;
+  }
+
+  .hero-progress-wrapper {
+    padding: 8px 14px;
+    gap: 0;
+  }
+
+  .hero-arrow-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero-bottom-bar {
+    padding: 0 16px 20px;
+  }
+
+  .hero-bottom-container {
+    gap: 10px;
+  }
+
+  .hero-progress-wrapper {
+    padding: 6px 12px;
+  }
+
+  .counter-current {
+    font-size: 1.15rem;
+  }
+
+  .hero-arrow-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-status-tag {
+    display: none;
+  }
+}

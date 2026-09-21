@@ -1,0 +1,628 @@
+/* ProductFamilyView.css - Exact Replication of Reference Image 1 & 2 */
+
+.premium-family-view {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  padding-bottom: 80px;
+}
+
+.family-catalogue-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===================================================
+   1. Large Industrial Hero Section (Image 1)
+   =================================================== */
+.family-hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  min-height: 700px;
+  padding: 135px 28px 95px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.family-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(11, 22, 36, 0.90) 0%, rgba(11, 22, 36, 0.74) 48%, rgba(11, 22, 36, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.family-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Floating Dark Glassmorphic Card on Left (Matching Image 1) */
+.family-hero-card {
+  max-width: 630px;
+  background: rgba(14, 25, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 42px 46px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.40);
+}
+
+@media (max-width: 768px) {
+  .family-hero-section {
+    padding: 95px 16px 55px;
+    min-height: auto;
+  }
+  .family-hero-card {
+    padding: 26px 20px;
+    max-width: 100%;
+  }
+}
+
+/* Breadcrumbs inside Card: Home > Products > [DIVISION] > [Family Name] */
+.family-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  color: #94A3B8;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.crumb-text {
+  color: #94A3B8;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.crumb-text:hover {
+  color: #FFFFFF;
+}
+
+.crumb-arrow {
+  color: #64748B;
+  font-size: 0.75rem;
+}
+
+.crumb-active {
+  color: #D3122A;
+  font-weight: 700;
+}
+
+/* Tag Pill: [ 📄 MANUFACTURER DIVISION — CATEGORY LANDING ] */
+.family-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(211, 18, 42, 0.15);
+  border: 1px solid rgba(211, 18, 42, 0.35);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.tag-bracket {
+  color: #FF6B7A;
+  font-weight: 800;
+  font-size: 0.72rem;
+}
+
+.tag-file-icon {
+  color: #FF4D61;
+}
+
+.tag-pill-text {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF6B7A;
+}
+
+/* Main Category Heading */
+.family-hero-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 2.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+@media (max-width: 768px) {
+  .family-hero-title {
+    font-size: 1.85rem;
+  }
+}
+
+/* Description */
+.family-hero-desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #CBD5E1;
+  margin: 0 0 20px 0;
+}
+
+/* Metrics Pills Row inside Card */
+.family-metrics-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.76rem;
+  color: #E2E8F0;
+}
+
+.metric-pill-icon {
+  color: #D3122A;
+}
+
+.metric-pill-label {
+  color: #94A3B8;
+}
+
+.metric-pill-value {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Search within Category inside Card */
+.family-search-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-label-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D3122A;
+  margin-bottom: 6px;
+}
+
+.family-card-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+}
+
+.family-card-search-input-wrap:focus-within {
+  border-color: #D3122A;
+  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.25);
+  background: rgba(10, 20, 32, 0.92);
+}
+
+.search-glass-icon {
+  color: #94A3B8;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.family-card-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #FFFFFF;
+}
+
+.family-card-search-input::placeholder {
+  color: #94A3B8;
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  transition: color 0.18s ease;
+}
+
+.search-clear-btn:hover {
+  color: #FFFFFF;
+}
+
+/* ===================================================
+   2. Product Family Browsing Area
+   =================================================== */
+.family-catalogue-section {
+  padding: 40px 0 50px;
+}
+
+.family-browsing-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.browsing-title-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.browsing-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D3122A;
+  margin-bottom: 4px;
+}
+
+.browsing-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0B192C;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.browsing-query-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.query-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  color: #475569;
+  background: #E2E8F0;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.btn-query-clear {
+  background: none;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #D3122A;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Compact Material Filter Pills */
+.family-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.filters-label {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  flex-shrink: 0;
+}
+
+.filter-pills-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.filter-pills-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.filter-pills-list::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.compact-filter-pill {
+  white-space: nowrap;
+  padding: 6px 13px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.compact-filter-pill:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+.compact-filter-pill.active {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+}
+
+/* Results Summary Bar */
+.family-results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.results-count-text {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.84rem;
+  color: #64748B;
+}
+
+.results-count-text strong {
+  color: #0F172A;
+}
+
+.btn-reset-filters {
+  background: none;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #D3122A;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* 3-Column Desktop Grid with Compact GradeCards */
+.compact-grades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .compact-grades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .compact-grades-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* Empty State */
+.family-empty-box {
+  text-align: center;
+  padding: 56px 20px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.empty-icon-box {
+  color: #94A3B8;
+  margin-bottom: 12px;
+}
+
+.family-empty-box h3 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 6px 0;
+}
+
+.family-empty-box p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.9rem;
+  color: #64748B;
+  margin: 0 0 18px 0;
+}
+
+.btn-reset-filters-btn {
+  padding: 10px 22px;
+  background: #D3122A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.btn-reset-filters-btn:hover {
+  background: #B50E22;
+}
+
+/* ===================================================
+   3. Compact RFQ Assistance Footer Banner
+   =================================================== */
+.family-rfq-strip {
+  margin-top: 10px;
+}
+
+.rfq-compact-card {
+  background: #0B0F17;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 30px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 900px) {
+  .rfq-compact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+.rfq-compact-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FF5500;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rfq-compact-content h3 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 6px 0;
+}
+
+.rfq-compact-content p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #94A3B8;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 640px;
+}
+
+.rfq-compact-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .rfq-compact-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.btn-rfq-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #FFFFFF;
+  padding: 11px 20px;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-rfq-whatsapp:hover {
+  background: #20BD5A;
+}
+
+.btn-rfq-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0F172A;
+  color: #FFFFFF;
+  padding: 11px 20px;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-rfq-call:hover {
+  background: #1E293B;
+}
+
+/* Not Found */
+.product-family-not-found {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.not-found-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  max-width: 480px;
+}
+
+.btn-back-catalog {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #D3122A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 182" width="690" height="182">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="50%" stop-color="#DC2626"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="steelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCA5A5" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#DC2626" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Industrial Geometric Emblem -->
+  <g transform="translate(20, 16)">
+    <!-- Outer Hex / Shield facet 1 -->
+    <path d="M75 5 L140 42 L140 108 L75 145 L10 108 L10 42 Z" fill="url(#steelGrad)" stroke="#1E293B" stroke-width="2"/>
+    <!-- Inner Core Red Facet Left -->
+    <path d="M75 16 L22 47 L22 103 L75 134 L75 75 Z" fill="url(#redGrad)"/>
+    <!-- Inner Core Red Facet Right -->
+    <path d="M75 16 L128 47 L128 103 L75 134 L75 75 Z" fill="#B91C1C"/>
+    <!-- Center Precision Ingot Cut -->
+    <polygon points="75,34 114,57 114,93 75,116 36,93 36,57" fill="#7F1D1D"/>
+    <polygon points="75,44 104,61 104,89 75,106 46,89 46,61" fill="url(#redGrad)"/>
+    <!-- Molten Core Diamond Accent -->
+    <polygon points="75,58 91,75 75,92 59,75" fill="#FEF2F2" opacity="0.95"/>
+    <!-- Horizontal Molten Spark Line -->
+    <line x1="18" y1="75" x2="132" y2="75" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  </g>
+  <!-- Typography: REDCORE STEELS -->
+  <!-- 'RED' in Red Gradient -->
+  <text x="190" y="102" font-family="'Montserrat', 'Inter', sans-serif" font-size="74" font-weight="900" letter-spacing="-1" fill="url(#redGrad)">RED</text>
+  <!-- 'CORE' in Dark Industrial Steel -->
+  <text x="365" y="102" font-family="'Montserrat', 'Inter', sans-serif" font-size="74" font-weight="900" letter-spacing="-1" fill="#0F172A">CORE</text>
+  <!-- Subtitle Bar -->
+  <rect x="194" y="122" width="465" height="3" fill="url(#redGrad)" rx="1.5"/>
+  <text x="196" y="150" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="22" font-weight="700" letter-spacing="12" fill="#475569">STEELS &amp; ALLOYS</text>
+</svg>

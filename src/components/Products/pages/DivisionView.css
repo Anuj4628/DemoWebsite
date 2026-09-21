@@ -1,0 +1,442 @@
+/* DivisionView.css - Premium Industrial Design */
+
+.premium-division-view {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  padding-bottom: 80px;
+}
+
+.division-catalogue-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===================================================
+   1. Large Industrial Hero Section (Image 1 Style)
+   =================================================== */
+.division-hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  min-height: 700px;
+  padding: 135px 28px 95px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.division-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(11, 22, 36, 0.90) 0%, rgba(11, 22, 36, 0.74) 48%, rgba(11, 22, 36, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.division-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Floating Dark Glassmorphic Card on Left (Matching Image 1) */
+.division-hero-card {
+  max-width: 630px;
+  background: rgba(14, 25, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 42px 46px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.40);
+}
+
+@media (max-width: 768px) {
+  .division-hero-section {
+    padding: 95px 16px 55px;
+    min-height: auto;
+  }
+  .division-hero-card {
+    padding: 26px 20px;
+    max-width: 100%;
+  }
+}
+
+/* Breadcrumbs inside Card: Home > Products > [Division Name] */
+.division-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  color: #94A3B8;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.division-breadcrumb-nav .crumb-text {
+  color: #94A3B8;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.division-breadcrumb-nav .crumb-text:hover {
+  color: #FFFFFF;
+}
+
+.division-breadcrumb-nav .crumb-arrow {
+  color: #64748B;
+  font-size: 0.75rem;
+}
+
+.division-breadcrumb-nav .crumb-active {
+  color: #D3122A;
+  font-weight: 700;
+}
+
+/* Tag Pill: [ 📄 MANUFACTURER DIVISION — PRODUCT FAMILIES ] */
+.division-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(211, 18, 42, 0.15);
+  border: 1px solid rgba(211, 18, 42, 0.35);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.division-tag-pill .tag-bracket {
+  color: #FF6B7A;
+  font-weight: 800;
+  font-size: 0.72rem;
+}
+
+.division-tag-pill .tag-file-icon {
+  color: #FF4D61;
+}
+
+.division-tag-pill .tag-pill-text {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF6B7A;
+}
+
+/* Main Heading */
+.division-hero-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 2.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+@media (max-width: 768px) {
+  .division-hero-title {
+    font-size: 1.85rem;
+  }
+}
+
+/* Description */
+.division-hero-desc {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #CBD5E1;
+  margin: 0 0 20px 0;
+}
+
+/* Metrics Pills Row inside Card */
+.division-metrics-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.division-metrics-pills-row .metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.76rem;
+  color: #E2E8F0;
+}
+
+.division-metrics-pills-row .metric-pill-icon {
+  color: #D3122A;
+}
+
+.division-metrics-pills-row .metric-pill-label {
+  color: #94A3B8;
+}
+
+.division-metrics-pills-row .metric-pill-value {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Search within Division inside Card */
+.division-search-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.division-search-block .search-label-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D3122A;
+  margin-bottom: 6px;
+}
+
+.division-card-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+}
+
+.division-card-search-input-wrap:focus-within {
+  border-color: #D3122A;
+  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.25);
+  background: rgba(10, 20, 32, 0.92);
+}
+
+.division-card-search-input-wrap .search-glass-icon {
+  color: #94A3B8;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.division-card-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #FFFFFF;
+}
+
+.division-card-search-input::placeholder {
+  color: #94A3B8;
+}
+
+/* ===================================================
+   2. Catalogue Section
+   =================================================== */
+.division-catalogue-section {
+  padding: 32px 0;
+}
+
+.division-status-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.division-status-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D3122A;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.division-status-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.btn-switch-division {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0F172A;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-switch-division:hover {
+  border-color: #D3122A;
+  color: #D3122A;
+}
+
+/* Capabilities Card */
+.division-capabilities-card {
+  margin-top: 36px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 30px 34px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+@media (max-width: 860px) {
+  .division-capabilities-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+    gap: 24px;
+  }
+}
+
+.capabilities-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D3122A;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.capabilities-info h3 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 14px 0;
+}
+
+.capabilities-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.capabilities-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.86rem;
+  color: #334155;
+}
+
+.capabilities-list li svg {
+  flex-shrink: 0;
+}
+
+.capabilities-cta {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.capabilities-cta h4 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 6px 0;
+}
+
+.capabilities-cta p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.btn-capabilities-rfq {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  background: #D3122A;
+  color: #FFFFFF;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s ease;
+  align-self: flex-start;
+}
+
+.btn-capabilities-rfq:hover {
+  background: #B50E22;
+}
+
+/* Not Found */
+.division-not-found {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.not-found-box {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 36px;
+  text-align: center;
+  max-width: 460px;
+}
+
+.btn-back-all-cat {
+  margin-top: 16px;
+  padding: 9px 20px;
+  background: #D3122A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}

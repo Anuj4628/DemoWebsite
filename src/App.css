@@ -1,0 +1,52 @@
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--color-bg-main);
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+/* Subtle scroll extension to test navbar scroll compression */
+.future-sections-anchor-container {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-main) 0%,
+    #EDF2F7 100%
+  );
+  position: relative;
+}
+
+.section-anchor {
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 100%;
+  visibility: hidden;
+}
+
+/* Zero-Layout-Shift Fallback Shells */
+.page-load-shell {
+  width: 100%;
+  min-height: 70vh;
+}
+
+.about-shell {
+  background-color: #0B192C;
+}
+
+.products-shell {
+  background-color: #0B192C;
+}
+
+.materials-shell {
+  background-color: #0F172A;
+}

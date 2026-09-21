@@ -1,0 +1,313 @@
+/* ===================================================
+   HERO SLIDE STYLES - ARCHITECTURAL TRANSPARENT GLASS PANEL
+   =================================================== */
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* Background Image Layer - Authentic, clear industrial steel photography */
+.hero-slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  filter: brightness(0.96) contrast(1.04); /* Clean, authentic, sharp industrial detail */
+}
+
+/* Subtle top atmospheric blend only - NO heavy black overlay across the image */
+.hero-slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 20, 0.4) 0%,
+    rgba(10, 14, 20, 0.08) 18%,
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+/* Content Wrap */
+.hero-slide-content-wrap {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-slide-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 110px 40px 120px;
+}
+
+/* ===================================================
+   REFINED TRANSPARENT GLASS CONTENT PANEL (ARCHITECTURAL FRAME)
+   Inspired by high-end industrial engineering references
+   =================================================== */
+
+.hero-glass-card {
+  max-width: 720px;
+  background: rgba(14, 19, 28, 0.45); /* Soft transparent industrial glass tint */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-left: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 36px 42px 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle Redcore Red top accent line on frame */
+.hero-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 3px;
+  background: var(--color-red);
+  box-shadow: 0 0 10px var(--color-red-bright);
+}
+
+/* Eyebrow - Industrial Brand Label */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.eyebrow-accent-bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background-color: var(--color-red);
+  box-shadow: 0 0 8px var(--color-red-bright);
+}
+
+.eyebrow-text {
+  font-family: var(--font-mono, 'Space Grotesk', monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #F8FAFC;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Headline with Overflow Mask & Bold Industrial Display Typography */
+.hero-headline-mask {
+  overflow: hidden;
+  padding: 2px 0 6px;
+}
+
+.hero-headline {
+  font-family: var(--font-display, 'Montserrat', sans-serif);
+  font-size: clamp(2.3rem, 3.8vw, 3.35rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* Strategic Red Highlight in Hero Headline */
+.hero-headline-accent {
+  color: var(--color-red-bright, #E81935);
+  display: inline;
+  font-weight: inherit;
+  text-shadow: 0 2px 20px rgba(232, 25, 53, 0.4);
+}
+
+/* Description */
+.hero-description {
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: clamp(0.96rem, 1.1vw, 1.08rem);
+  line-height: 1.62;
+  letter-spacing: 0.005em;
+  color: rgba(241, 245, 249, 0.9);
+  max-width: 580px;
+  margin-top: 14px;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* CTA Group */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+/* Technical Specification Badge */
+.hero-spec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.spec-indicator {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-red);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--color-red-bright);
+}
+
+.spec-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(241, 245, 249, 0.78);
+  text-transform: uppercase;
+}
+
+/* ===================================================
+   RESPONSIVE HERO SLIDE
+   =================================================== */
+
+@media (max-width: 1024px) {
+  .hero-slide-container {
+    padding: 95px 28px 110px;
+  }
+
+  .hero-glass-card {
+    max-width: 620px;
+    padding: 32px 34px;
+  }
+
+  .hero-headline {
+    font-size: clamp(2rem, 3.8vw, 2.7rem);
+    line-height: 1.14;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-slide-image {
+    object-position: center;
+  }
+
+  .hero-slide-container {
+    padding: 85px 18px 95px;
+  }
+
+  .hero-glass-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 24px 18px;
+    background: rgba(14, 19, 28, 0.65);
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.6rem, 5.2vw, 2.15rem);
+    line-height: 1.18;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+
+  .hero-cta-group {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .hero-spec-tag {
+    margin-top: 16px;
+    padding: 4px 10px;
+    font-size: 0.64rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slide-container {
+    padding: 78px 12px 85px;
+  }
+
+  .hero-glass-card {
+    padding: 18px 14px;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.3rem, 6.2vw, 1.65rem);
+    line-height: 1.22;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-spec-tag {
+    display: none;
+  }
+}
+

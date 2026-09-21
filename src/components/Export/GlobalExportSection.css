@@ -1,0 +1,506 @@
+/* ===================================================
+   GLOBAL EXPORT SECTION - 45+ COUNTRIES INTERNATIONAL TRADE UI
+   =================================================== */
+
+.global-export-section {
+  position: relative;
+  padding: 75px 0 65px;
+  background: linear-gradient(180deg, #FAFAFA 0%, #F1F5F9 50%, #FAFAFA 100%);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-light, #E2E8F0);
+}
+
+.export-bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* ===================================================
+   SECTION HEADER & COMPACT METRIC PILL
+   =================================================== */
+.export-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.export-header .section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.export-header .eyebrow-accent-bar {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-red, #D3122A);
+  box-shadow: 0 0 10px rgba(211, 18, 42, 0.5);
+}
+
+.export-header .eyebrow-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #64748B);
+}
+
+.export-header .section-display-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-primary, #0F172A);
+  margin: 0 0 16px 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.export-header .text-highlight-red {
+  color: var(--color-red, #D3122A);
+  display: inline-block;
+}
+
+.export-header .section-description {
+  font-family: var(--font-primary, sans-serif);
+  font-size: clamp(0.92rem, 1.15vw, 1.12rem);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: var(--color-text-secondary, #475569);
+  max-width: 720px;
+  margin: 0 0 18px 0;
+  box-sizing: border-box;
+}
+
+/* Compact Supporting Metric Badge */
+.export-metric-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #0B1628;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 18px;
+  border-radius: 24px;
+  box-shadow: 0 3px 12px rgba(11, 22, 40, 0.18);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.metric-pill-accent {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  background: var(--color-red, #D3122A);
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.metric-pill-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #E2E8F0;
+  text-transform: uppercase;
+}
+
+
+/* ===================================================
+   CONTROLS BAR: REGION FILTERS & LIVE SEARCH
+   =================================================== */
+.export-controls-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 8px;
+  padding: 12px 18px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Region Filter Tabs */
+.export-region-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.region-tab-btn {
+  background: var(--color-steel-100, #F1F5F9);
+  border: 1px solid var(--border-light, #E2E8F0);
+  padding: 7px 15px;
+  border-radius: 6px;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.region-tab-btn:hover {
+  background: #FFFFFF;
+  border-color: rgba(211, 18, 42, 0.35);
+  color: var(--color-text-primary, #0F172A);
+  transform: translateY(-1px);
+}
+
+.region-tab-btn.is-active {
+  background: var(--color-red, #D3122A);
+  border-color: var(--color-red, #D3122A);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(211, 18, 42, 0.28);
+}
+
+/* Live Search Bar */
+.export-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 260px;
+}
+
+.export-search-wrapper .search-icon {
+  position: absolute;
+  left: 12px;
+  color: #94A3B8;
+  pointer-events: none;
+}
+
+.country-search-input {
+  width: 100%;
+  padding: 9px 34px 9px 36px;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 0.86rem;
+  color: #0F172A;
+  background: var(--color-steel-100, #F8FAFC);
+  border: 1px solid var(--border-light, #E2E8F0);
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.country-search-input:focus {
+  background: #FFFFFF;
+  border-color: var(--color-red, #D3122A);
+  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.1);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  color: #0F172A;
+}
+
+/* Status Count Bar */
+.export-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  color: #64748B;
+  padding: 0 4px;
+}
+
+.status-counter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-globe-icon {
+  color: var(--color-red, #D3122A);
+}
+
+.status-counter-text strong {
+  color: #0F172A;
+}
+
+.status-filter-tag {
+  color: var(--color-red, #D3122A);
+  font-weight: 700;
+}
+
+/* ===================================================
+   CLEAN & MINIMAL COUNTRY CARDS GRID (FLAG + NAME ONLY)
+   Perfect alignment: centered layout, equal size cards,
+   centered final row, no over-stretching
+   =================================================== */
+.export-countries-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  max-width: 1240px;
+  margin: 0 auto;
+  min-height: 120px;
+}
+
+/* Individual Clean Country Card — Compact Tile */
+.export-country-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 12px;
+  padding: 14px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px -1px rgba(15, 23, 42, 0.04), 0 1px 4px -1px rgba(15, 23, 42, 0.02);
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.export-country-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(211, 18, 42, 0.35);
+  box-shadow: 
+    0 8px 20px -4px rgba(15, 23, 42, 0.08),
+    0 3px 8px rgba(211, 18, 42, 0.04);
+}
+
+/* Circular Flag Container — Centered Circular Icon */
+.country-flag-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8FAFC;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.country-flag-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.country-flag-fallback {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.export-country-card:hover .country-flag-box {
+  transform: scale(1.08);
+}
+
+/* Country Name Text — Uppercase Bold Navy/Slate */
+.country-name-text {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.22;
+  text-align: center;
+  transition: color 0.25s ease;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.export-country-card:hover .country-name-text {
+  color: var(--color-red, #D3122A);
+}
+
+/* Empty Search State */
+.no-countries-state {
+  width: 100%;
+  grid-column: 1 / -1;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px 20px;
+  background: #FFFFFF;
+  border: 1px dashed #CBD5E1;
+  border-radius: 16px;
+  color: #64748B;
+  font-family: var(--font-primary, sans-serif);
+}
+
+.reset-filters-btn {
+  margin-top: 12px;
+  background: var(--color-red, #D3122A);
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-filters-btn:hover {
+  background: #B91C1C;
+}
+
+/* ===================================================
+   RESPONSIVE BREAKPOINTS
+   =================================================== */
+@media (max-width: 1200px) {
+  .export-countries-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 9px;
+  }
+}
+
+@media (max-width: 920px) {
+  .global-export-section {
+    padding: 65px 0 55px;
+  }
+
+  .export-controls-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .export-search-wrapper {
+    width: 100%;
+  }
+
+  .export-countries-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .export-country-card {
+    padding: 12px 8px 10px;
+    border-radius: 10px;
+  }
+
+  .country-flag-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .country-name-text {
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .export-header .section-display-heading {
+    font-size: clamp(1.42rem, 5.8vw, 2.1rem);
+    line-height: 1.22;
+  }
+
+  .export-header .section-description {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .export-metric-pill-badge {
+    padding: 6px 12px;
+    max-width: 100%;
+  }
+
+  .metric-pill-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    text-align: left;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 620px) {
+  .export-countries-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .export-country-card {
+    border-radius: 10px;
+    padding: 12px 8px 10px;
+  }
+
+  .export-region-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .region-tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .export-header .section-display-heading {
+    font-size: clamp(1.25rem, 6.8vw, 1.7rem);
+    line-height: 1.25;
+  }
+
+  .export-metric-pill-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .export-countries-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+  }
+}
+

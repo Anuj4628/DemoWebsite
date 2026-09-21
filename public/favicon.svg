@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="48" height="48">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="50%" stop-color="#DC2626" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </linearGradient>
+    <linearGradient id="steelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(5, 7)">
+    <path d="M75 5 L140 42 L140 108 L75 145 L10 108 L10 42 Z" fill="url(#steelGrad)" stroke="#1E293B" stroke-width="2" />
+    <path d="M75 16 L22 47 L22 103 L75 134 L75 75 Z" fill="url(#redGrad)" />
+    <path d="M75 16 L128 47 L128 103 L75 134 L75 75 Z" fill="#B91C1C" />
+    <polygon points="75,34 114,57 114,93 75,116 36,93 36,57" fill="#7F1D1D" />
+    <polygon points="75,44 104,61 104,89 75,106 46,89 46,61" fill="url(#redGrad)" />
+    <polygon points="75,58 91,75 75,92 59,75" fill="#FFFFFF" opacity="0.95" />
+    <line x1="18" y1="75" x2="132" y2="75" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+  </g>
+</svg>

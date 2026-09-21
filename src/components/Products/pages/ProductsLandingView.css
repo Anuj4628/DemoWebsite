@@ -1,0 +1,579 @@
+/* ProductsLandingView.css - Exact Replication of Reference Image 1 & 2 */
+
+.reference-products-landing {
+  min-height: 100vh;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  padding-bottom: 80px;
+}
+
+.reference-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===================================================
+   1. Large Industrial Hero Section (Image 1)
+   =================================================== */
+.reference-hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  min-height: 700px;
+  padding: 135px 28px 95px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Subtle gradient overlay keeping the right side workshop imagery visible */
+.reference-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(11, 22, 36, 0.90) 0%, rgba(11, 22, 36, 0.74) 48%, rgba(11, 22, 36, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.reference-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Floating Dark Glassmorphic Card (Left Aligned) */
+.hero-floating-card {
+  max-width: 630px;
+  background: rgba(14, 25, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 42px 46px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.40);
+}
+
+@media (max-width: 768px) {
+  .reference-hero-section {
+    padding: 95px 16px 55px;
+    min-height: auto;
+  }
+  .hero-floating-card {
+    padding: 26px 20px;
+    max-width: 100%;
+  }
+}
+
+/* Breadcrumb inside Card: Home > Products System */
+.card-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  color: #94A3B8;
+  margin-bottom: 14px;
+}
+
+.crumb-link {
+  color: #94A3B8;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.crumb-link:hover {
+  color: #FFFFFF;
+}
+
+.crumb-sep {
+  color: #D3122A;
+  font-weight: 700;
+}
+
+.crumb-current {
+  color: #E2E8F0;
+  font-weight: 600;
+}
+
+/* Tag Pill: [ 📦 MANUFACTURER & SUPPLIER DIVISIONS ] */
+.card-divisions-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(211, 18, 42, 0.15);
+  border: 1px solid rgba(211, 18, 42, 0.35);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.tag-bracket {
+  color: #FF6B7A;
+  font-weight: 800;
+  font-size: 0.72rem;
+}
+
+.tag-icon {
+  color: #FF4D61;
+}
+
+.tag-text {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FF6B7A;
+}
+
+/* Main Heading */
+.card-main-heading {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px 0;
+}
+
+@media (max-width: 768px) {
+  .card-main-heading {
+    font-size: 1.75rem;
+  }
+}
+
+.heading-highlight-red {
+  color: #D3122A;
+}
+
+/* Subtitle */
+.card-sub-description {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #CBD5E1;
+  margin: 0 0 22px 0;
+}
+
+/* Search Input Box */
+.card-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+}
+
+.card-search-container:focus-within {
+  border-color: #D3122A;
+  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.25);
+  background: rgba(10, 20, 32, 0.92);
+}
+
+.card-search-icon {
+  color: #94A3B8;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.card-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #FFFFFF;
+}
+
+.card-search-input::placeholder {
+  color: #94A3B8;
+}
+
+.card-search-clear {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  transition: color 0.18s ease;
+}
+
+.card-search-clear:hover {
+  color: #FFFFFF;
+}
+
+/* ===================================================
+   2. Floating 3-Card Division Selector (Image 1)
+   =================================================== */
+.floating-division-selector {
+  position: relative;
+  z-index: 10;
+  margin-top: -36px;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  .floating-division-selector {
+    margin-top: 20px;
+  }
+}
+
+.division-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .division-cards-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.div-select-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.div-select-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Active Dark State (Like Card 1 in Reference Image 1) */
+.div-select-card.active-dark {
+  background: #0B192C;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 3.5px solid #D3122A;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+.div-select-card.active-dark .div-card-eyebrow {
+  color: #94A3B8;
+}
+
+.div-select-card.active-dark .div-card-title {
+  color: #FFFFFF;
+}
+
+.div-select-card.active-dark .div-card-sub {
+  color: #94A3B8;
+}
+
+.div-select-card.active-dark .div-card-icon {
+  color: #D3122A;
+}
+
+/* Inactive White State (Like Cards 2 & 3 in Reference Image 1) */
+.div-select-card.inactive-white {
+  background: #FFFFFF;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.div-select-card.inactive-white:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+}
+
+.div-select-card.inactive-white .div-card-title {
+  color: #0B192C;
+}
+
+.div-select-card.inactive-white .div-card-sub {
+  color: #64748B;
+}
+
+.div-select-card.inactive-white .div-card-icon {
+  color: #94A3B8;
+}
+
+.div-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.div-card-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.eyebrow-red {
+  color: #D3122A;
+}
+
+.eyebrow-blue {
+  color: #2563EB;
+}
+
+.div-card-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 3px 0;
+  letter-spacing: -0.01em;
+}
+
+.div-card-sub {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.div-card-icon-wrap {
+  flex-shrink: 0;
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================================================
+   3. Catalogue Area with Reference Image 2 Cards
+   =================================================== */
+.reference-catalogue-area {
+  padding: 32px 0 40px;
+}
+
+.catalogue-heading-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.heading-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogue-micro-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #D3122A;
+  margin-bottom: 4px;
+}
+
+.catalogue-main-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0B192C;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.heading-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-query-chip {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  color: #475569;
+  background: #E2E8F0;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.btn-clear-query {
+  background: none;
+  border: none;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #D3122A;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* 3-Column Desktop Grid */
+.reference-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .reference-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .reference-products-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* Empty State */
+.reference-empty-state {
+  text-align: center;
+  padding: 56px 20px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.empty-icon {
+  color: #94A3B8;
+  margin-bottom: 12px;
+}
+
+.reference-empty-state h3 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 6px 0;
+}
+
+.reference-empty-state p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.9rem;
+  color: #64748B;
+  margin: 0 0 18px 0;
+}
+
+.btn-empty-reset {
+  padding: 10px 22px;
+  background: #D3122A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.btn-empty-reset:hover {
+  background: #B50E22;
+}
+
+/* ===================================================
+   4. Industrial Quality Strip
+   =================================================== */
+.reference-quality-strip {
+  margin-top: 10px;
+}
+
+.quality-inner-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 30px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+@media (max-width: 900px) {
+  .quality-inner-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+.quality-pill-eyebrow {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D3122A;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.quality-text-part h3 {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0B192C;
+  margin: 0 0 6px 0;
+}
+
+.quality-text-part p {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 640px;
+}
+
+.quality-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .quality-chips-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+.q-badge-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.q-badge-box strong {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0B192C;
+}
+
+.q-badge-box span {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  color: #64748B;
+}
