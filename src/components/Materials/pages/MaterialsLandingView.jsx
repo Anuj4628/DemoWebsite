@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { getAllMaterials } from '../../../data/materialsData';
+import { brandDetails } from '../../../data/navigationData';
 import { Layers, ShieldCheck, ArrowRight } from 'lucide-react';
 import './MaterialsLandingView.css';
 
@@ -57,7 +58,7 @@ export default function MaterialsLandingView({ onNavigate }) {
           </div>
 
           <h1 className="materials-hero-heading">
-            Materials <span className="text-highlight-red">We Work With</span>
+            Materials <span className="text-highlight-teal">We Work With</span>
           </h1>
 
           <p className="materials-hero-subtitle">
@@ -106,7 +107,7 @@ export default function MaterialsLandingView({ onNavigate }) {
                   }
                 }}
               >
-                {/* Top Subtle Redcore Accent */}
+                {/* Top Subtle Brand Gold Accent */}
                 <div className="mat-card-top-bar" aria-hidden="true" />
 
                 {/* Card Media Container */}
@@ -168,7 +169,7 @@ export default function MaterialsLandingView({ onNavigate }) {
             </div>
             <div className="materials-qa-actions">
               <a
-                href="https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20have%20an%20inquiry%20regarding%20metallurgical%20materials"
+                href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello ${brandDetails.name}, I have an inquiry regarding metallurgical materials.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-qa-whatsapp"
@@ -176,7 +177,7 @@ export default function MaterialsLandingView({ onNavigate }) {
                 <span>Technical Desk WhatsApp</span>
               </a>
               <a
-                href="mailto:info@redcoresteels.com?subject=Material%20Specification%20Inquiry"
+                href={`mailto:${brandDetails.contact.email}?subject=${encodeURIComponent('Material Specification Inquiry — Bhawal Steel')}`}
                 className="btn-qa-email"
               >
                 <span>Email Specifications</span>

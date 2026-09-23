@@ -40,24 +40,22 @@
 
 .whatsapp-btn:hover {
   background: #20BA5A;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.55),
-              0 4px 10px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
 }
 
 /* Phone Button */
 .phone-btn {
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 22px rgba(211, 18, 42, 0.42),
+  box-shadow: 0 8px 22px rgba(18, 90, 72, 0.42),
               0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .phone-btn:hover {
-  background: var(--color-red-bright, #E81935);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(211, 18, 42, 0.55),
-              0 4px 10px rgba(0, 0, 0, 0.25);
+  background: var(--brand-teal-dark, #0B382D);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(18, 90, 72, 0.4);
 }
 
 .floating-btn:active {

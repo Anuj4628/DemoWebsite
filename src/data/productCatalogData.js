@@ -1,5 +1,5 @@
 // ======================================================================
-// REDCORE STEELS — CENTRAL PRODUCT CATALOG DATABASE
+// BHAWAL STEEL & ENGINEERING COMPANY — CENTRAL PRODUCT CATALOG DATABASE
 // Dedicated Single Source of Truth for Manufacturer & Supplier Divisions
 // ======================================================================
 

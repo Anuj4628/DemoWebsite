@@ -1,17 +1,36 @@
 /* ===================================================
-   REDCORE STEELS - LIGHT & PREMIUM INDUSTRIAL DESIGN SYSTEM
+   BHAWAL STEEL & ENGINEERING COMPANY - LIGHT & PREMIUM INDUSTRIAL DESIGN SYSTEM
    =================================================== */
 
 :root {
-  /* Brand Primary Colors */
-  --color-red: #D3122A;
-  --color-red-bright: #E81935;
-  --color-red-dark: #A60D20;
-  --color-red-glow: rgba(211, 18, 42, 0.25);
-  --color-red-subtle: rgba(211, 18, 42, 0.08);
-  --color-red-border: rgba(211, 18, 42, 0.35);
+  /* Brand Primary Colors - Deep Teal Green (Sampled directly from Bhawal Steel Logo) */
+  --brand-teal: #125A48;
+  --brand-teal-dark: #0B382D;
+  --brand-teal-darker: #07261E;
+  --brand-teal-light: #1A7A63;
+  --brand-teal-glow: rgba(18, 90, 72, 0.28);
+  --brand-teal-subtle: rgba(18, 90, 72, 0.08);
+  --brand-teal-border: rgba(18, 90, 72, 0.25);
+
+  /* Brand Secondary Colors - Muted Metallic Gold (From Bhawal Steel Logo) */
+  --brand-gold: #C09642;
+  --brand-gold-dark: #9E7529;
+  --brand-gold-light: #D4AC58;
+  --brand-gold-glow: rgba(192, 150, 66, 0.32);
+  --brand-gold-subtle: rgba(192, 150, 66, 0.12);
+  --brand-gold-border: rgba(192, 150, 66, 0.38);
+
+  /* Legacy Bridge Tokens - Cleanly mapped to Bhawal palette (NO RED) */
+  --color-red: var(--brand-teal);
+  --color-red-bright: var(--brand-gold);
+  --color-red-dark: var(--brand-teal-dark);
+  --color-red-glow: var(--brand-teal-glow);
+  --color-red-subtle: var(--brand-teal-subtle);
+  --color-red-border: var(--brand-teal-border);
 
   /* Light Industrial Charcoal & Slate Typography */
+  --brand-charcoal: #0F172A;
+  --brand-navy-dark: #0A1612;
   --color-text-primary: #0F172A;
   --color-text-secondary: #334155;
   --color-text-muted: #64748B;
@@ -21,6 +40,8 @@
   --color-bg-main: #F8FAFC;
   --color-surface-white: #FFFFFF;
   --color-surface-light: #F1F5F9;
+  --color-surface-warm: #FAF8F2;
+  --color-surface-dark: #091E18;
 
   /* Metallic & Steel Accents */
   --color-steel-100: #F8FAFC;
@@ -38,10 +59,10 @@
   --border-glass: rgba(255, 255, 255, 0.7);
   --border-dark-subtle: rgba(15, 23, 42, 0.08);
 
-  /* Typography - Modern Industrial Sans-Serif Foundation */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Space Grotesk', 'Inter', monospace;
-  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typography - Modern Geometric Outfit Foundation across all pages */
+  --font-primary: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Outfit', monospace;
 
   /* Premium Light Glassmorphism */
   --card-glass-bg: rgba(255, 255, 255, 0.88);
@@ -102,8 +123,26 @@ p, span, li, a, label {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-red);
+  background-color: var(--brand-teal);
   color: #FFFFFF;
+}
+
+/* Brand Text Highlights */
+.text-highlight-teal {
+  color: var(--brand-teal);
+}
+
+.text-highlight-gold {
+  color: var(--brand-gold);
+}
+
+/* Legacy highlight compatibility cleanly resolved to brand gold/teal */
+.text-highlight-red {
+  color: var(--brand-gold);
+}
+
+.text-highlight-teal-dark {
+  color: var(--brand-teal-dark);
 }
 
 /* Images & Media */
@@ -123,6 +162,22 @@ button {
   cursor: pointer;
 }
 
+/* Global Consistent Button & Clickable Hover Language */
+button:not(:disabled),
+.btn:not(:disabled) {
+  transition: background-color 0.22s ease,
+              border-color 0.22s ease,
+              color 0.22s ease,
+              transform 0.22s ease,
+              box-shadow 0.22s ease,
+              opacity 0.22s ease;
+}
+
+button:not(:disabled):active,
+.btn:not(:disabled):active {
+  transform: translateY(0);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -140,7 +195,7 @@ a {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-red);
+  background: var(--brand-teal);
 }
 
 /* Layout Container System */
@@ -168,5 +223,26 @@ main {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ===================================================
+   GLOBAL SECTION SPACING & ELEGANT TRANSITION DIVIDERS
+   =================================================== */
+
+:root {
+  --section-pad-y: clamp(40px, 4.8vw, 58px);
+  --section-pad-compact-y: clamp(34px, 4vw, 48px);
+  --section-divider-color: rgba(18, 90, 72, 0.12);
+  --section-divider-gold: rgba(192, 150, 66, 0.25);
+}
+
+/* Subtle, Elegant Horizontal Section Divider Line */
+.section-transition-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--section-divider-color);
+  border: none;
+  margin: 0;
+  display: block;
 }
 

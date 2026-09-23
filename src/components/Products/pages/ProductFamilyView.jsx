@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GradeCard from '../GradeCard';
 import { getProductGroup, DIVISIONS } from '../../../data/productCatalogData';
+import { brandDetails } from '../../../data/navigationData';
 import { FileText, Package, Layers, Search, X } from 'lucide-react';
 import './ProductFamilyView.css';
 
@@ -118,25 +119,21 @@ export default function ProductFamilyView({
           {/* Floating Dark Glassmorphic Card (Matching Image 1) */}
           <div ref={heroCardRef} className="family-hero-card">
             
-            {/* Breadcrumb inside Card: Home > Products > [DIVISION] > [Family Name] */}
+            {/* Breadcrumb inside Card: Home > Products > [Family Name] */}
             <nav className="family-breadcrumb-nav" aria-label="Breadcrumb">
               <span className="crumb-text" onClick={() => onNavigate('/')}>Home</span>
               <span className="crumb-arrow">&gt;</span>
               <span className="crumb-text" onClick={() => onNavigate('/products')}>Products</span>
               <span className="crumb-arrow">&gt;</span>
-              <span className="crumb-text" onClick={() => onNavigate(`/products/${group.divisionSlug}`)}>
-                {divisionName}
-              </span>
-              <span className="crumb-arrow">&gt;</span>
               <span className="crumb-active">{group.name}</span>
             </nav>
 
-            {/* Tag Pill: [ 📄 MANUFACTURER DIVISION — CATEGORY LANDING ] */}
+            {/* Tag Pill: [ 📦 PRODUCT FAMILY SPECIFICATIONS ] */}
             <div className="family-tag-pill">
               <span className="tag-bracket">[</span>
               <FileText size={13} className="tag-file-icon" />
               <span className="tag-pill-text">
-                {divisionName} DIVISION — CATEGORY LANDING
+                PRODUCT FAMILY SPECIFICATIONS
               </span>
               <span className="tag-bracket">]</span>
             </div>
@@ -315,7 +312,7 @@ export default function ProductFamilyView({
             </div>
             <div className="rfq-compact-actions">
               <a
-                href={`https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20need%20a%20quote%20for%20${encodeURIComponent(group.name)}`}
+                href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello ${brandDetails.name}, I need a quote for ${group.name}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-rfq-whatsapp"
@@ -325,7 +322,7 @@ export default function ProductFamilyView({
                 </svg>
                 <span>WhatsApp Inquiry</span>
               </a>
-              <a href="tel:+919000000000" className="btn-rfq-call">
+              <a href={`tel:${brandDetails.contact.phone1Raw}`} className="btn-rfq-call">
                 <span>Call Desk</span>
               </a>
             </div>

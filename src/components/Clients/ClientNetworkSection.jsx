@@ -6,7 +6,30 @@ import './ClientNetworkSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ClientNetworkSection() {
+// Organize the 11 verified partner logos into two curated sets
+const row1Source = [
+  clientsData[0], // Tata Steel
+  clientsData[1], // Reliance Industries
+  clientsData[3], // Indian Oil
+  clientsData[4], // JSW Steel
+  clientsData[6], // Aditya Birla Group
+  clientsData[9]  // Godrej
+];
+
+const row2Source = [
+  clientsData[2], // Adani Group
+  clientsData[5], // Jindal Steel & Power
+  clientsData[7], // Hindustan Petroleum
+  clientsData[8], // Bhushan Power & Steel
+  clientsData[10], // Haldia Petrochemicals
+  clientsData[0]  // Tata Steel
+];
+
+// Repeat each source 3 times per half for a 4500px+ seamless marquee track
+const row1Items = [...row1Source, ...row1Source, ...row1Source];
+const row2Items = [...row2Source, ...row2Source, ...row2Source];
+
+export default function ClientNetworkSection({ onNavigate }) {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -14,19 +37,18 @@ export default function ClientNetworkSection() {
     if (!sectionRef.current || !headerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Header GSAP entrance reveal
       gsap.fromTo(
         headerRef.current.children,
-        { opacity: 0, y: 32 },
+        { opacity: 0, y: 22 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
-          stagger: 0.14,
+          duration: 0.75,
+          stagger: 0.1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: headerRef.current,
-            start: 'top 82%',
+            start: 'top 85%',
             toggleActions: 'play none none none'
           }
         }
@@ -36,81 +58,88 @@ export default function ClientNetworkSection() {
     return () => ctx.revert();
   }, []);
 
-  // Split into 2 rows for opposing continuous infinite marquees
-  const row1Clients = clientsData.slice(0, 6);
-  const row2Clients = clientsData.slice(6);
-
-  // Replicate 4x for seamless jump-free infinite continuous scroll
-  const marqueeRow1 = [...row1Clients, ...row1Clients, ...row1Clients, ...row1Clients];
-  const marqueeRow2 = [...row2Clients, ...row2Clients, ...row2Clients, ...row2Clients];
-
   return (
-    <section id="certificate" ref={sectionRef} className="client-network-section" aria-label="Client Network">
-      {/* Dark Technical Grid Overlay */}
-      <div className="client-network-bg-grid" aria-hidden="true" />
-      <div className="client-network-ambient-glow" aria-hidden="true" />
+    <section
+      id="clients"
+      ref={sectionRef}
+      className="client-network-showcase"
+      aria-label="Client Partners"
+    >
+      {/* Anchor shim for existing links targeting certificate */}
+      <span id="certificate" className="section-anchor-shim" aria-hidden="true" />
+
+      {/* Dark Industrial Ambience & Technical Grid */}
+      <div className="network-bg-scrim" aria-hidden="true" />
+      <div className="network-technical-grid" aria-hidden="true" />
 
       <div className="section-container">
-        {/* Strong Section Heading */}
-        <div ref={headerRef} className="client-network-header">
+        {/* 1. Centered Section Header */}
+        <div ref={headerRef} className="client-section-header">
           <div className="section-eyebrow">
-            <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">GLOBAL INDUSTRIAL ECOSYSTEM</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
+            <span className="eyebrow-text">APPROVED INDUSTRIAL NETWORK</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
           </div>
 
-          <h2 className="section-display-heading">
-            CLIENT <span className="text-highlight-red">NETWORK</span>
+          <h2 className="client-display-heading">
+            CLIENT <span className="heading-accent-gold">PARTNERS</span>
           </h2>
+
+          <p className="client-lead-desc">
+            Trusted supply partner and verified vendor to premier energy, infrastructure, and heavy engineering corporations worldwide.
+          </p>
         </div>
       </div>
 
-      {/* Dual Continuous Infinite Logo Marquees */}
-      <div className="client-marquees-wrapper" aria-label="Approved corporate client and partner logos">
-        {/* ROW 1: Right to Left */}
-        <div className="client-marquee-row marquee-reverse">
-          <div className="client-marquee-track">
-            {marqueeRow1.map((client, idx) => (
-              <div
-                key={`r1-${client.name}-${idx}`}
-                className="client-logo-card"
-                tabIndex={0}
-                role="group"
-                aria-label={client.name}
-              >
-                <div className="client-logo-surface">
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="partner-logo-img"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="partner-company-name">{client.name}</span>
+      {/* 2. Two-Row Continuous Infinite Marquee Sliders */}
+      <div className="client-sliders-wrapper" aria-label="Partner Logos Continuous Showcase">
+        {/* Row 1: Right -> Left Continuous Marquee */}
+        <div className="client-marquee-container">
+          <div className="client-marquee-track client-marquee-track-1">
+            {row1Items.map((client, idx) => (
+              <div key={`r1-a-${idx}`} className="client-logo-card">
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="client-logo-img"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            {row1Items.map((client, idx) => (
+              <div key={`r1-b-${idx}`} className="client-logo-card" aria-hidden="true">
+                <img
+                  src={client.logo}
+                  alt=""
+                  className="client-logo-img"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
         </div>
 
-        {/* ROW 2: Left to Right */}
-        <div className="client-marquee-row marquee-forward">
-          <div className="client-marquee-track">
-            {marqueeRow2.map((client, idx) => (
-              <div
-                key={`r2-${client.name}-${idx}`}
-                className="client-logo-card"
-                tabIndex={0}
-                role="group"
-                aria-label={client.name}
-              >
-                <div className="client-logo-surface">
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="partner-logo-img"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="partner-company-name">{client.name}</span>
+        {/* Row 2: Right -> Left Continuous Marquee (Decoupled Speed) */}
+        <div className="client-marquee-container">
+          <div className="client-marquee-track client-marquee-track-2">
+            {row2Items.map((client, idx) => (
+              <div key={`r2-a-${idx}`} className="client-logo-card">
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="client-logo-img"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            {row2Items.map((client, idx) => (
+              <div key={`r2-b-${idx}`} className="client-logo-card" aria-hidden="true">
+                <img
+                  src={client.logo}
+                  alt=""
+                  className="client-logo-img"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>

@@ -1,288 +1,228 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { aboutIndustriesData } from '../../data/aboutData';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-// 2 complete cycles for seamless continuous wrap-around rotation along the arc
-const arcCards = [
-  ...aboutIndustriesData.map((item, idx) => ({
-    ...item,
-    uniqueKey: `c1-${item.id}`,
-    cycleIdx: idx
-  })),
-  ...aboutIndustriesData.map((item, idx) => ({
-    ...item,
-    uniqueKey: `c2-${item.id}`,
-    cycleIdx: idx
-  }))
-];
-
+/**
+ * AboutIndustries: Premium Infinite Looping Horizontal Slider
+ * - Seamless infinite translation (tripled dataset, zero clipping, zero dead-ends)
+ * - Pixel-perfect alignment matching the rest of the About page
+ * - Brisk auto-play speed (1.8s) with hover pause
+ * - Interactive prev/next navigation and active card counter
+ */
 export default function AboutIndustries() {
-  const sectionRef = useRef(null);
-  const pinContainerRef = useRef(null);
-  const arcStageRef = useRef(null);
-  const cardElementsRef = useRef([]);
-  const [activeCenterIdx, setActiveCenterIdx] = useState(0);
-  const activeCenterIdxRef = useRef(0);
-  const scrollTriggerRef = useRef(null);
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+  const cardRef = useRef(null);
 
-  // Mathematical Arc Parameters
-  const TOTAL_CARDS = arcCards.length; // 12
-  const STEP_ANGLE = 15; // 15 degrees between adjacent cards
-  const TOTAL_SPAN = TOTAL_CARDS * STEP_ANGLE; // 180 deg
-  const HALF_SPAN = TOTAL_SPAN / 2; // 90 deg
+  const totalCards = aboutIndustriesData.length; // 6
+  // Tripled dataset to provide mathematically infinite looping forward and backward
+  const extendedCards = [
+    ...aboutIndustriesData,
+    ...aboutIndustriesData,
+    ...aboutIndustriesData
+  ];
 
-  // Calculate and render all cards along the 3D convex arc purely driven by scroll progress
-  const updateArcLayout = useCallback((progress = 0) => {
-    const stage = arcStageRef.current;
-    if (!stage) return;
+  // Start at index 6 (Card 1 of the middle set)
+  const [currentIndex, setCurrentIndex] = useState(totalCards);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const [stepWidth, setStepWidth] = useState(364);
 
-    const width = window.innerWidth;
-    const isMobile = width < 640;
-    const isTablet = width >= 640 && width < 1024;
-
-    // Radius of curvature for the arc (convex wheel top)
-    const R = isMobile ? 780 : isTablet ? 1050 : 1350;
-
-    // Scroll progress drives rotation angle along the arc (Right to Left movement)
-    const totalScrollRotation = (TOTAL_CARDS / 2) * STEP_ANGLE; // 6 cards * 15 deg = 90 deg
-    const currentAngle = progress * totalScrollRotation;
-
-    let closestIdx = 0;
-    let minDiff = Infinity;
-
-    cardElementsRef.current.forEach((card, idx) => {
-      if (!card) return;
-
-      // Raw angle along the arc
-      const rawAngle = idx * STEP_ANGLE - currentAngle;
-
-      // Wrap around seamlessly so cards loop infinitely
-      let relAngle = (((rawAngle + HALF_SPAN) % TOTAL_SPAN) + TOTAL_SPAN) % TOTAL_SPAN - HALF_SPAN;
-      const absAngle = Math.abs(relAngle);
-
-      if (absAngle < minDiff) {
-        minDiff = absAngle;
-        closestIdx = idx;
-      }
-
-      // Compute physical (x, y) along circular arc
-      const rad = (relAngle * Math.PI) / 180;
-      const x = R * Math.sin(rad);
-      // Convex arc: center is at highest peak (y = 0), side cards drop downward (y > 0)
-      const y = R * (1 - Math.cos(rad)) * (isMobile ? 0.9 : 0.85);
-
-      // Rotate card tangentially along the arc
-      const rotateZ = relAngle;
-
-      // Scale: center card is largest (1.05), dropping gently along sides
-      const scale = Math.max(0.74, (isMobile ? 0.98 : 1.05) - absAngle * 0.0058);
-
-      // Opacity: center is fully visible, far cards fade smoothly
-      const opacity = absAngle > 54 ? 0 : Math.max(0.25, 1 - absAngle * 0.016);
-
-      // Z-Index: highest at center apex
-      const zIndex = Math.max(1, Math.round(50 - absAngle));
-
-      card.style.zIndex = zIndex;
-
-      gsap.set(card, {
-        x,
-        y,
-        rotateZ,
-        scale,
-        opacity,
-        visibility: opacity <= 0.02 ? 'hidden' : 'visible'
-      });
-
-      if (absAngle < STEP_ANGLE * 0.45) {
-        card.classList.add('is-center-apex');
-      } else {
-        card.classList.remove('is-center-apex');
-      }
-    });
-
-    const normalizedCenter = closestIdx % aboutIndustriesData.length;
-    if (normalizedCenter !== activeCenterIdxRef.current) {
-      activeCenterIdxRef.current = normalizedCenter;
-      setActiveCenterIdx(normalizedCenter);
+  // Measure card width + gap dynamically to ensure exact pixel-perfect translation across all screens
+  const measureStep = useCallback(() => {
+    if (cardRef.current && trackRef.current) {
+      const cardRect = cardRef.current.getBoundingClientRect();
+      const style = window.getComputedStyle(trackRef.current);
+      const gap = parseFloat(style.columnGap || style.gap || '24') || 24;
+      setStepWidth(cardRect.width + gap);
     }
-  }, [TOTAL_CARDS, TOTAL_SPAN, HALF_SPAN, STEP_ANGLE]);
+  }, []);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const pinEl = pinContainerRef.current;
-    if (!section || !pinEl) return;
+    measureStep();
+    window.addEventListener('resize', measureStep);
+    return () => window.removeEventListener('resize', measureStep);
+  }, [measureStep]);
 
-    const ctx = gsap.context(() => {
-      // Pinned GSAP ScrollTrigger timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=2400',
-          pin: pinEl,
-          scrub: 0.9,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            updateArcLayout(self.progress);
-          }
-        }
-      });
+  // Navigate forward
+  const handleNext = useCallback(() => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, []);
 
-      scrollTriggerRef.current = tl.scrollTrigger;
+  // Navigate backward
+  const handlePrev = useCallback(() => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  }, []);
 
-      // Initial layout update
-      setTimeout(() => updateArcLayout(0), 40);
-
-      const handleResize = () => {
-        ScrollTrigger.refresh();
-        if (scrollTriggerRef.current) {
-          updateArcLayout(scrollTriggerRef.current.progress);
-        }
-      };
-
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, section);
-
-    return () => ctx.revert();
-  }, [updateArcLayout]);
-
-  // Step left/right along the arc via nav buttons by smoothly scrolling ScrollTrigger
-  const stepArc = (direction) => {
-    const st = scrollTriggerRef.current;
-    if (!st) return;
-
-    const scrollTotal = st.end - st.start;
-    const totalScrollRotation = (TOTAL_CARDS / 2) * STEP_ANGLE; // 90 deg
-    const stepProgress = STEP_ANGLE / totalScrollRotation; // 1/6
-    const stepScroll = stepProgress * scrollTotal;
-
-    const currentScroll = window.scrollY;
-    let targetScroll;
-
-    if (currentScroll < st.start) {
-      targetScroll = st.start + (direction > 0 ? stepScroll : 0);
-    } else if (currentScroll > st.end) {
-      targetScroll = st.end - (direction < 0 ? stepScroll : 0);
-    } else {
-      targetScroll = currentScroll + direction * stepScroll;
-      if (targetScroll > st.end + 5) {
-        targetScroll = st.start;
-      } else if (targetScroll < st.start - 5) {
-        targetScroll = st.end;
-      }
-    }
-
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    });
+  // Handle manual card click
+  const handleCardClick = (targetIndex) => {
+    setIsPaused(true);
+    setIsTransitioning(true);
+    setCurrentIndex(targetIndex);
+    setTimeout(() => setIsPaused(false), 3200);
   };
 
+  // Seamless jump at cloned dataset boundaries (zero glitch or jump)
+  const handleTransitionEnd = () => {
+    if (currentIndex >= totalCards * 2) {
+      // Reached item 12 (first item of 3rd set) -> jump silently back to item 6 (first item of 2nd set)
+      setIsTransitioning(false);
+      setCurrentIndex(totalCards + (currentIndex % totalCards));
+    } else if (currentIndex < totalCards) {
+      // Reached item < 6 -> jump silently forward to item in middle set
+      setIsTransitioning(false);
+      setCurrentIndex(totalCards + (currentIndex % totalCards));
+    }
+  };
+
+  // Re-enable CSS transition after silent boundary jump
+  useEffect(() => {
+    if (!isTransitioning) {
+      const raf1 = requestAnimationFrame(() => {
+        const raf2 = requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+        return () => cancelAnimationFrame(raf2);
+      });
+      return () => cancelAnimationFrame(raf1);
+    }
+  }, [isTransitioning]);
+
+  // Brisk Auto-Play: Increased speed to 1.8s (1800ms) with hover pause
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, 1800);
+
+    return () => clearInterval(timer);
+  }, [isPaused, handleNext]);
+
+  // Compute active 1-indexed counter (1 to 6)
+  const activeNumber = (currentIndex % totalCards) + 1;
+
   return (
-    <section ref={sectionRef} className="about-industries-phase arc-carousel-section" aria-label="Industries We Power">
-      {/* Top Atmospheric Ambient Vignette */}
-      <div className="arc-top-vignette" aria-hidden="true" />
+    <section className="about-industries-slider-phase" aria-label="Industries We Power">
+      <div className="industries-slider-container">
+        {/* Header Row: Perfectly Aligned with Section Grid */}
+        <div className="industries-slider-header-container">
+          <div className="industries-slider-eyebrow">
+            <span className="eyebrow-accent-bar" />
+            <span className="eyebrow-text">MISSION-CRITICAL SECTORS</span>
+          </div>
 
-      <div ref={pinContainerRef} className="industries-pin-container arc-pin-container">
-        <div className="about-industries-container arc-container">
-          {/* Header */}
-          <div className="industries-header arc-header">
-            <div className="industries-eyebrow">
-              <span className="eyebrow-accent-bar" />
-              <span className="eyebrow-text">MISSION-CRITICAL SECTORS</span>
+          <div className="industries-title-row">
+            <div className="industries-title-block">
+              <h2 className="industries-slider-heading">
+                Industries We <span className="highlight-teal">Power</span>
+              </h2>
+              <p className="industries-slider-subhead">
+                Supplying specialized steel and exotic alloys to high-consequence global engineering operations.
+              </p>
             </div>
-            <h3 className="industries-heading">
-              Industries We <span className="highlight-red">Power</span>
-            </h3>
-            <p className="industries-subhead">
-              One comprehensive steel supply ecosystem engineering specialized grades for the world's most unforgiving operating conditions.
-            </p>
 
-            {/* Active Indicator HUD */}
-            <div className="arc-hud-bar" aria-hidden="true">
-              <span className="arc-hud-label">SECTOR FOCUS //</span>
-              <div className="arc-hud-dots">
-                {aboutIndustriesData.map((item, idx) => (
-                  <span
-                    key={item.id}
-                    className={`arc-hud-dot ${activeCenterIdx === idx ? 'is-active' : ''}`}
-                    title={item.name}
-                  />
-                ))}
+            {/* Fast Slider Controls: Counter + Chevron Buttons */}
+            <div className="industries-nav-actions">
+              <div className="industries-counter-pill" aria-label={`Card ${activeNumber} of ${totalCards}`}>
+                <span className="active-idx">0{activeNumber}</span>
+                <span className="idx-separator">/</span>
+                <span className="total-idx">0{totalCards}</span>
               </div>
-              <span className="arc-hud-name">
-                {aboutIndustriesData[activeCenterIdx]?.name}
-              </span>
+
+              <div className="industries-arrow-buttons">
+                <button
+                  type="button"
+                  className="industry-arrow-btn"
+                  aria-label="Previous Industry"
+                  onClick={() => {
+                    setIsPaused(true);
+                    handlePrev();
+                    setTimeout(() => setIsPaused(false), 3000);
+                  }}
+                  title="Previous Industry"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  className="industry-arrow-btn"
+                  aria-label="Next Industry"
+                  onClick={() => {
+                    setIsPaused(true);
+                    handleNext();
+                    setTimeout(() => setIsPaused(false), 3000);
+                  }}
+                  title="Next Industry"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Curved Arc Carousel Stage */}
+        {/* Seamless Infinite Slider Viewport: Left Edge Aligns Perfectly with Header */}
+        <div
+          ref={containerRef}
+          className="industries-slider-viewport"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setTimeout(() => setIsPaused(false), 2400)}
+        >
           <div
-            ref={arcStageRef}
-            className="arc-carousel-stage"
-            role="region"
-            aria-label="Arc Carousel"
+            ref={trackRef}
+            className="industries-slider-track"
+            onTransitionEnd={handleTransitionEnd}
+            style={{
+              transform: `translate3d(-${currentIndex * stepWidth}px, 0, 0)`,
+              transition: isTransitioning ? 'transform 0.42s cubic-bezier(0.2, 0.85, 0.25, 1)' : 'none'
+            }}
           >
-            {arcCards.map((item, index) => (
-              <article
-                key={item.uniqueKey}
-                ref={(el) => (cardElementsRef.current[index] = el)}
-                data-index={index}
-                className="arc-industry-card"
-              >
-                {/* Clear Industrial Photo Frame (100% visible, sharp, no blur/fade) */}
-                <div className="arc-card-image-box">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="arc-card-img"
-                    loading="lazy"
-                  />
-                  <span className="arc-card-badge">
-                    {item.tagline}
-                  </span>
-                </div>
+            {extendedCards.map((item, index) => {
+              const isFrontCard = index === currentIndex;
+              const sectorNum = (index % totalCards) + 1;
 
-                {/* Card Content Hierarchy: Industry Name -> Short Description */}
-                <div className="arc-card-body">
-                  <h4 className="arc-card-title">{item.name}</h4>
-                  <p className="arc-card-desc">{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+              return (
+                <article
+                  key={`sector-${index}-${item.id}`}
+                  ref={index === 0 ? cardRef : null}
+                  className={`industry-showcase-card ${isFrontCard ? 'is-in-focus' : ''}`}
+                  onClick={() => handleCardClick(index)}
+                  tabIndex={0}
+                  role="group"
+                  aria-label={`${item.name} - Sector 0${sectorNum}`}
+                >
+                  {/* Industrial Photo Frame */}
+                  <div className="industry-card-photo-box">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="industry-card-photo"
+                      loading="lazy"
+                    />
+                    <div className="industry-photo-gradient" />
+                    <span className="industry-tagline-badge">{item.tagline}</span>
+                  </div>
 
-          {/* Quick Navigation Stepper Controls */}
-          <div className="arc-nav-controls" aria-label="Arc Carousel Controls">
-            <button
-              type="button"
-              className="arc-nav-btn btn-prev"
-              aria-label="Previous Sector"
-              onClick={() => stepArc(-1)}
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              type="button"
-              className="arc-nav-btn btn-next"
-              aria-label="Next Sector"
-              onClick={() => stepArc(1)}
-            >
-              <ChevronRight size={20} />
-            </button>
+                  {/* Card Body */}
+                  <div className="industry-card-content">
+                    <div className="industry-index-row">
+                      <span className="industry-code-num">SECTOR 0{sectorNum}</span>
+                    </div>
+                    <h3 className="industry-card-name">{item.name}</h3>
+                    <p className="industry-card-description">{item.desc}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
   );
 }
-
-
 

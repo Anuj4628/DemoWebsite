@@ -1,108 +1,97 @@
-import React, { useRef } from 'react';
-import { materialsRow1, materialsRow2 } from '../../data/homeSectionsData';
+import React from 'react';
+import { materialsSpecificationRail } from '../../data/homeSectionsData';
 import './MaterialsSection.css';
 
-// 4-Point Star Separator between cards
-const StarSeparator = () => (
-  <span className="marquee-star-separator" aria-hidden="true">
-    <svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor">
-      <path d="M8 0L9.4 6.6L16 8L9.4 9.4L8 16L6.6 9.4L0 8L6.6 6.6Z" />
-    </svg>
-  </span>
+/**
+ * Precision industrial node separator between material stations
+ */
+const EngineeringTrackSeparator = () => (
+  <div className="track-sep-node" aria-hidden="true">
+    <span className="sep-hairline" />
+    <span className="sep-diamond" />
+    <span className="sep-hairline" />
+  </div>
 );
 
-export default function MaterialsSection() {
-  const sectionRef = useRef(null);
+export default function MaterialsSection({ onNavigate }) {
+  // Triplicate the 14-item metallurgical specification rail for an exact, mathematically seamless infinite loop
+  const continuousRail = [
+    ...materialsSpecificationRail,
+    ...materialsSpecificationRail,
+    ...materialsSpecificationRail
+  ];
 
-  // Duplicate items 4 times for seamless continuous infinite looping
-  const renderRow1 = (items) => {
-    const repeated = [...items, ...items, ...items, ...items];
-    return (
-      <div className="marquee-track-wrapper marquee-row-right-to-left">
-        <div className="marquee-track">
-          {repeated.map((mat, index) => (
-            <React.Fragment key={`row1-${mat.id}-${index}`}>
-              <div
-                className="material-card-light"
-                tabIndex={0}
-                role="group"
-                aria-label={`${mat.name} ${mat.grade}`}
-              >
-                <span className="card-light-name">{mat.name}</span>
-                <span className="card-light-grade">{mat.grade}</span>
-              </div>
-              <StarSeparator />
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  const renderRow2 = (items) => {
-    const repeated = [...items, ...items, ...items, ...items];
-    return (
-      <div className="marquee-track-wrapper marquee-row-left-to-right">
-        <div className="marquee-track">
-          {repeated.map((mat, index) => (
-            <React.Fragment key={`row2-${mat.id}-${index}`}>
-              <div
-                className="material-card-dark"
-                tabIndex={0}
-                role="group"
-                aria-label={`${mat.name} ${mat.grade}`}
-              >
-                <span className="card-dark-name">{mat.name}</span>
-                <span className="card-dark-badge">{mat.grade}</span>
-              </div>
-              <StarSeparator />
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-    );
+  const handleItemClick = () => {
+    if (typeof onNavigate === 'function') {
+      onNavigate('/materials');
+    }
   };
 
   return (
-    <section id="materials" ref={sectionRef} className="materials-section" aria-label="Materials We Work With">
-      {/* Subtle Industrial Background Ambience */}
-      <div className="materials-bg-overlay" aria-hidden="true" />
-
-      {/* Section Header */}
-      <div className="section-container">
+    <section
+      id="materials"
+      className="materials-showcase-section"
+      aria-label="Materials We Work With"
+    >
+      <div className="materials-container">
+        {/* 1. COMPACT, PERFECTLY CENTERED SECTION HEADER */}
         <div className="materials-header">
-          <div className="section-eyebrow">
-            <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">METALLURGICAL GRADES & ALLOYS</span>
+          {/* Eyebrow Label */}
+          <div className="materials-eyebrow">
+            <span className="eyebrow-diamond" aria-hidden="true" />
+            <span className="eyebrow-text">METALLURGICAL GRADES &amp; ALLOYS</span>
+            <span className="eyebrow-diamond" aria-hidden="true" />
           </div>
 
-          <h2 className="materials-display-heading">
-            MATERIAL <span className="text-highlight-red">WE WORK WITH</span>
+          {/* Main Heading */}
+          <h2 className="materials-title">
+            MATERIALS <span className="title-teal">WE WORK WITH</span>
           </h2>
 
-          <p className="materials-supporting-line">
-            High-performance alloys and special steels engineered for demanding international industrial applications.
+          {/* Short, Clean Supporting Description */}
+          <p className="materials-subtext">
+            High-integrity alloys, stainless steels, and specialty metals engineered for severe thermal, pressure, and corrosive industrial operating environments.
           </p>
         </div>
       </div>
 
-      {/* Dual Continuous Infinite Marquees matching reference color combination */}
-      <div className="materials-marquees-container" aria-label="Continuous stream of metallurgical materials">
-        {/* ROW 1: Light Cards (White background + Navy text + Red grade) moving Right → Left */}
-        <div className="marquee-row-wrapper" aria-hidden="false">
-          {renderRow1(materialsRow1)}
-        </div>
+      {/* 2. SINGLE UNIFIED HORIZONTAL INDUSTRIAL MATERIAL TRACK / BANNER */}
+      <div
+        className="materials-track-container"
+        aria-label="Continuous metallurgical material specifications track"
+      >
+        <div className="materials-track-ribbon">
+          {continuousRail.map((item, index) => (
+            <React.Fragment key={`mat-rail-${item.id}-${index}`}>
+              <div
+                className="material-station"
+                tabIndex={0}
+                role="group"
+                aria-label={`${item.name} - ${item.grade}`}
+                onClick={handleItemClick}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleItemClick();
+                  }
+                }}
+              >
+                {/* Metallic Gold Diamond Marker */}
+                <span className="station-diamond" aria-hidden="true" />
 
-        {/* ROW 2: Dark Cards (Navy background + White text + Red solid badge) moving Left → Right */}
-        <div className="marquee-row-wrapper" aria-hidden="false">
-          {renderRow2(materialsRow2)}
+                {/* Material Name */}
+                <span className="station-name">{item.name}</span>
+
+                {/* Grade / Specification Badge */}
+                <span className="station-spec">{item.grade}</span>
+              </div>
+
+              {/* Technical Separator Between Materials */}
+              <EngineeringTrackSeparator />
+            </React.Fragment>
+          ))}
         </div>
       </div>
-
-      {/* Subtle Bottom Technical Divider */}
-      <div className="materials-bottom-divider" aria-hidden="true" />
     </section>
   );
 }
-
-

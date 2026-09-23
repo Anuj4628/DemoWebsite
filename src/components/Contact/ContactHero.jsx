@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import heroBg from '../../assets/images/contact-hero.png';
+import heroBg from '../../assets/images/contact-hero-new.png';
 import {
   Send,
   Phone,
@@ -59,19 +59,19 @@ export default function ContactHero() {
   };
 
   return (
-    <section ref={heroRef} className="contact-hero" aria-label="Contact Redcore Steels">
-      {/* Background Image: Crisp, clear, vibrant photographic backdrop with no muddy filters */}
+    <section ref={heroRef} className="contact-hero" aria-label={`Contact ${brandDetails.name}`}>
+      {/* Background Image: User-provided contact hero image */}
       <div className="contact-hero-bg-wrap" aria-hidden="true">
         <img
           src={heroBg}
-          alt="Redcore Steels Corporate Handshake"
+          alt={`${brandDetails.name} Corporate Operations`}
           className="contact-hero-bg-img"
           loading="eager"
           fetchPriority="high"
         />
-        {/* Soft, natural directional overlay to ensure card readability while keeping handshake 100% visible */}
+        {/* Dark overlay for text readability */}
         <div className="contact-hero-clear-overlay" />
-        {/* Seamless bottom transition to cover any white gap and blend smoothly into Section 1 */}
+        {/* Seamless bottom transition to next section */}
         <div className="contact-hero-bottom-transition" />
       </div>
 
@@ -83,21 +83,21 @@ export default function ContactHero() {
           <span className="breadcrumb-item current">CONTACT US</span>
         </nav>
 
-        {/* Hero Split Layout: Clear visual on left, Floating Glass Card on right */}
+        {/* Hero Split Layout */}
         <div className="contact-hero-grid">
           <div className="contact-hero-spacer" aria-hidden="true" />
 
-          {/* Floating Dark Glassmorphism Contact Card (Matching User Reference Image 1) */}
+          {/* Floating Dark Glassmorphism Contact Card */}
           <div ref={cardRef} className="contact-hero-floating-card">
             {/* Top Specification Pill */}
             <div className="floating-card-pill">
               <span className="pill-diamond" aria-hidden="true">◆</span>
-              <span className="pill-text">[OFFICIAL CATALOGUE CONTACT SPECIFICATION]</span>
+              <span className="pill-text">OFFICIAL CONTACT SPECIFICATION</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="floating-card-title">
-              Get in <span className="title-highlight-orange">Touch</span>
+              Get in <span className="title-highlight">Touch</span>
             </h1>
 
             {/* Subtitle */}

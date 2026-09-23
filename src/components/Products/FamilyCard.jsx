@@ -2,15 +2,15 @@ import React from 'react';
 import './FamilyCard.css';
 
 /**
- * Product Family Card (Matching Reference Image 2)
+ * Product Family Card
  * Features:
- * - Red top accent bar
- * - Rounded white card with clean subtle border
- * - Light-background image container with floating division pill
- * - Bold industrial title
- * - Two-pill metadata row: [DIVISION / MATERIAL] [ALLOY COUNT]
+ * - Clean subtle border and rounded card
+ * - High-definition product image
+ * - Bold, clear industrial title
+ * - Two-pill metadata row: [MATERIAL] [ALLOY COUNT]
  * - 2-line clamped summary description
  * - Footer bar with "EXPLORE PRODUCT DETAILS" + bordered arrow icon button
+ * - No Manufacturer or Supplier division labels
  */
 function FamilyCard({ group, onSelect }) {
   if (!group) return null;
@@ -23,13 +23,10 @@ function FamilyCard({ group, onSelect }) {
     }
   };
 
-  const isManufacturer = group.divisionSlug === 'manufacturer' || group.division === 'Manufacturer Division';
-  const divisionBadge = isManufacturer ? 'MANUFACTURER' : 'SUPPLIER';
-
-  // Primary material or division category
+  // Primary material
   const primaryMaterial = group.categories && group.categories.length > 0 
-    ? (group.categories[0].materialName || 'STAINLESS STEEL')
-    : (isManufacturer ? 'IN-HOUSE FORGED' : 'MILL STOCK');
+    ? (group.categories[0].materialName || 'ALLOY STEEL')
+    : 'ENGINEERING STEEL';
 
   // Secondary pill: alloy grades count
   const alloyCount = group.categories ? `${group.categories.length} ALLOY GRADES` : 'CERTIFIED GRADES';
@@ -39,13 +36,13 @@ function FamilyCard({ group, onSelect }) {
 
   return (
     <article className="ref-product-card" onClick={handleClick}>
-      {/* Top Accent Line (Redcore Red) */}
+      {/* Top Accent Line (Brand Teal) */}
       <div className="card-top-accent" aria-hidden="true" />
 
       {/* Inner Padding Container */}
       <div className="card-inner-wrap">
         
-        {/* Image Container with Floating Division Badge */}
+        {/* Image Container */}
         <div className="card-media-box">
           <img
             src={group.heroImage}
@@ -54,16 +51,13 @@ function FamilyCard({ group, onSelect }) {
             loading="lazy"
             decoding="async"
           />
-          <span className={`card-floating-badge ${group.divisionSlug}`}>
-            {divisionBadge}
-          </span>
         </div>
 
         {/* Card Body */}
         <div className="card-body-content">
           <h3 className="card-title-text">{group.name}</h3>
 
-          {/* Two-Pill Row: Exactly as in Reference Image 2 */}
+          {/* Two-Pill Row: [MATERIAL] [ALLOY COUNT] */}
           <div className="card-pills-row">
             <span className="pill-material">{primaryMaterial}</span>
             <span className="pill-grade">{alloyCount}</span>
@@ -88,8 +82,8 @@ function FamilyCard({ group, onSelect }) {
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </button>
         </div>

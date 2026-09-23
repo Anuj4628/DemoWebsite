@@ -46,7 +46,7 @@
 }
 
 .breadcrumb-item a:hover {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .breadcrumb-separator {
@@ -89,7 +89,7 @@
   font-weight: 750;
   letter-spacing: 0.06em;
   color: #FFFFFF;
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   padding: 3px 10px;
   border-radius: 4px;
 }
@@ -175,7 +175,7 @@
 }
 
 .metric-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
 }
 
 /* Header Visual Box */
@@ -270,7 +270,7 @@
 
 .btn-back-materials-nav:hover {
   background: #F1F5F9;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   border-color: #CBD5E1;
   transform: translateX(-2px);
 }
@@ -304,8 +304,8 @@
 }
 
 .material-search-input:focus {
-  border-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.12);
+  border-color: var(--brand-teal, #125A48);
+  box-shadow: 0 0 0 3px rgba(18, 90, 72, 0.15);
 }
 
 .material-search-clear {
@@ -373,10 +373,10 @@
 }
 
 .cat-pill.active {
-  background: var(--color-red, #D3122A);
-  border-color: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
+  border-color: var(--brand-teal, #125A48);
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(211, 18, 42, 0.25);
+  box-shadow: 0 2px 8px rgba(18, 90, 72, 0.25);
 }
 
 /* Status Bar */
@@ -398,7 +398,7 @@
 .btn-reset-material-filter {
   background: none;
   border: none;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   font-family: var(--font-primary);
   font-size: 0.82rem;
   font-weight: 650;
@@ -447,7 +447,7 @@
 
 .btn-empty-reset {
   margin-top: 8px;
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
   border: none;
   padding: 10px 20px;
@@ -460,7 +460,7 @@
 }
 
 .btn-empty-reset:hover {
-  background: var(--color-red-bright, #E81935);
+  background: var(--brand-teal-dark, #0B382D);
 }
 
 /* Not Found View */
@@ -499,7 +499,7 @@
 }
 
 .btn-back-to-materials {
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
   border: none;
   padding: 12px 24px;
@@ -512,7 +512,7 @@
 }
 
 .btn-back-to-materials:hover {
-  background: var(--color-red-bright, #E81935);
+  background: var(--brand-teal-dark, #0B382D);
   transform: translateY(-1px);
 }
 
@@ -524,7 +524,7 @@
 .material-rfq-banner {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-left: 4px solid var(--color-red, #D3122A);
+  border-left: 4px solid var(--brand-gold, #C09642);
   border-radius: 12px;
   padding: 32px 36px;
   display: flex;
@@ -542,7 +542,7 @@
   font-family: var(--font-primary);
   font-size: 0.72rem;
   font-weight: 750;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.08em;
   display: block;
   margin-bottom: 6px;

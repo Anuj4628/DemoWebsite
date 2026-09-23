@@ -2,15 +2,22 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// 9 Storytelling Phases
+// 9 Storytelling Phases in Exact Requested Flow:
+// 1. Hero
+// 2. Company Journey (2017 -> 2026)
+// 3. Company Story
+// 4. Quality & Metallurgy
+// 5. Industries (Right-to-Left Slider)
+// 6. Enterprise Partners & Certifications
+// 7. Company Numbers & Closing CTA
 import AboutIntro from './AboutIntro';
 import AboutLegacy from './AboutLegacy';
-import AboutQuality from './AboutQuality';
-import AboutPartners from './AboutPartners';
 import AboutLeadership from './AboutLeadership';
+import AboutQuality from './AboutQuality';
 import AboutIndustries from './AboutIndustries';
-import AboutNumbers from './AboutNumbers';
+import AboutPartners from './AboutPartners';
 import AboutCertifications from './AboutCertifications';
+import AboutNumbers from './AboutNumbers';
 import AboutCTA from './AboutCTA';
 
 import './AboutSection.css';
@@ -19,7 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * AboutSection Master Orchestrator
- * Cinematic, continuous scroll-driven industrial story for Redcore Steels
+ * High-End Industrial Steel Company Experience
  */
 export default function AboutSection({ onNavigate }) {
   const masterRef = useRef(null);
@@ -28,10 +35,10 @@ export default function AboutSection({ onNavigate }) {
     const el = masterRef.current;
     if (!el) return;
 
-    // Refresh ScrollTrigger so all pinned horizontal scroll & scrub coordinates calculate cleanly
+    // Refresh ScrollTrigger after initial mount and layout calculations
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 200);
+    }, 250);
 
     return () => {
       clearTimeout(timer);
@@ -43,33 +50,33 @@ export default function AboutSection({ onNavigate }) {
       id="about"
       ref={masterRef}
       className="about-master-section"
-      aria-label="About Redcore Steels - Heritage, Metallurgy and Global Vision"
+      aria-label="About Bhawal Steel & Engineering Company"
     >
-      {/* 01: About Intro / Opening */}
+      {/* 01: NEW ABOUT HERO */}
       <AboutIntro />
 
-      {/* 02: The Steel Legacy of Redcore Steels (Pinned Horizontal Journey) */}
+      {/* 02: COMPANY JOURNEY / 2017 TO 2026 (Progressive Curved Path) */}
       <AboutLegacy />
 
-      {/* 03: Our Quality Promise (Precision Engineering Assembly) */}
-      <AboutQuality />
-
-      {/* 04: Trusted and Approved by Industry Leaders (Continuous Logo Marquee) */}
-      <AboutPartners />
-
-      {/* 05: Leadership & Vision (Converging Split Composition) */}
+      {/* 03: COMPANY STORY & PHILOSOPHY (Split Layout) */}
       <AboutLeadership />
 
-      {/* 06: Industries We Power (Interactive Industrial Ecosystem) */}
+      {/* 04: QUALITY / EXPERTISE (Clean Technical Cards) */}
+      <AboutQuality />
+
+      {/* 05: INDUSTRIES WE POWER (Simple Right-to-Left Horizontal Slider) */}
       <AboutIndustries />
 
-      {/* 07: Impact / Company Numbers (Dynamic GSAP Numerical Counters) */}
-      <AboutNumbers />
+      {/* 06: APPROVED CLIENT PARTNERS (Clean Continuous Logo Marquee) */}
+      <AboutPartners />
 
-      {/* 08: Certifications / Material Capability (Laboratory Scanner & Swatches) */}
+      {/* 07: COMPLIANCE & MATERIAL SPECTRUM (Laboratory Verification) */}
       <AboutCertifications />
 
-      {/* 09: Final Cinematic CTA (Converging Vectors & Conclusion) */}
+      {/* 08: FINAL COMPANY STATS (Quantifiable Scale) */}
+      <AboutNumbers />
+
+      {/* 09: CLOSING PROCUREMENT CTA */}
       <AboutCTA onNavigate={onNavigate} />
     </section>
   );

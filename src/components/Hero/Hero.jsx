@@ -72,7 +72,7 @@ export default function Hero({ onNavigate }) {
     <section
       id="home"
       className="hero-section"
-      aria-label="Redcore Steels Hero Showcase"
+      aria-label="Bhawal Steel &amp; Engineering Company Hero Showcase"
     >
       {/* Slides Viewport */}
       <div className="hero-slides-viewport">

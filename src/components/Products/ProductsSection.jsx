@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { productsData } from '../../data/homeSectionsData';
+import { productsData, productCategories } from '../../data/homeSectionsData';
 import ProductCard from './ProductCard';
+import { ArrowRight, Layers } from 'lucide-react';
 import './ProductsSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,9 +12,13 @@ export default function ProductsSection({ onNavigate }) {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const gridRef = useRef(null);
-  const ctaRef = useRef(null);
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  // GSAP ScrollTrigger animation on section entrance
+  const filteredProducts = activeCategory === 'all'
+    ? productsData
+    : productsData.filter(p => p.category === activeCategory);
+
+  // GSAP entrance reveal
   useEffect(() => {
     if (!sectionRef.current || !gridRef.current) return;
 
@@ -21,60 +26,40 @@ export default function ProductsSection({ onNavigate }) {
       // Header reveal
       gsap.fromTo(
         headerRef.current.children,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.14,
+          stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: headerRef.current,
-            start: 'top 82%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // Product cards stagger reveal with subtle 3D depth
-      const cards = gridRef.current.querySelectorAll('.product-card');
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 38, scale: 0.96, rotateX: 4 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          rotateX: 0,
-          duration: 0.75,
-          stagger: 0.07,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: gridRef.current,
             start: 'top 85%',
             toggleActions: 'play none none none'
           }
         }
       );
 
-      // Bottom Button reveal
-      if (ctaRef.current) {
-        gsap.fromTo(
-          ctaRef.current,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: 'top 90%',
-              toggleActions: 'play none none none'
-            }
+      // Product cards stagger reveal
+      const cards = gridRef.current.querySelectorAll('.catalog-product-card');
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 35, scale: 0.97 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.65,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 86%',
+            toggleActions: 'play none none none'
           }
-        );
-      }
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -85,33 +70,58 @@ export default function ProductsSection({ onNavigate }) {
       <div className="section-container">
         {/* Section Header */}
         <div ref={headerRef} className="products-header">
-          <div className="section-eyebrow">
-            <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">ENGINEERING INVENTORY & PRODUCTION</span>
+          <div className="products-header-top">
+            <div className="section-eyebrow">
+              <span className="eyebrow-dash-bar" aria-hidden="true" />
+              <span className="eyebrow-text">ENGINEERING INVENTORY &amp; PRODUCTION</span>
+            </div>
+
+            <h2 className="section-display-heading">
+              OUR PRODUCTS
+            </h2>
+
+            <p className="products-lead-text">
+              Precision-engineered steel products for demanding industrial and engineering applications.
+            </p>
           </div>
 
-          <h2 className="section-display-heading">
-            OUR <span className="text-highlight-red">PRODUCTS</span>
-          </h2>
-
-          <p className="section-description">
-            Precision-engineered steel products for demanding industrial and engineering applications.
-          </p>
+          {/* Clean Category Filter Tabs */}
+          <div className="products-filter-bar" role="tablist" aria-label="Product Categories">
+            {productCategories.map(cat => (
+              <button
+                key={cat.id}
+                role="tab"
+                aria-selected={activeCategory === cat.id}
+                className={`product-filter-btn ${activeCategory === cat.id ? 'is-active' : ''}`}
+                onClick={() => setActiveCategory(cat.id)}
+              >
+                <span>{cat.label}</span>
+                {activeCategory === cat.id && <span className="filter-active-indicator" />}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* 9 Products Grid */}
-        <div ref={gridRef} className="products-grid">
-          {productsData.map(product => (
+        {/* Vertical Catalog Grid */}
+        <div ref={gridRef} className="products-catalog-grid">
+          {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} onNavigate={onNavigate} />
           ))}
         </div>
 
-        {/* Medium-sized Centered Button: ALL PRODUCTS → */}
-        <div ref={ctaRef} className="products-action-center">
+        {/* Bottom Comprehensive CTA */}
+        <div className="products-bottom-cta-banner">
+          <div className="cta-banner-info">
+            <Layers className="banner-icon" size={24} />
+            <div>
+              <h4 className="banner-title">Complete ASME &amp; ASTM Dimensional Specifications</h4>
+              <p className="banner-desc">Explore our full multi-grade industrial piping and steel inventory catalog.</p>
+            </div>
+          </div>
+
           <a
             href="/products"
-            className="all-products-main-btn"
-            aria-label="View All Products"
+            className="products-complete-catalog-btn"
             onClick={(e) => {
               if (onNavigate) {
                 e.preventDefault();
@@ -119,8 +129,8 @@ export default function ProductsSection({ onNavigate }) {
               }
             }}
           >
-            <span>ALL PRODUCTS</span>
-            <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+            <span>VIEW COMPLETE CATALOG</span>
+            <ArrowRight size={16} />
           </a>
         </div>
       </div>

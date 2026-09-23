@@ -4,8 +4,9 @@
 
 .final-cta-section {
   position: relative;
-  padding: 70px 0 75px;
+  padding: clamp(38px, 4.5vw, 54px) 0;
   background-color: var(--color-bg-main);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
 
 .cta-banner-card {
@@ -49,7 +50,7 @@
   );
 }
 
-.cta-red-gradient {
+.cta-brand-gradient {
   position: absolute;
   top: 0;
   left: 0;
@@ -57,7 +58,7 @@
   height: 100%;
   background: radial-gradient(
     ellipse at top center,
-    rgba(211, 18, 42, 0.25) 0%,
+    rgba(18, 90, 72, 0.45) 0%,
     transparent 65%
   );
   pointer-events: none;
@@ -73,10 +74,10 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--color-red) 50%,
+    var(--brand-gold, #C09642) 50%,
     transparent 100%
   );
-  box-shadow: 0 0 12px var(--color-red-bright);
+  box-shadow: 0 0 12px rgba(192, 150, 66, 0.6);
   z-index: 3;
 }
 
@@ -108,8 +109,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--color-red);
-  box-shadow: 0 0 8px var(--color-red-bright);
+  background-color: var(--brand-gold, #C09642);
+  box-shadow: 0 0 8px rgba(192, 150, 66, 0.8);
 }
 
 .cta-eyebrow-text {
@@ -138,7 +139,7 @@
 }
 
 .cta-heading-highlight {
-  color: var(--color-red-bright);
+  color: var(--brand-gold, #C09642);
   display: inline-block;
 }
 
@@ -188,7 +189,7 @@
 }
 
 .assurance-icon {
-  color: var(--color-red-bright);
+  color: var(--brand-gold, #C09642);
   flex-shrink: 0;
 }
 

@@ -3,185 +3,114 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aboutIntroData } from '../../data/aboutData';
 import aboutHeroSteels from '../../assets/images/about-hero-steels.jpg';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutIntro() {
   const containerRef = useRef(null);
   const headlineRef = useRef(null);
-  const linesRef = useRef(null);
   const badgeRef = useRef(null);
   const textContentRef = useRef(null);
+  const metricsRef = useRef(null);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    const mm = gsap.matchMedia();
-
-    // Desktop (>= 992px): Engineered assembling scrub timeline
-    mm.add('(min-width: 992px)', () => {
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          end: 'bottom 40%',
-          scrub: 0.8
-        }
+        defaults: { ease: 'power3.out' }
       });
 
-      // 1. Technical blueprint grid & line drawings
-      tl.fromTo(
-        linesRef.current?.querySelectorAll('.intro-blueprint-line'),
-        { scaleX: 0, opacity: 0 },
-        { scaleX: 1, opacity: 0.7, duration: 1, stagger: 0.1, ease: 'power2.inOut' },
-        0
-      );
-
-      // 2. Eyebrow badge assemble
+      // Subtle, confident entrance animation
       tl.fromTo(
         badgeRef.current,
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
-        0.1
-      );
-
-      // 3. Headline words assembling from fragmented positions
-      const words = headlineRef.current?.querySelectorAll('.intro-word');
-      if (words && words.length) {
-        tl.fromTo(
-          words,
-          {
-            y: 70,
-            opacity: 0,
-            rotateX: 35,
-            scale: 0.92
-          },
-          {
-            y: 0,
-            opacity: 1,
-            rotateX: 0,
-            scale: 1,
-            stagger: 0.12,
-            duration: 1.2,
-            ease: 'power3.out'
-          },
-          0.2
+        { y: -16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, delay: 0.1 }
+      )
+        .fromTo(
+          headlineRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9 },
+          '-=0.4'
+        )
+        .fromTo(
+          textContentRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          '-=0.5'
+        )
+        .fromTo(
+          metricsRef.current?.children,
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.6 },
+          '-=0.4'
         );
-      }
+    }, el);
 
-      // 4. Content paragraphs reveal with slight parallax
-      tl.fromTo(
-        textContentRef.current?.children,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.15, duration: 0.9, ease: 'power2.out' },
-        0.5
-      );
-    });
-
-    // Mobile & Tablet (< 992px): Safe one-time entrance reveal
-    mm.add('(max-width: 991px)', () => {
-      const words = headlineRef.current?.querySelectorAll('.intro-word');
-      const textChildren = textContentRef.current?.children;
-      const badge = badgeRef.current;
-
-      gsap.set(words, { y: 0, opacity: 1, rotateX: 0, scale: 1 });
-      gsap.set(textChildren, { y: 0, opacity: 1 });
-      gsap.set(badge, { y: 0, opacity: 1 });
-
-      gsap.fromTo(
-        [badge, headlineRef.current, textContentRef.current].filter(Boolean),
-        { opacity: 0, y: 14 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 95%',
-            once: true
-          }
-        }
-      );
-    });
-
-    return () => mm.revert();
+    return () => ctx.revert();
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="about-intro-phase"
+      className="about-hero-phase"
       style={{ backgroundImage: `url(${aboutHeroSteels})` }}
     >
-      {/* High-Clarity Industrial Background Overlay */}
-      <div className="about-intro-bg-overlay" aria-hidden="true" />
+      {/* High-grade Industrial Overlay */}
+      <div className="about-hero-bg-overlay" aria-hidden="true" />
 
-      {/* Blueprint Grid & Measurement Lines */}
-      <div ref={linesRef} className="intro-blueprint-bg" aria-hidden="true">
-        <div className="blueprint-grid-overlay" />
-        <div className="intro-blueprint-line horizontal top-line" />
-        <div className="intro-blueprint-line horizontal bottom-line" />
-        <div className="intro-blueprint-line vertical left-line" />
-        <div className="intro-blueprint-line vertical right-line" />
-
-        {/* Technical Coordinate Markers */}
-        <span className="coordinate-cross top-left">+ 18° 57' 00" N</span>
-        <span className="coordinate-cross top-right">+ 72° 49' 30" E</span>
-        <span className="coordinate-cross bottom-left">MUMBAI SPEC // EN-10204</span>
-        <span className="coordinate-cross bottom-right">REDCORE ARCHIVE // 01</span>
+      {/* Engineering Blueprint Reticle & Coordinates */}
+      <div className="hero-blueprint-lines" aria-hidden="true">
+        <div className="hero-grid-pattern" />
+        <span className="hero-coordinate top-left">LAT 18° 57' N // LON 72° 49' E</span>
+        <span className="hero-coordinate top-right">MUMBAI HUB // EXPORT REG</span>
+        <span className="hero-coordinate bottom-left">EN-10204 3.1 / 3.2 PROVENANCE</span>
+        <span className="hero-coordinate bottom-right">ISO 9001:2015 REGISTERED</span>
       </div>
 
-      <div className="about-intro-container">
-        {/* Engineering Eyebrow Tag */}
-        <div ref={badgeRef} className="intro-eyebrow-wrap">
-          <span className="intro-pulse-dot" />
-          <span className="intro-eyebrow-text">{aboutIntroData.eyebrow}</span>
-          <span className="intro-code-tag">SECTION 01 // OVERVIEW</span>
+      <div className="about-hero-container">
+        {/* Eyebrow Badge */}
+        <div ref={badgeRef} className="about-hero-eyebrow">
+          <span className="hero-pulse-dot" />
+          <span className="hero-eyebrow-text">{aboutIntroData.eyebrow}</span>
+          <span className="hero-code-tag">FOUNDATION 2017</span>
         </div>
 
-        {/* Assembling Headline */}
-        <h2 ref={headlineRef} className="intro-headline">
-          <div className="intro-headline-line">
-            {aboutIntroData.headlineLine1.split(' ').map((word, i) => (
-              <span key={i} className="intro-word-wrap">
-                <span className="intro-word">{word}&nbsp;</span>
-              </span>
+        {/* Large Premium Headline */}
+        <h1 ref={headlineRef} className="about-hero-headline">
+          <span className="hero-headline-line">{aboutIntroData.headlineLine1}</span>
+          <span className="hero-headline-line accent-text">{aboutIntroData.headlineLine2}</span>
+        </h1>
+
+        {/* Concise Supporting Description */}
+        <div ref={textContentRef} className="about-hero-content">
+          <p className="about-hero-lead">{aboutIntroData.lead}</p>
+          <p className="about-hero-sub">{aboutIntroData.description}</p>
+        </div>
+
+        {/* Clean Supporting Metrics & CTA */}
+        <div ref={metricsRef} className="about-hero-bottom-bar">
+          <div className="hero-metrics-pill">
+            {aboutIntroData.metrics.map((m, idx) => (
+              <React.Fragment key={m.label}>
+                <div className="hero-metric-item">
+                  <span className="hero-metric-num">{m.num}</span>
+                  <span className="hero-metric-label">{m.label}</span>
+                </div>
+                {idx < aboutIntroData.metrics.length - 1 && (
+                  <div className="hero-metric-divider" aria-hidden="true" />
+                )}
+              </React.Fragment>
             ))}
           </div>
-          <div className="intro-headline-line accent-line">
-            {aboutIntroData.headlineLine2.split(' ').map((word, i) => (
-              <span key={i} className="intro-word-wrap">
-                <span className={`intro-word ${word.toLowerCase().includes('trust') ? 'highlight-red' : ''}`}>
-                  {word}&nbsp;
-                </span>
-              </span>
-            ))}
-          </div>
-        </h2>
 
-        {/* Lead & Description */}
-        <div ref={textContentRef} className="intro-text-block">
-          <p className="intro-lead-text">{aboutIntroData.lead}</p>
-          <p className="intro-sub-text">{aboutIntroData.description}</p>
-
-          <div className="intro-metrics-row">
-            <div className="intro-mini-stat">
-              <span className="mini-stat-num">25+</span>
-              <span className="mini-stat-label">Years of Mastery</span>
-            </div>
-            <div className="intro-stat-divider" />
-            <div className="intro-mini-stat">
-              <span className="mini-stat-num">40+</span>
-              <span className="mini-stat-label">Global Export Hubs</span>
-            </div>
-            <div className="intro-stat-divider" />
-            <div className="intro-mini-stat">
-              <span className="mini-stat-num">100%</span>
-              <span className="mini-stat-label">Mill Certified</span>
-            </div>
+          <div className="hero-cta-action">
+            <a href="#company-journey" className="hero-explore-btn">
+              <span>Explore Company Journey</span>
+              <ArrowRight size={16} />
+            </a>
           </div>
         </div>
       </div>

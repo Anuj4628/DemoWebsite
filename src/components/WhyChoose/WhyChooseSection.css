@@ -1,425 +1,279 @@
 /* ===================================================
-   WHY CHOOSE US - ALTERNATING DARK/LIGHT CHECKERBOARD CARDS
+   BHAWAL STEEL & ENGINEERING COMPANY
+   WHY CHOOSE US - BALANCED 3x2 INDUSTRIAL GRID
    =================================================== */
 
 .why-choose-section {
   position: relative;
-  padding: 75px 0 65px;
-  background: #F4F6F9;
+  width: 100%;
+  padding-top: clamp(40px, 4.8vw, 58px);
+  padding-bottom: clamp(40px, 4.8vw, 58px);
+  background-color: var(--color-bg-main, #F8FAFC);
   overflow: hidden;
-  border-bottom: 1px solid var(--border-light, #E2E8F0);
+  border-top: none;
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
+
+/* ===================================================
+   1. CENTERED SECTION HEADER
+   =================================================== */
 
 .why-choose-header {
+  max-width: 760px;
+  margin: 0 auto clamp(26px, 3.5vw, 38px);
   text-align: center;
-  max-width: 860px;
-  margin: 0 auto 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Section Eyebrow */
 .why-choose-header .section-eyebrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .why-choose-header .eyebrow-accent-bar {
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 10px rgba(211, 18, 42, 0.5);
+  background-color: var(--brand-gold, #C09642);
+  border-radius: 1px;
+  flex-shrink: 0;
 }
 
 .why-choose-header .eyebrow-text {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-text-muted, #64748B);
+  color: var(--brand-teal, #125A48);
 }
 
-/* Major Display Heading */
-.why-choose-header .section-display-heading {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+.why-choose-heading {
+  font-family: var(--font-primary);
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: #14294B;
   text-transform: uppercase;
-  color: var(--color-text-primary, #0F172A);
-  margin-bottom: 18px;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  margin: 0 0 16px 0;
+  text-align: center;
 }
 
-
-.why-choose-header .text-highlight-red {
-  color: var(--color-red, #D3122A);
-  display: inline-block;
+.why-choose-heading .heading-accent {
+  color: var(--brand-teal, #125A48);
 }
 
-.why-choose-header .section-description {
-  font-family: var(--font-primary, sans-serif);
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
+.why-choose-subtext {
+  font-family: var(--font-primary);
+  font-size: clamp(0.96rem, 1.25vw, 1.08rem);
+  color: #334155;
   line-height: 1.65;
-  letter-spacing: 0.01em;
-  color: var(--color-text-secondary, #475569);
-  max-width: 680px;
+  max-width: 640px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /* ===================================================
-   3x2 CHECKERBOARD GRID
+   2. BALANCED 3x2 INDUSTRIAL BENEFITS GRID
    =================================================== */
+
 .why-choose-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
-  overflow: hidden;
+  gap: 28px;
+  width: 100%;
 }
 
 /* ===================================================
-   RESPONSIVE BREAKPOINTS
+   3. INDIVIDUAL BENEFIT CARD
    =================================================== */
-@media (max-width: 1100px) {
+
+.why-choose-card {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(18, 90, 72, 0.12);
+  border-radius: 6px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+}
+
+.why-choose-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--brand-teal, #125A48);
+  box-shadow: 0 14px 32px rgba(18, 90, 72, 0.1), 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+/* Card Top Row: Icon + Index */
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background-color: rgba(18, 90, 72, 0.07);
+  border: 1px solid rgba(18, 90, 72, 0.18);
+  color: var(--brand-teal, #125A48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.why-choose-card:hover .card-icon-box {
+  background-color: var(--brand-teal, #125A48);
+  color: #FFFFFF;
+  border-color: var(--brand-teal, #125A48);
+  transform: scale(1.04);
+}
+
+.card-index-num {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-gold, #C09642);
+  letter-spacing: 0.04em;
+}
+
+/* Card Main Content */
+.card-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #14294B;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.why-choose-card:hover .card-title {
+  color: var(--brand-teal, #125A48);
+}
+
+.card-desc {
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Card Bottom Row: Specification Tag */
+.card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 16px;
+  border-top: 1px solid rgba(18, 90, 72, 0.08);
+}
+
+.card-spec-badge {
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-teal, #125A48);
+  background-color: rgba(18, 90, 72, 0.06);
+  border: 1px solid rgba(18, 90, 72, 0.18);
+  padding: 4px 10px;
+  border-radius: 3px;
+  transition: all 0.25s ease;
+}
+
+.why-choose-card:hover .card-spec-badge {
+  background-color: rgba(192, 150, 66, 0.14);
+  color: var(--brand-gold-dark, #9E7529);
+  border-color: rgba(192, 150, 66, 0.4);
+}
+
+/* Subtle Gold Reveal Line at Bottom of Card */
+.card-hover-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-teal, #125A48), var(--brand-gold, #C09642));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.why-choose-card:hover .card-hover-border {
+  transform: scaleX(1);
+}
+
+/* ===================================================
+   4. RESPONSIVE DESIGN (TABLET & MOBILE)
+   =================================================== */
+
+@media (max-width: 1024px) {
   .why-choose-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 22px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .why-choose-section {
-    padding: 65px 0 55px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .why-choose-header {
-    margin-bottom: 32px;
+    margin-bottom: 30px;
   }
 
-  .why-choose-header .section-display-heading {
-    font-size: clamp(1.4rem, 6vw, 2.1rem);
-    line-height: 1.2;
+  .why-choose-heading {
+    font-size: clamp(1.9rem, 6vw, 2.3rem);
+    margin-bottom: 12px;
+  }
+
+  .why-choose-subtext {
+    font-size: 0.88rem;
+    padding: 0 10px;
   }
 
   .why-choose-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 18px;
   }
 
   .why-choose-card {
-    padding: 22px 18px 20px;
+    padding: 24px 20px;
   }
 
-  .spec-label {
-    font-size: 0.68rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .why-choose-card-title {
+  .card-title {
     font-size: 1.15rem;
   }
 
-  .card-action-circle {
-    width: 34px;
-    height: 34px;
+  .card-desc {
+    font-size: 0.88rem;
   }
 }
-
-
-/* ===================================================
-   CARD BASE STRUCTURE
-   =================================================== */
-.why-choose-card {
-  position: relative;
-  border-radius: 16px;
-  padding: 30px 28px 26px;
-  display: flex;
-  flex-direction: column;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
-  animation: whyFloatingBubble 6s ease-in-out infinite alternate;
-}
-
-.why-choose-card:nth-child(2n) {
-  animation-duration: 7.2s;
-  animation-delay: -2s;
-}
-
-.why-choose-card:nth-child(3n) {
-  animation-duration: 6.5s;
-  animation-delay: -3.8s;
-}
-
-@keyframes whyFloatingBubble {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-5px) rotate(0.15deg);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-}
-
-.why-choose-card:hover {
-  animation-play-state: paused;
-  transform: translateY(-9px) rotateX(2.5deg) rotateY(-1.5deg) scale(1.02) !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .why-choose-card {
-    animation: none !important;
-  }
-}
-
-/* ===================================================
-   THEME 1: DARK CARD (CRITERION 01, 03, 05)
-   =================================================== */
-.why-choose-card.card-theme-dark {
-  background: radial-gradient(circle at 100% 100%, rgba(211, 18, 42, 0.16) 0%, transparent 45%),
-              linear-gradient(155deg, #0B1422 0%, #101B2E 60%, #152238 100%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-  color: #FFFFFF;
-}
-
-.why-choose-card.card-theme-dark:hover {
-  border-color: rgba(211, 18, 42, 0.45);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.38), 0 0 20px rgba(211, 18, 42, 0.12);
-}
-
-.why-choose-card.card-theme-dark .card-criterion-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.why-choose-card.card-theme-dark .criterion-text {
-  color: #FFFFFF;
-}
-
-.why-choose-card.card-theme-dark .card-icon-frame {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
-}
-
-.why-choose-card.card-theme-dark .card-main-title {
-  color: #FFFFFF;
-}
-
-.why-choose-card.card-theme-dark .card-main-desc {
-  color: #94A3B8;
-}
-
-.why-choose-card.card-theme-dark .card-spec-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.why-choose-card.card-theme-dark .spec-label {
-  color: #CBD5E1;
-}
-
-/* ===================================================
-   THEME 2: LIGHT CARD (CRITERION 02, 04, 06)
-   =================================================== */
-.why-choose-card.card-theme-light {
-  background: radial-gradient(circle at 100% 100%, rgba(211, 18, 42, 0.05) 0%, transparent 45%),
-              linear-gradient(155deg, #FFFFFF 0%, #FDFDFE 50%, #F8FAFC 100%);
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-  color: #0F172A;
-}
-
-.why-choose-card.card-theme-light:hover {
-  border-color: rgba(211, 18, 42, 0.35);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09), 0 0 15px rgba(211, 18, 42, 0.05);
-}
-
-.why-choose-card.card-theme-light .card-criterion-pill {
-  background: #F1F5F9;
-  border: 1px solid #E2E8F0;
-}
-
-.why-choose-card.card-theme-light .criterion-text {
-  color: #0F172A;
-}
-
-.why-choose-card.card-theme-light .card-icon-frame {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  color: #0F172A;
-}
-
-.why-choose-card.card-theme-light .card-main-title {
-  color: #0F172A;
-}
-
-.why-choose-card.card-theme-light .card-main-desc {
-  color: #475569;
-}
-
-.why-choose-card.card-theme-light .card-spec-pill {
-  background: #F1F5F9;
-  border: 1px solid #E2E8F0;
-}
-
-.why-choose-card.card-theme-light .spec-label {
-  color: #334155;
-}
-
-/* ===================================================
-   CARD INTERNAL ELEMENTS
-   =================================================== */
-
-/* Top Row: Pill on Left, Icon on Right */
-.card-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-criterion-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  user-select: none;
-}
-
-.criterion-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 8px rgba(211, 18, 42, 0.8);
-  flex-shrink: 0;
-}
-
-.criterion-text {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Outlined Icon Box in Top-Right */
-.card-icon-frame {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.35s ease;
-}
-
-.why-choose-card:hover .card-icon-frame {
-  transform: translateY(-2px);
-  border-color: rgba(211, 18, 42, 0.5);
-  color: var(--color-red, #D3122A);
-}
-
-/* Left-aligned Red Accent Bar */
-.card-red-accent-line {
-  width: 38px;
-  height: 2px;
-  background-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 8px rgba(211, 18, 42, 0.5);
-  margin: 16px 0 16px 0;
-  border-radius: 2px;
-  transition: width 0.35s ease;
-}
-
-.why-choose-card:hover .card-red-accent-line {
-  width: 64px;
-}
-
-/* Main Title & Description */
-.card-main-title {
-  font-family: var(--font-display);
-  font-size: 1.32rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  margin: 0 0 12px 0;
-  line-height: 1.3;
-}
-
-.card-main-desc {
-  font-family: var(--font-primary, sans-serif);
-  font-size: 0.91rem;
-  line-height: 1.6;
-  margin: 0 0 26px 0;
-  flex: 1;
-}
-
-/* Bottom Row: Spec Pill + Circular Arrow */
-.card-bottom-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-}
-
-.card-spec-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-}
-
-.spec-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-red, #D3122A);
-  flex-shrink: 0;
-}
-
-.spec-label {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* Solid Red Action Circle */
-.card-action-circle {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--color-red, #D3122A);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(211, 18, 42, 0.4);
-  flex-shrink: 0;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.why-choose-card:hover .card-action-circle {
-  transform: scale(1.08) translateX(2px);
-  background: #E81935;
-  box-shadow: 0 6px 18px rgba(211, 18, 42, 0.5);
-}
-

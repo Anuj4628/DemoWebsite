@@ -1,5 +1,7 @@
 /* ===================================================
-   HERO PROGRESS & NAVIGATION CONTROLS - TRANSPARENT GLASS STYLE
+   HERO SLIDER CONTROLS — MINIMALIST NUMBERED CONCEPT
+   Clean, high-end industrial engineering aesthetic
+   No heavy boxes, no large cards, no segmented bars
    =================================================== */
 
 .hero-bottom-bar {
@@ -8,270 +10,196 @@
   left: 0;
   width: 100%;
   z-index: 20;
-  padding: 0 40px 48px; /* elevated margin from bottom */
+  padding: 0 40px 38px;
   background: linear-gradient(
     0deg,
-    rgba(10, 14, 20, 0.5) 0%,
-    rgba(10, 14, 20, 0.15) 50%,
+    rgba(7, 14, 22, 0.6) 0%,
+    rgba(7, 14, 22, 0.2) 60%,
     transparent 100%
   );
   pointer-events: none;
 }
 
 .hero-bottom-container {
-  max-width: var(--max-width);
+  max-width: var(--max-width, 1380px);
   margin: 0 auto;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 28px;
   pointer-events: auto;
 }
 
-/* Progress Wrapper */
-.hero-progress-wrapper {
-  display: flex;
+/* 1. Minimalist Numbered Navigation */
+.hero-minimal-nav {
+  display: inline-flex;
   align-items: center;
-  gap: 24px;
-  background: rgba(14, 19, 28, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  padding: 10px 22px;
-  border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* Slide Counter */
-.hero-counter {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
-  font-family: var(--font-mono);
+.hero-nav-numbers {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-nav-num-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 6px 4px;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s ease;
+}
+
+.hero-num-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.08em;
+  transition: color 0.22s ease, text-shadow 0.22s ease;
   user-select: none;
 }
 
-.counter-current {
-  font-size: 1.38rem;
-  font-weight: 700;
+.hero-nav-num-btn:hover .hero-num-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-nav-num-btn.is-active .hero-num-label {
   color: #FFFFFF;
-  line-height: 1;
+  font-weight: 700;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-.counter-divider {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0 2px;
-}
-
-.counter-total {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* Segmented Indicators */
-.hero-progress-segments {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.progress-segment-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 2px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: opacity 0.25s ease;
-}
-
-.progress-segment-track {
+/* Delicate Hairline Indicator */
+.hero-num-indicator {
   position: relative;
   display: block;
-  width: 48px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 2px;
+  width: 28px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 1px;
   overflow: hidden;
-  transition: background-color 0.25s ease, height 0.2s ease;
+  transition: background-color 0.22s ease;
 }
 
-.progress-segment-fill {
+.hero-nav-num-btn:hover .hero-num-indicator {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-nav-num-btn.is-active .hero-num-indicator {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.hero-num-progress-fill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  background: var(--color-red);
-  box-shadow: 0 0 8px var(--color-red-bright);
-  border-radius: 2px;
+  background: var(--brand-gold, #C09642);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(192, 150, 66, 0.8);
   transition: width 0.08s linear;
 }
 
-.progress-segment-number {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.04em;
-  transition: color 0.25s ease;
-}
-
-.progress-segment-btn:hover .progress-segment-track {
-  background: rgba(255, 255, 255, 0.4);
-  height: 4px;
-}
-
-.progress-segment-btn:hover .progress-segment-number {
-  color: #FFFFFF;
-}
-
-.progress-segment-btn.is-active .progress-segment-track {
-  background: rgba(255, 255, 255, 0.3);
-  height: 3px;
-}
-
-.progress-segment-btn.is-active .progress-segment-number {
-  color: #FFFFFF;
-  font-weight: 700;
-}
-
-/* Nav Controls (Arrows & Status) */
-.hero-nav-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-right: 76px; /* Clean breathing room from floating action buttons on desktop */
-}
-
+/* 2. Minimalist Arrow Navigation */
 .hero-nav-arrows {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  margin-right: 76px; /* Clearance for floating WhatsApp/Phone actions on desktop */
 }
 
-.hero-arrow-btn {
-  position: relative;
+.hero-arrow-minimal {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  background: rgba(14, 19, 28, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #FFFFFF;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-arrow-btn:hover {
-  background: var(--color-red);
-  border-color: var(--color-red-bright);
-  color: #FFFFFF;
-  box-shadow: 0 6px 20px rgba(211, 18, 42, 0.4);
-  transform: translateY(-2px);
-}
-
-.hero-arrow-btn:active {
-  transform: translateY(0);
-}
-
-.hero-status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(14, 19, 28, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 5px 12px;
-  border-radius: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgba(10, 16, 26, 0.35);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.status-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-red);
-  animation: pulseDot 1.5s infinite;
+.hero-arrow-minimal:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #FFFFFF;
 }
 
-@keyframes pulseDot {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; transform: scale(1.2); }
+.hero-arrow-minimal.prev-arrow:hover {
+  transform: translateX(-1.5px);
+}
+
+.hero-arrow-minimal.next-arrow:hover {
+  transform: translateX(1.5px);
+}
+
+.hero-arrow-minimal:active {
+  transform: translateX(0);
+}
+
+.hero-arrow-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 2px;
 }
 
 /* ===================================================
-   RESPONSIVE CONTROLS - PERFECT HARMONY WITH FLOATING ACTIONS
-   In tablet & mobile, group slider counter and arrows on the LEFT,
-   leaving the RIGHT side completely clear for floating WhatsApp & Call.
+   RESPONSIVE CONTROLS
    =================================================== */
 
 @media (max-width: 1024px) {
   .hero-bottom-bar {
-    padding: 0 24px 24px;
+    padding: 0 24px 22px;
   }
 
   .hero-bottom-container {
     justify-content: flex-start;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: nowrap;
+    gap: 20px;
   }
 
-  .hero-nav-controls {
+  .hero-nav-arrows {
     margin-right: 0;
   }
-
-  .hero-progress-segments {
-    display: none;
-  }
-
-  .hero-progress-wrapper {
-    padding: 8px 14px;
-    gap: 0;
-  }
-
-  .hero-arrow-btn {
-    width: 40px;
-    height: 40px;
-  }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 640px) {
   .hero-bottom-bar {
-    padding: 0 16px 20px;
+    padding: 0 16px 18px;
   }
 
-  .hero-bottom-container {
-    gap: 10px;
+  .hero-nav-numbers {
+    gap: 12px;
   }
 
-  .hero-progress-wrapper {
-    padding: 6px 12px;
+  .hero-nav-num-btn {
+    padding: 4px 2px;
   }
 
-  .counter-current {
-    font-size: 1.15rem;
+  .hero-num-label {
+    font-size: 0.78rem;
   }
 
-  .hero-arrow-btn {
-    width: 38px;
-    height: 38px;
+  .hero-num-indicator {
+    width: 22px;
   }
 
-  .hero-status-tag {
-    display: none;
+  .hero-arrow-minimal {
+    width: 30px;
+    height: 30px;
   }
 }
+

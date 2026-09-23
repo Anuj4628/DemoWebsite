@@ -72,7 +72,7 @@ export const heroSlides = [
   {
     id: 4,
     slideNumber: "04",
-    eyebrow: "REDCORE STEELS",
+    eyebrow: "BHAWAL STEEL & ENGINEERING",
     headline: "Premium [Steel] Solutions,\nBuilt for Industry.",
     description: "Quality steel products for demanding industrial applications.",
     primaryCta: {

@@ -2,29 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { valueAddedData } from '../../data/homeSectionsData';
-import { CheckCircle2, FileCheck, Layers, PackageCheck, Ship, Sliders, ShieldAlert, ArrowRight } from 'lucide-react';
+import { CheckCircle2, FileCheck, Layers, PackageCheck, Sliders, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import './ValueAddedSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const serviceIcons = {
   "material-sourcing": Layers,
-  "quality-inspection": ShieldAlert,
+  "quality-inspection": ShieldCheck,
   "testing-documentation": FileCheck,
   "custom-requirements": Sliders,
   "project-supply": CheckCircle2,
-  "export-packaging": PackageCheck,
-  "logistics-support": Ship
-};
-
-const serviceSpecs = {
-  "material-sourcing": "PRIMARY MILL AUDITED",
-  "quality-inspection": "DNV • TUV • LLOYDS TPI",
-  "testing-documentation": "EN 10204 3.1 & 3.2 MTR",
-  "custom-requirements": "PRECISION PROFILING",
-  "project-supply": "TURNKEY EPC PACKAGES",
-  "export-packaging": "ISPM-15 FUMIGATED",
-  "logistics-support": "MULTI-MODAL FREIGHT"
+  "export-packaging": PackageCheck
 };
 
 export default function ValueAddedSection() {
@@ -35,216 +24,123 @@ export default function ValueAddedSection() {
   useEffect(() => {
     if (!sectionRef.current || !gridRef.current) return;
 
-    const mm = gsap.matchMedia();
-
-    // Header reveal
-    if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current.children,
-        { opacity: 0, y: 32 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.14,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 82%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }
-
-    const cards = gridRef.current.querySelectorAll('.value-service-card');
-
-    // Desktop: 3-column layout (> 1100px)
-    mm.add('(min-width: 1101px)', () => {
-      const desktopOffsets = [
-        { x: -60, y: 0 },  // Card 0 (Row 1 Left): enter from LEFT
-        { x: 0, y: -60 },  // Card 1 (Row 1 Center): enter from TOP
-        { x: 60, y: 0 },   // Card 2 (Row 1 Right): enter from RIGHT
-        { x: -60, y: 0 },  // Card 3 (Row 2 Left): enter from LEFT
-        { x: 0, y: 60 },   // Card 4 (Row 2 Center): enter from BOTTOM (natural directional variation)
-        { x: 60, y: 0 }    // Card 5 (Row 2 Right): enter from RIGHT
-      ];
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: 'top 82%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      cards.forEach((card, idx) => {
-        const offset = desktopOffsets[idx] || { x: 0, y: 40 };
-        tl.fromTo(
-          card,
-          {
-            opacity: 0,
-            x: offset.x,
-            y: offset.y,
-            animation: 'none'
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.85,
-            ease: 'power3.out',
-            clearProps: 'transform,animation'
-          },
-          idx * 0.09
-        );
-      });
-    });
-
-    // Tablet: 2-column layout (769px - 1100px)
-    mm.add('(min-width: 769px) and (max-width: 1100px)', () => {
-      const tabletOffsets = [
-        { x: -50, y: 0 },  // Card 0 (Col 1): enter from LEFT
-        { x: 50, y: 0 },   // Card 1 (Col 2): enter from RIGHT
-        { x: -50, y: 0 },  // Card 2 (Col 1): enter from LEFT
-        { x: 50, y: 0 },   // Card 3 (Col 2): enter from RIGHT
-        { x: -50, y: 0 },  // Card 4 (Col 1): enter from LEFT
-        { x: 50, y: 0 }    // Card 5 (Col 2): enter from RIGHT
-      ];
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: 'top 82%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      cards.forEach((card, idx) => {
-        const offset = tabletOffsets[idx] || { x: 0, y: 40 };
-        tl.fromTo(
-          card,
-          {
-            opacity: 0,
-            x: offset.x,
-            y: offset.y,
-            animation: 'none'
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.85,
-            ease: 'power3.out',
-            clearProps: 'transform,animation'
-          },
-          idx * 0.09
-        );
-      });
-    });
-
-    // Mobile: 1-column layout (<= 768px) - Cards animate individually on scroll
-    mm.add('(max-width: 768px)', () => {
-      // Directional pattern: Card 1 -> RIGHT, Card 2 -> LEFT, Card 3 -> RIGHT, Card 4 -> LEFT, Card 5 -> RIGHT, Card 6 -> LEFT
-      cards.forEach((card, idx) => {
-        const isFromRight = idx % 2 === 0; // Card 1, 3, 5 from RIGHT; Card 2, 4, 6 from LEFT
-        const startX = isFromRight ? 36 : -36;
-
+    const ctx = gsap.context(() => {
+      // 1. Centered Header Scroll Reveal
+      if (headerRef.current) {
         gsap.fromTo(
-          card,
-          {
-            opacity: 0,
-            x: startX,
-            y: 12,
-            animation: 'none'
-          },
+          headerRef.current.children,
+          { opacity: 0, y: 22 },
           {
             opacity: 1,
-            x: 0,
             y: 0,
             duration: 0.75,
+            stagger: 0.1,
             ease: 'power3.out',
-            clearProps: 'transform,animation',
             scrollTrigger: {
-              trigger: card,
-              start: 'top 88%',
+              trigger: headerRef.current,
+              start: 'top 85%',
               toggleActions: 'play none none none'
             }
           }
         );
-      });
-    });
+      }
 
+      // 2. Services Cards Staggered Scroll Reveal
+      const cards = gridRef.current.querySelectorAll('.engineering-service-card');
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 26 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 86%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }, sectionRef);
 
-    return () => {
-      mm.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="value-added-section" aria-label="Value Added Services">
+    <section id="services" ref={sectionRef} className="value-added-section" aria-label="Engineered Support Services">
       <div className="section-container">
-        {/* Standardized Section Header */}
-        <div ref={headerRef} className="value-added-header">
+        {/* 1. Perfectly Centered Header */}
+        <div ref={headerRef} className="services-centered-header">
           <div className="section-eyebrow">
-            <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">BEYOND BASIC MATERIAL SUPPLY</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
+            <span className="eyebrow-text">INTEGRATED TECHNICAL CAPABILITIES</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
           </div>
 
-          <h2 className="section-display-heading">
-            VALUE ADDED <span className="text-highlight-red">SERVICES</span>
+          <h2 className="services-main-heading">
+            ENGINEERED <span className="heading-accent">SUPPORT SERVICES</span>
           </h2>
 
-          <p className="section-description">
-            End-to-end metallurgical solutions supporting complex engineering procurement, mill-certified third-party inspection, and synchronized project dispatch.
+          <p className="services-lead-desc">
+            Precision in-house processing, accredited laboratory testing, and turnkey EPC staging engineered to project milestones.
           </p>
         </div>
 
-        {/* Alternating Dark/Light Cards Grid */}
-        <div ref={gridRef} className="value-services-grid">
-          {valueAddedData.map((service, idx) => {
+        {/* 2. Structured 3-Column Services Grid */}
+        <div ref={gridRef} className="engineering-services-grid">
+          {valueAddedData.map((service) => {
             const Icon = serviceIcons[service.id] || CheckCircle2;
-            const specBadge = serviceSpecs[service.id] || "CERTIFIED METALLURGY";
-            // Alternating checkerboard theme
-            const isDark = idx % 2 === 0;
 
             return (
-              <div
+              <article
                 key={service.id}
-                className={`value-service-card ${isDark ? 'card-theme-dark' : 'card-theme-light'}`}
+                className="engineering-service-card"
                 tabIndex={0}
+                role="group"
+                aria-label={service.title}
               >
-                {/* Top Row: Pill Badge on Left, Icon on Right */}
-                <div className="card-top-row">
-                  <div className="card-criterion-pill">
-                    <span className="criterion-dot" />
-                    <span className="criterion-text">SERVICE // {service.number}</span>
-                  </div>
+                {/* Subtle Top Industrial Accent Hairline */}
+                <div className="card-top-hairline" aria-hidden="true" />
 
-                  <div className="card-icon-frame">
-                    <Icon size={20} strokeWidth={1.8} />
+                {/* Header Meta: Category Number & Spec Tag */}
+                <div className="service-card-top">
+                  <span className="service-number-pill">SERVICE // {service.number}</span>
+                  <span className="service-badge-tag">{service.tag}</span>
+                </div>
+
+                {/* Title & Icon Group */}
+                <div className="service-title-wrap">
+                  <div className="service-icon-box" aria-hidden="true">
+                    <Icon size={20} strokeWidth={2.2} />
+                  </div>
+                  <div className="service-title-text-group">
+                    <h3 className="service-title-text">{service.title}</h3>
+                    <span className="service-tagline-text">{service.tagline}</span>
                   </div>
                 </div>
 
-                {/* Red Accent Line */}
-                <div className="card-red-accent-line" />
+                {/* Concise 1-2 Line Description */}
+                <p className="service-description-text">{service.description}</p>
 
-                {/* Title & Description */}
-                <h3 className="card-main-title">{service.title}</h3>
-                <p className="card-main-desc">{service.description}</p>
-
-                {/* Bottom Row: Spec Pill on Left, Red Circle Arrow on Right */}
-                <div className="card-bottom-row">
-                  <div className="card-spec-pill">
-                    <span className="spec-dot" />
-                    <span className="spec-label">{specBadge}</span>
+                {/* Bottom Row: Supporting Point & CTA */}
+                <div className="service-card-bottom">
+                  <div className="service-highlight-chip">
+                    <CheckCircle2 size={13} className="chip-icon" aria-hidden="true" />
+                    <span>{service.highlight}</span>
                   </div>
 
-                  <a href="#quote" className="card-action-circle" aria-label={`Inquire about ${service.title}`}>
-                    <ArrowRight size={18} strokeWidth={2.4} />
+                  <a
+                    href="#quote"
+                    className="service-inquire-link"
+                    aria-label={`Inquire about ${service.title}`}
+                  >
+                    <span>Inquire</span>
+                    <ArrowUpRight size={14} aria-hidden="true" />
                   </a>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

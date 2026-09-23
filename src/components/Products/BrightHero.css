@@ -37,7 +37,7 @@
 .eyebrow-red-bar {
   width: 24px;
   height: 3px;
-  background-color: var(--color-red, #D3122A);
+  background-color: var(--brand-gold, #C09642);
   border-radius: 2px;
 }
 
@@ -45,7 +45,7 @@
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.775rem;
   font-weight: 800;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -79,7 +79,7 @@
 .metric-chip {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-left: 3px solid var(--color-red, #D3122A);
+  border-left: 3px solid var(--brand-gold, #C09642);
   padding: 0.65rem 1.15rem;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
@@ -145,7 +145,8 @@
 
 .div-pill.active {
   background: #FFFFFF;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
+  border: 1px solid var(--brand-gold-border, rgba(192, 150, 66, 0.35));
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
 }
 
@@ -164,8 +165,8 @@
 }
 
 .bright-search-field:focus-within {
-  border-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.12);
+  border-color: var(--brand-teal, #125A48);
+  box-shadow: 0 0 0 3px var(--brand-teal-subtle);
 }
 
 .bright-search-field .search-icon {

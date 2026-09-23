@@ -1,8 +1,8 @@
-# DemoWebsite
+# Bhawal Steel & Engineering Company
 
-## Redcore Steels — Industrial Demo Website
+## Official Business Website
 
-A high-performance, responsive React + Vite industrial website built for modern steel manufacturing, global supply, and precision engineering client demonstrations.
+A high-performance, responsive React + Vite industrial website built for Bhawal Steel & Engineering Company — premier manufacturer, stockist, and global exporter of high-grade industrial steel and alloys.
 
 ### Features
 - Modern industrial responsive design & animations (GSAP)

@@ -1,441 +1,331 @@
 /* ===================================================
-   MATERIALS SECTION - DUAL-TONE CONTINUOUS MARQUEES
-   Matching reference color combination:
-   Row 1: Light White Cards + Navy Text + Red Grade Text
-   Row 2: Dark Navy Cards + White Text + Solid Red Grade Badge
-   Separator: 4-point Red Star between cards
+   BHAWAL STEEL & ENGINEERING COMPANY
+   MATERIALS WE WORK WITH - CONTINUOUS INDUSTRIAL TRACK
+   Single horizontal strip banner moving RIGHT -> LEFT
    =================================================== */
 
-.materials-section {
+.materials-showcase-section {
   position: relative;
-  padding: 68px 0 62px;
-  background: linear-gradient(180deg, #F8FAFC 0%, #EEF2F7 50%, #F8FAFC 100%);
-  color: #0F172A;
+  width: 100%;
+  padding-top: clamp(34px, 4vw, 48px);
+  padding-bottom: clamp(34px, 4vw, 48px);
+  background-color: var(--color-bg-main, #F8FAFC);
   overflow: hidden;
-  border-top: 1px solid rgba(226, 232, 240, 0.8);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-}
-
-/* Very Subtle Technical Precision Dot Overlay */
-.materials-bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  opacity: 0.8;
+  border-top: 1px solid rgba(18, 90, 72, 0.12);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
 
 /* ===================================================
-   SECTION HEADER
+   1. SECTION HEADER (COMPACT, BOLD & CENTERED)
    =================================================== */
 
-.materials-header {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 820px;
-  margin: 0 auto 36px;
-  padding: 0 24px;
+.materials-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3.5vw, 32px);
+  box-sizing: border-box;
 }
 
-.materials-header .section-eyebrow {
+.materials-header {
+  max-width: 820px;
+  margin: 0 auto clamp(24px, 3.5vw, 36px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow Label */
+.materials-eyebrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.materials-header .eyebrow-accent-bar {
-  width: 24px;
-  height: 2px;
-  background-color: var(--color-red, #D3122A);
-  box-shadow: 0 0 10px rgba(211, 18, 42, 0.4);
+.eyebrow-diamond {
+  width: 6px;
+  height: 6px;
+  background-color: var(--brand-gold, #C09642);
+  transform: rotate(45deg);
+  display: block;
+  flex-shrink: 0;
 }
 
-.materials-header .eyebrow-text {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+.eyebrow-text {
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #64748B;
+  color: var(--brand-teal, #125A48);
 }
 
-.materials-display-heading {
-  font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4vw, 3.2rem);
+/* Main Heading: "MATERIALS WE WORK WITH" */
+.materials-title {
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--brand-charcoal, #0F172A);
   text-transform: uppercase;
-  color: #0F172A;
-  margin-bottom: 16px;
+  margin: 0 0 10px 0;
 }
 
-.materials-display-heading .text-highlight-red {
-  color: #D3122A;
-  display: inline-block;
+.materials-title .title-teal {
+  color: var(--brand-teal, #125A48);
 }
 
-.materials-supporting-line {
-  font-family: var(--font-primary, sans-serif);
-  font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+/* Short, clean supporting description */
+.materials-subtext {
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  color: var(--color-text-secondary, #475569);
   line-height: 1.6;
-  letter-spacing: 0.01em;
-  color: #475569;
-  max-width: 640px;
+  max-width: 650px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /* ===================================================
-   CONTINUOUS HORIZONTAL MARQUEE SYSTEM (ROW 1 & ROW 2)
+   2. SINGLE CONTINUOUS INDUSTRIAL MATERIAL TRACK / BANNER
+   Moves continuously RIGHT -> LEFT in a seamless loop
+   Unified industrial strip without card look or edge blur
    =================================================== */
 
-.materials-marquees-container {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
+.materials-track-container {
   position: relative;
-  z-index: 2;
   width: 100%;
   overflow: hidden;
-}
-
-.marquee-row-wrapper {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  padding: 6px 0;
-}
-
-.marquee-track-wrapper {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-}
-
-.marquee-track {
+  user-select: none;
+  background: linear-gradient(180deg, #071f18 0%, #051812 50%, #03100c 100%);
+  border-top: 1.5px solid rgba(192, 150, 66, 0.45);
+  border-bottom: 1.5px solid rgba(192, 150, 66, 0.45);
+  padding: 14px 0;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 6px 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+              0 6px 20px rgba(5, 24, 18, 0.2);
+}
+
+.materials-track-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
   will-change: transform;
+  /* Slow, smooth, linear continuous scrolling (Right to Left) */
+  animation: continuousMaterialsScroll 70s linear infinite;
 }
 
-/* ROW 1: Right → Left (0% to -50%) */
-.marquee-row-right-to-left .marquee-track {
-  animation: marqueeScrollRightToLeft 44s linear infinite;
-}
-
-/* ROW 2: Left → Right (-50% to 0%) */
-.marquee-row-left-to-right .marquee-track {
-  animation: marqueeScrollLeftToRight 48s linear infinite;
-}
-
-/* Pause on hover */
-.marquee-row-wrapper:hover .marquee-track {
+/* Pause smoothly on hover for reading/inspection */
+.materials-track-container:hover .materials-track-ribbon {
   animation-play-state: paused;
 }
 
-@keyframes marqueeScrollRightToLeft {
+/* Mathematically seamless 1/3 shift for triplicated 14-item rail */
+@keyframes continuousMaterialsScroll {
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes marqueeScrollLeftToRight {
-  0% {
-    transform: translate3d(-50%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-33.333333%, 0, 0);
   }
 }
 
 /* ===================================================
-   STAR SEPARATOR (4-POINT DIAMOND SPARKLE)
+   3. INTEGRATED METALLURGICAL STATION (NON-CARD DESIGN)
+   Clean data station inside the unified industrial banner
    =================================================== */
 
-.marquee-star-separator {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #D3122A;
-  opacity: 0.75;
-  flex-shrink: 0;
-  padding: 0 4px;
-  transition: all 0.3s ease;
-}
-
-.marquee-track:hover .marquee-star-separator {
-  opacity: 0.9;
-}
-
-/* ===================================================
-   ROW 1: LIGHT CARDS (White background + Navy text + Red grade)
-   =================================================== */
-
-.material-card-light {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 12px 24px;
-  box-shadow: 
-    0 4px 14px rgba(15, 23, 42, 0.05),
-    0 1px 3px rgba(15, 23, 42, 0.03);
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card-light-name {
-  font-family: var(--font-display);
-  font-size: 1.02rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #0A1424;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.card-light-grade {
-  font-family: var(--font-display);
-  font-size: 1.02rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #D3122A;
-  margin: 0;
-}
-
-.material-card-light:hover,
-.material-card-light:focus-visible {
-  transform: translateY(-3px) scale(1.02);
-  border-color: rgba(211, 18, 42, 0.45);
-  box-shadow: 
-    0 10px 24px rgba(211, 18, 42, 0.12),
-    0 2px 6px rgba(15, 23, 42, 0.05);
-  outline: none;
-}
-
-/* ===================================================
-   ROW 2: DARK CARDS (Navy background + White text + Solid Red badge)
-   =================================================== */
-
-.material-card-dark {
-  position: relative;
+.material-station {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: #081426;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 10px 18px 10px 22px;
-  box-shadow: 
-    0 6px 18px rgba(8, 20, 38, 0.22),
-    0 1px 3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  border-radius: 4px;
+  height: 42px;
   white-space: nowrap;
-  user-select: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-dark-name {
-  font-family: var(--font-display);
-  font-size: 1.02rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+.material-station:hover {
+  background: rgba(18, 90, 72, 0.45);
+  border-color: rgba(192, 150, 66, 0.55);
+  transform: translateY(-1px);
+}
+
+.material-station:focus-visible {
+  outline: 2px solid var(--brand-gold, #C09642);
+  outline-offset: 2px;
+}
+
+/* Metallic Gold Indicator Diamond */
+.station-diamond {
+  width: 6px;
+  height: 6px;
+  background-color: var(--brand-gold, #C09642);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+
+.material-station:hover .station-diamond {
+  transform: rotate(45deg) scale(1.3);
+}
+
+/* Primary Material Name */
+.station-name {
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   color: #FFFFFF;
-  margin: 0;
-  transition: color 0.3s ease;
+  text-transform: uppercase;
+  transition: color 0.22s ease;
 }
 
-.card-dark-badge {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
+.material-station:hover .station-name {
+  color: #F8FAF8;
+}
+
+/* Grade / Specification Badge */
+.station-spec {
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+  color: var(--brand-gold-light, #D4AC58);
+  background: rgba(192, 150, 66, 0.14);
+  border: 1px solid rgba(192, 150, 66, 0.38);
+  padding: 3px 9px;
+  border-radius: 2px;
   text-transform: uppercase;
+  transition: all 0.22s ease;
+}
+
+.material-station:hover .station-spec {
+  background: rgba(192, 150, 66, 0.28);
   color: #FFFFFF;
-  background: #D3122A;
-  padding: 4px 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(211, 18, 42, 0.35);
-  margin: 0;
-  transition: all 0.3s ease;
-}
-
-.material-card-dark:hover,
-.material-card-dark:focus-visible {
-  transform: translateY(-3px) scale(1.02);
-  border-color: rgba(211, 18, 42, 0.65);
-  box-shadow: 
-    0 12px 28px rgba(211, 18, 42, 0.24),
-    0 2px 8px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.material-card-dark:hover .card-dark-badge,
-.material-card-dark:focus-visible .card-dark-badge {
-  background: #E81935;
-  box-shadow: 0 0 12px rgba(232, 25, 53, 0.6);
+  border-color: var(--brand-gold, #C09642);
 }
 
 /* ===================================================
-   BOTTOM AMBIENT DIVIDER
+   4. ENGINEERING TECHNICAL SEPARATOR NODE
+   Rhythmic industrial markers between materials
    =================================================== */
 
-.materials-bottom-divider {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--max-width, 1440px);
-  margin: 70px auto 0;
+.track-sep-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 6px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.sep-hairline {
+  width: 12px;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(226, 232, 240, 0.9) 20%,
-    rgba(211, 18, 42, 0.3) 50%,
-    rgba(226, 232, 240, 0.9) 80%,
-    transparent 100%
-  );
+  background-color: var(--brand-gold, #C09642);
+  display: block;
+}
+
+.sep-diamond {
+  width: 4px;
+  height: 4px;
+  background-color: var(--brand-gold, #C09642);
+  transform: rotate(45deg);
+  display: block;
 }
 
 /* ===================================================
-   ACCESSIBILITY & REDUCED MOTION SUPPORT
+   5. RESPONSIVE DESIGN (Zero horizontal page overflow)
    =================================================== */
 
-@media (prefers-reduced-motion: reduce) {
-  .marquee-row-right-to-left .marquee-track,
-  .marquee-row-left-to-right .marquee-track {
-    animation-duration: 120s;
-  }
-}
-
-/* ===================================================
-   RESPONSIVE DESIGN (DESKTOP / TABLET / MOBILE)
-   =================================================== */
-
-@media (max-width: 991px) {
-  .materials-section {
-    padding: 85px 0 75px;
+@media (max-width: 768px) {
+  .materials-showcase-section {
+    padding-top: 36px;
+    padding-bottom: 36px;
   }
 
   .materials-header {
-    margin-bottom: 42px;
+    margin-bottom: 22px;
   }
 
-  .materials-marquees-container {
-    gap: 18px;
+  .materials-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
   }
 
-  .marquee-track {
-    gap: 14px;
+  .eyebrow-text {
+    font-size: 0.76rem;
   }
 
-  .material-card-light {
-    padding: 11px 20px;
-    gap: 7px;
+  .materials-subtext {
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 
-  .material-card-dark {
-    padding: 9px 16px 9px 18px;
+  .materials-track-container {
+    padding: 10px 0;
+  }
+
+  .material-station {
+    height: 38px;
+    padding: 5px 11px;
     gap: 10px;
   }
 
-  .card-light-name,
-  .card-light-grade,
-  .card-dark-name {
-    font-size: 0.94rem;
+  .station-name {
+    font-size: 0.82rem;
   }
 
-  .card-dark-badge {
+  .station-spec {
     font-size: 0.68rem;
-    padding: 3px 8px;
+    padding: 2px 7px;
+  }
+
+  .track-sep-node {
+    padding: 0 4px;
+    gap: 4px;
+  }
+
+  .sep-hairline {
+    width: 8px;
   }
 }
 
-@media (max-width: 768px) {
-  .materials-section {
-    padding: 70px 0 60px;
+@media (max-width: 480px) {
+  .materials-title {
+    font-size: 1.55rem;
   }
 
-  .materials-header {
-    margin-bottom: 34px;
-    padding: 0 18px;
+  .materials-subtext {
+    font-size: 0.84rem;
   }
 
-  .materials-header .eyebrow-text {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-  }
-
-  .materials-display-heading {
-    font-size: clamp(1.4rem, 6vw, 1.85rem);
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-
-  .materials-supporting-line {
-    font-size: 0.9rem;
-  }
-
-  .materials-marquees-container {
-    gap: 16px;
-  }
-
-  .marquee-track {
-    gap: 12px;
-  }
-
-  .material-card-light {
-    padding: 9px 16px;
-    gap: 6px;
-    border-radius: 10px;
-  }
-
-  .material-card-dark {
-    padding: 8px 14px 8px 16px;
+  .material-station {
+    height: 36px;
+    padding: 4px 9px;
     gap: 8px;
-    border-radius: 10px;
   }
 
-  .card-light-name,
-  .card-light-grade,
-  .card-dark-name {
-    font-size: 0.86rem;
+  .station-name {
+    font-size: 0.78rem;
   }
 
-  .card-dark-badge {
-    font-size: 0.62rem;
-    padding: 2.5px 7px;
-  }
-
-  .marquee-row-right-to-left .marquee-track {
-    animation-duration: 32s;
-  }
-
-  .marquee-row-left-to-right .marquee-track {
-    animation-duration: 36s;
+  .station-spec {
+    font-size: 0.65rem;
+    padding: 2px 6px;
   }
 }
-

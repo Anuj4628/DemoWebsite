@@ -16,7 +16,7 @@ export default function TopContactBar() {
           <a
             href={`mailto:${contact.email}`}
             className="top-contact-item"
-            title="Email Redcore Steels"
+            title={`Email ${brandDetails.name}`}
           >
             <Mail size={13} className="top-icon email-icon" aria-hidden="true" />
             <span className="contact-text email-text">{contact.email}</span>

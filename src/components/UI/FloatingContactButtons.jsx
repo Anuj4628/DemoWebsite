@@ -1,19 +1,21 @@
 import React from 'react';
 import { PhoneCall } from 'lucide-react';
+import { brandDetails } from '../../data/navigationData';
 import './FloatingContactButtons.css';
 
-
 export default function FloatingContactButtons() {
+  const { contact, shortName } = brandDetails;
+
   return (
     <aside className="floating-contact-container" aria-label="Direct Contact Shortcuts">
       {/* WhatsApp Click-to-Chat Button */}
       <a
-        href="https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20am%20interested%20in%20your%20products"
+        href={contact.whatsAppUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn whatsapp-btn"
-        aria-label="Direct WhatsApp chat with Redcore Steels"
-        title="Chat on WhatsApp (+91 90000 00000)"
+        aria-label={`Direct WhatsApp chat with ${shortName || brandDetails.name}`}
+        title={`Chat on WhatsApp (${contact.whatsApp})`}
       >
         <span className="floating-btn-glow" aria-hidden="true" />
         {/* Exact Official WhatsApp SVG */}
@@ -32,10 +34,10 @@ export default function FloatingContactButtons() {
 
       {/* Direct Phone Call Button */}
       <a
-        href="tel:+919000000000"
+        href={`tel:${contact.phone1Raw}`}
         className="floating-btn phone-btn"
-        aria-label="Call Redcore Steels Export Desk"
-        title="Call +91 90000 00000"
+        aria-label={`Call ${shortName || brandDetails.name} Export Desk`}
+        title={`Call ${contact.phone1}`}
       >
         <span className="floating-btn-glow" aria-hidden="true" />
         <PhoneCall size={22} className="floating-icon phone-icon" aria-hidden="true" />

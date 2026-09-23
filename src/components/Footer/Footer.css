@@ -4,11 +4,11 @@
 
 .site-footer {
   position: relative;
-  background-color: #0A0E15;
+  background-color: #07221B;
   color: #F8FAFC;
-  padding: 90px 0 36px;
+  padding: clamp(52px, 6vw, 72px) 0 36px;
   overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(192, 150, 66, 0.25);
 }
 
 .footer-top-glow {
@@ -20,12 +20,12 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--color-red) 30%,
-    var(--color-red-bright) 50%,
-    var(--color-red) 70%,
+    var(--brand-teal) 20%,
+    var(--brand-gold) 50%,
+    var(--brand-teal) 80%,
     transparent 100%
   );
-  box-shadow: 0 0 16px var(--color-red);
+  box-shadow: 0 0 16px var(--brand-gold-glow);
 }
 
 .footer-container {
@@ -57,10 +57,22 @@
   gap: 12px;
 }
 
+.footer-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(192, 150, 66, 0.3);
+}
+
 .footer-logo-img {
-  height: 38px;
+  height: 42px;
   width: auto;
+  max-width: 220px;
   object-fit: contain;
+  display: block;
 }
 
 .footer-brand-name {
@@ -75,7 +87,7 @@
   font-family: var(--font-primary);
   font-size: 0.88rem;
   line-height: 1.65;
-  color: rgba(226, 232, 240, 0.72);
+  color: rgba(226, 232, 240, 0.78);
   margin: 0;
 }
 
@@ -94,11 +106,11 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: rgba(226, 232, 240, 0.65);
+  color: rgba(226, 232, 240, 0.75);
 }
 
 .cert-icon {
-  color: var(--color-red);
+  color: var(--brand-gold);
   flex-shrink: 0;
 }
 
@@ -119,7 +131,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--color-red);
+  background-color: var(--brand-gold);
 }
 
 /* Links List with Hover Underline & Movement */
@@ -136,7 +148,7 @@
   position: relative;
   font-family: var(--font-primary);
   font-size: 0.9rem;
-  color: rgba(226, 232, 240, 0.75);
+  color: rgba(226, 232, 240, 0.78);
   display: inline-block;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -148,12 +160,12 @@
   left: 0;
   width: 0;
   height: 1.5px;
-  background-color: var(--color-red);
+  background-color: var(--brand-gold);
   transition: width 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #FFFFFF;
+  color: var(--brand-gold-light);
   transform: translateX(4px);
 }
 
@@ -175,7 +187,7 @@
 }
 
 .contact-icon {
-  color: var(--color-red);
+  color: var(--brand-gold);
   margin-top: 3px;
   flex-shrink: 0;
 }
@@ -187,7 +199,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(226, 232, 240, 0.5);
+  color: rgba(226, 232, 240, 0.55);
   margin-bottom: 2px;
 }
 
@@ -195,7 +207,7 @@
   display: block;
   font-family: var(--font-primary);
   font-size: 0.88rem;
-  color: rgba(226, 232, 240, 0.9);
+  color: rgba(226, 232, 240, 0.92);
   line-height: 1.45;
   transition: color 0.2s ease;
 }
@@ -216,12 +228,12 @@
   font-style: normal;
   font-size: 0.84rem;
   line-height: 1.55;
-  color: rgba(226, 232, 240, 0.85);
+  color: rgba(226, 232, 240, 0.88);
   word-break: break-word;
 }
 
 a.contact-val:hover {
-  color: var(--color-red-bright);
+  color: var(--brand-gold-light);
 }
 
 .footer-cta-wrap {
@@ -306,10 +318,10 @@ a.contact-val:hover {
 }
 
 .back-to-top-btn:hover {
-  background: var(--color-red);
-  border-color: var(--color-red);
+  background: var(--brand-teal);
+  border-color: var(--brand-gold);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(211, 18, 42, 0.35);
+  box-shadow: 0 4px 14px var(--brand-teal-glow);
 }
 
 .back-to-top-btn:hover .back-top-arrow {

@@ -26,7 +26,7 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(211, 18, 42, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 10% 20%, rgba(18, 90, 72, 0.2) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(30, 41, 59, 0.8) 0%, transparent 50%),
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -63,7 +63,7 @@
 .eyebrow-accent-bar {
   width: 22px;
   height: 3px;
-  background-color: var(--color-red, #D3122A);
+  background-color: var(--brand-gold, #C09642);
   border-radius: 2px;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .text-highlight-red {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
 }
 
 .materials-hero-subtitle {
@@ -122,7 +122,7 @@
 }
 
 .chip-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
 }
 
 /* 2. Grid Section */
@@ -150,7 +150,7 @@
   font-family: var(--font-primary);
   font-size: 0.74rem;
   font-weight: 750;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.08em;
   display: block;
   margin-bottom: 4px;
@@ -206,7 +206,7 @@
 }
 
 .material-category-card:focus-visible {
-  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.35);
+  box-shadow: 0 0 0 3px rgba(18, 90, 72, 0.35);
 }
 
 /* Top Accent Bar */
@@ -216,7 +216,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background-color: var(--color-red, #D3122A);
+  background-color: var(--brand-teal, #125A48);
   opacity: 0;
   transform: scaleX(0.2);
   transform-origin: left;
@@ -301,7 +301,7 @@
 }
 
 .material-category-card:hover .mat-card-title {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .mat-card-badge {
@@ -321,7 +321,7 @@
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 600;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
@@ -361,7 +361,7 @@
 }
 
 .material-category-card:hover .mat-card-action-text {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .mat-card-action-arrow {
@@ -378,8 +378,8 @@
 }
 
 .material-category-card:hover .mat-card-action-arrow {
-  background: var(--color-red, #D3122A);
-  border-color: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
+  border-color: var(--brand-teal, #125A48);
   color: #FFFFFF;
   transform: translateX(3px);
 }
@@ -410,7 +410,7 @@
   font-family: var(--font-primary);
   font-size: 0.72rem;
   font-weight: 750;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.08em;
   display: block;
   margin-bottom: 6px;

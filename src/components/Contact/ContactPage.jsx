@@ -8,14 +8,14 @@ import ContactDirectCTA from './ContactDirectCTA';
 import './Contact.css';
 
 /**
- * Redcore Steels — Master Contact Page Orchestrator
+ * Bhawal Steel & Engineering Company — Master Contact Page Orchestrator
  * Integrates all 7 sections seamlessly into the existing site architecture.
  */
 export default function ContactPage() {
   useEffect(() => {
     // Dynamically update document title & meta description for SEO best practices
     const originalTitle = document.title;
-    document.title = 'Get in Contact | Redcore Steels — Technical Desk, RFQ & Global Export';
+    document.title = 'Contact Us | Bhuwal Steel & Engineering Company — Technical Desk & Location';
 
     let metaDesc = document.querySelector('meta[name="description"]');
     const originalDesc = metaDesc ? metaDesc.getAttribute('content') : '';
@@ -23,7 +23,7 @@ export default function ContactPage() {
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Contact Redcore Steels technical engineering and commercial sales desk. Submit RFQ inquiries for industrial steel pipes, fittings, flanges, plates, and fasteners with fast CIF/FOB pricing.'
+        'Contact Bhawal Steel & Engineering Company technical engineering and commercial sales desk. Submit RFQ inquiries for industrial steel pipes, fittings, flanges, plates, and fasteners with fast CIF/FOB pricing.'
       );
     }
 

@@ -1,5 +1,5 @@
 /* ======================================================================
-   REDCORE STEELS — PRODUCT RFQ FORM (INDUSTRIAL DARK THEME)
+   BHAWAL STEEL & ENGINEERING COMPANY — PRODUCT RFQ FORM (INDUSTRIAL DARK THEME)
    Styled to match the global dark theme RFQ specification across all pages
    ====================================================================== */
 
@@ -25,7 +25,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #D3122A 0%, #FF5500 50%, #E11D48 100%);
+  background: linear-gradient(90deg, var(--brand-teal) 0%, var(--brand-gold) 50%, var(--brand-teal) 100%);
 }
 
 .rfq-head {
@@ -44,9 +44,9 @@
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  background: rgba(211, 18, 42, 0.18);
-  color: #FF5566;
-  border: 1px solid rgba(211, 18, 42, 0.38);
+  background: var(--brand-teal-subtle);
+  color: var(--brand-gold-light, #D4AC58);
+  border: 1px solid var(--brand-gold-border);
   padding: 0.25rem 0.65rem;
   border-radius: 4px;
   text-transform: uppercase;
@@ -166,8 +166,8 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #FF5500;
-  box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.22);
+  border-color: var(--brand-gold, #C09642);
+  box-shadow: 0 0 0 3px var(--brand-gold-glow);
   background: #161F30;
 }
 
@@ -221,9 +221,9 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.95rem 2rem;
-  background: linear-gradient(135deg, #FF5500 0%, #D3122A 100%);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
-  border: none;
+  border: 1px solid var(--brand-gold-border);
   border-radius: 8px;
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.85rem;
@@ -231,13 +231,15 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(255, 85, 0, 0.35);
+  box-shadow: 0 6px 20px var(--brand-teal-glow);
   transition: all 0.2s ease;
 }
 
 .btn-transmit-rfq:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(255, 85, 0, 0.5);
+  transform: translateY(-1.5px);
+  background: #0E4B3C;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 14px rgba(18, 90, 72, 0.25);
 }
 
 .btn-transmit-rfq:disabled {

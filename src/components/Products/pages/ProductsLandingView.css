@@ -90,7 +90,7 @@
 }
 
 .crumb-sep {
-  color: #D3122A;
+  color: var(--brand-gold, #C09642);
   font-weight: 700;
 }
 
@@ -104,21 +104,21 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(211, 18, 42, 0.15);
-  border: 1px solid rgba(211, 18, 42, 0.35);
+  background: var(--brand-teal-subtle);
+  border: 1px solid var(--brand-gold-border, rgba(192, 150, 66, 0.35));
   border-radius: 6px;
   padding: 4px 10px;
   margin-bottom: 16px;
 }
 
 .tag-bracket {
-  color: #FF6B7A;
+  color: var(--brand-gold, #C09642);
   font-weight: 800;
   font-size: 0.72rem;
 }
 
 .tag-icon {
-  color: #FF4D61;
+  color: var(--brand-gold, #C09642);
 }
 
 .tag-text {
@@ -127,7 +127,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #FF6B7A;
+  color: var(--brand-gold-light, #D4AC58);
 }
 
 /* Main Heading */
@@ -138,7 +138,7 @@
   color: #FFFFFF;
   line-height: 1.18;
   letter-spacing: -0.02em;
-  margin: 0 0 14px 0;
+  margin: 0 0 12px 0;
 }
 
 @media (max-width: 768px) {
@@ -147,8 +147,9 @@
   }
 }
 
-.heading-highlight-red {
-  color: #D3122A;
+.heading-highlight-red,
+.heading-highlight-gold {
+  color: var(--brand-gold, #C09642);
 }
 
 /* Subtitle */
@@ -173,8 +174,8 @@
 }
 
 .card-search-container:focus-within {
-  border-color: #D3122A;
-  box-shadow: 0 0 0 3px rgba(211, 18, 42, 0.25);
+  border-color: var(--brand-gold, #C09642);
+  box-shadow: 0 0 0 3px var(--brand-gold-glow);
   background: rgba(10, 20, 32, 0.92);
 }
 
@@ -264,7 +265,7 @@
   background: #0B192C;
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-top: 3.5px solid #D3122A;
+  border-top: 3.5px solid var(--brand-gold, #C09642);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
 }
 
@@ -281,7 +282,7 @@
 }
 
 .div-select-card.active-dark .div-card-icon {
-  color: #D3122A;
+  color: var(--brand-gold, #C09642);
 }
 
 /* Inactive White State (Like Cards 2 & 3 in Reference Image 1) */
@@ -324,11 +325,11 @@
 }
 
 .eyebrow-red {
-  color: #D3122A;
+  color: var(--brand-gold, #C09642);
 }
 
 .eyebrow-blue {
-  color: #2563EB;
+  color: var(--brand-teal, #125A48);
 }
 
 .div-card-title {
@@ -358,7 +359,7 @@
    3. Catalogue Area with Reference Image 2 Cards
    =================================================== */
 .reference-catalogue-area {
-  padding: 32px 0 40px;
+  padding: 44px 0 60px;
 }
 
 .catalogue-heading-bar {
@@ -381,7 +382,7 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #D3122A;
+  color: var(--brand-gold, #C09642);
   margin-bottom: 4px;
 }
 
@@ -415,7 +416,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 0.8rem;
   font-weight: 600;
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
   cursor: pointer;
   text-decoration: underline;
 }
@@ -472,7 +473,7 @@
 
 .btn-empty-reset {
   padding: 10px 22px;
-  background: #D3122A;
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
   border: none;
   border-radius: 6px;
@@ -484,7 +485,7 @@
 }
 
 .btn-empty-reset:hover {
-  background: #B50E22;
+  background: var(--brand-teal-dark, #0B382D);
 }
 
 /* ===================================================
@@ -520,7 +521,7 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #D3122A;
+  color: var(--brand-gold, #C09642);
   display: block;
   margin-bottom: 4px;
 }

@@ -12,7 +12,7 @@
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.725rem;
   font-weight: 800;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: inline-block;
@@ -59,7 +59,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 0.9rem 1.25rem;
-  border-bottom: 2px solid var(--color-red, #D3122A);
+  border-bottom: 2px solid var(--brand-gold, #C09642);
 }
 
 .th-param {
@@ -98,7 +98,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-red, #D3122A);
+  background: var(--brand-gold, #C09642);
   flex-shrink: 0;
 }
 
@@ -144,5 +144,5 @@
 }
 
 .std-badge svg {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }

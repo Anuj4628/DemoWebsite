@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { brandDetails } from '../../data/navigationData';
 import './InquiryForm.css';
 
 /**
@@ -60,7 +61,7 @@ export default function InquiryForm({
     }
 
     setIsSubmitting(true);
-    const newTicket = 'JS-' + Math.floor(100000 + Math.random() * 900000);
+    const newTicket = 'BS-' + Math.floor(100000 + Math.random() * 900000);
     setTimeout(() => {
       setIsSubmitting(false);
       setTicketId(newTicket);
@@ -275,7 +276,7 @@ export default function InquiryForm({
                 <span className="direct-hint">Or speak directly to sales:</span>
                 <div className="direct-btns-wrap">
                   <a
-                    href="https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20need%20a%20quotation%20for%20"
+                    href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello ${brandDetails.name}, I need a quotation for ${productName} (${materialGrade}).`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-wa-direct"
@@ -285,7 +286,7 @@ export default function InquiryForm({
                     </svg>
                     <span>WhatsApp Desk</span>
                   </a>
-                  <a href="tel:+919000000000" className="btn-call-direct">
+                  <a href={`tel:${brandDetails.contact.phone1Raw}`} className="btn-call-direct">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>

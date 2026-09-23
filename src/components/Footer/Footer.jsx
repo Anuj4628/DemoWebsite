@@ -1,10 +1,12 @@
 import React from 'react';
-import redcoreLogo from '../../assets/images/redcore-logo.png';
+import { brandDetails } from '../../data/navigationData';
 import Button from '../UI/Button';
 import { MapPin, Phone, Mail, ArrowUp, ShieldCheck, Award } from 'lucide-react';
 import './Footer.css';
 
 export default function Footer({ onNavigate }) {
+  const { contact } = brandDetails;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -21,8 +23,8 @@ export default function Footer({ onNavigate }) {
   };
 
   return (
-    <footer id="contact" className="site-footer" aria-label="Redcore Steels Corporate Footer">
-      {/* Top Ambient Red Bar */}
+    <footer id="contact" className="site-footer" aria-label={`${brandDetails.name} Corporate Footer`}>
+      {/* Top Ambient Brand Accent Bar */}
       <div className="footer-top-glow" aria-hidden="true" />
 
       <div className="footer-container">
@@ -34,20 +36,19 @@ export default function Footer({ onNavigate }) {
               href="#home"
               className="footer-logo-link"
               onClick={(e) => handleLinkClick(e, 'home')}
-              aria-label="Redcore Steels Home"
+              aria-label={`${brandDetails.name} Home`}
             >
-              <img
-                src={redcoreLogo}
-                alt="Redcore Steels"
-                className="footer-logo-img"
-                width="180"
-                height="48"
-              />
-              <span className="footer-brand-name">REDCORE STEELS</span>
+              <div className="footer-logo-wrap">
+                <img
+                  src={brandDetails.logoUrl}
+                  alt={brandDetails.name}
+                  className="footer-logo-img"
+                />
+              </div>
             </a>
 
             <p className="footer-brand-desc">
-              Global manufacturer, exporter and supplier of high-grade industrial steel plates, sheets, coils, precision pipes, fittings, flanges and round bars for mission-critical engineering projects.
+              Premier manufacturer, stockist, and global exporter of Ferrous &amp; Non-Ferrous Metals — Stainless Steel, Carbon Steel, Duplex, Super Duplex, Inconel, Monel, Hastelloy, Sheets, Pipes &amp; Pipe Fittings.
             </p>
 
             <div className="footer-cert-tags">
@@ -117,11 +118,11 @@ export default function Footer({ onNavigate }) {
               <div className="contact-line">
                 <Phone size={16} className="contact-icon" />
                 <div>
-                  <span className="contact-lbl">Export & Direct Desk</span>
+                  <span className="contact-lbl">Direct &amp; Export Desk</span>
                   <div className="contact-phones-wrap">
-                    <a href="tel:+919000000000" className="contact-val">+91 90000 00000</a>
+                    <a href={`tel:${contact.phone1Raw}`} className="contact-val">{contact.phone1}</a>
                     <span className="contact-sep">/</span>
-                    <a href="tel:+912200000000" className="contact-val">+91 22 0000 0000</a>
+                    <a href={`tel:${contact.phone2Raw}`} className="contact-val">{contact.phone2}</a>
                   </div>
                 </div>
               </div>
@@ -131,7 +132,15 @@ export default function Footer({ onNavigate }) {
                 <Mail size={16} className="contact-icon" />
                 <div>
                   <span className="contact-lbl">Commercial Enquiries</span>
-                  <a href="mailto:info@redcoresteels.com" className="contact-val">info@redcoresteels.com</a>
+                  <div className="contact-phones-wrap">
+                    <a href={`mailto:${contact.email}`} className="contact-val">{contact.email}</a>
+                    {contact.secondaryEmail && (
+                      <>
+                        <span className="contact-sep">/</span>
+                        <a href={`mailto:${contact.secondaryEmail}`} className="contact-val">{contact.secondaryEmail}</a>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -139,11 +148,11 @@ export default function Footer({ onNavigate }) {
               <div className="contact-line">
                 <MapPin size={16} className="contact-icon" />
                 <div>
-                  <span className="contact-lbl">Registered Corporate Office</span>
+                  <span className="contact-lbl">Registered Office</span>
                   <address className="contact-val contact-address">
-                    Plot 42, Heavy Industrial Zone,<br />
-                    Phase II, Andheri East,<br />
-                    Mumbai - 400093,<br />
+                    139 Sant Sena Maharaja Marg,<br />
+                    Near Round Temple,<br />
+                    Mumbai - 400 004,<br />
                     Maharashtra, India
                   </address>
                 </div>
@@ -168,9 +177,9 @@ export default function Footer({ onNavigate }) {
         {/* Bottom Bar: Copyright & Legal */}
         <div className="footer-bottom-bar">
           <div className="footer-copy">
-            <span>&copy; {new Date().getFullYear()} Redcore Steels. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Bhawal Steel &amp; Engineering Company. All rights reserved.</span>
             <span className="copy-divider">|</span>
-            <span className="copy-tag">Global Steel Manufacturing • Export • Supply</span>
+            <span className="copy-tag">Steel Products &amp; Engineering Solutions • Export • Supply</span>
           </div>
 
           <div className="footer-legal-links">

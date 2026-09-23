@@ -2,15 +2,15 @@ import React from 'react';
 import './GradeCard.css';
 
 /**
- * Product Specification / Grade Card (Matching Reference Image 2)
+ * Product Specification / Grade Card
  * Features:
- * - Red top accent bar
  * - Rounded white card with clean subtle border
- * - Light-background image container with floating division pill
+ * - Light-background image container
  * - Bold title (e.g. Stainless Steel 316L 90° Long Radius Elbow)
  * - Two-pill metadata row: [MATERIAL] [GRADE]
  * - 2-line clamped technical description
  * - Footer bar with "EXPLORE PRODUCT DETAILS" + bordered arrow icon button
+ * - No Manufacturer or Supplier division labels
  */
 function GradeCard({ category, groupSlug, divisionSlug, onSelect }) {
   if (!category) return null;
@@ -23,22 +23,19 @@ function GradeCard({ category, groupSlug, divisionSlug, onSelect }) {
     }
   };
 
-  const isManufacturer = divisionSlug === 'manufacturer';
-  const divisionBadge = isManufacturer ? 'MANUFACTURER' : 'SUPPLIER';
-
   const materialTag = category.materialName || 'STAINLESS STEEL';
   const gradeTag = category.grade ? category.grade.split('/')[0].trim() : 'COMMERCIAL';
   const desc = category.shortDesc || (category.specs && category.specs.standards ? `Standard ${category.specs.standards} precision component certified for high pressure applications.` : 'Precision manufactured to strict international quality standards.');
 
   return (
     <article className="ref-grade-card" onClick={handleClick}>
-      {/* Top Accent Line (Redcore Red) */}
+      {/* Top Accent Line */}
       <div className="grade-top-accent" aria-hidden="true" />
 
       {/* Inner Wrap */}
       <div className="grade-inner-wrap">
         
-        {/* Image Frame with Floating Division Badge */}
+        {/* Image Frame */}
         <div className="grade-media-container">
           <img
             src={category.image}
@@ -47,9 +44,6 @@ function GradeCard({ category, groupSlug, divisionSlug, onSelect }) {
             loading="lazy"
             decoding="async"
           />
-          <span className={`grade-floating-pill ${divisionSlug}`}>
-            {divisionBadge}
-          </span>
         </div>
 
         {/* Card Body */}
@@ -81,8 +75,8 @@ function GradeCard({ category, groupSlug, divisionSlug, onSelect }) {
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </button>
         </div>

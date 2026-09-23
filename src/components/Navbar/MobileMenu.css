@@ -69,9 +69,9 @@
 
 .mobile-subnav-toggle:hover,
 .mobile-subnav-toggle.expanded {
-  background: rgba(211, 18, 42, 0.08);
-  border-color: var(--color-red);
-  color: var(--color-red);
+  background: var(--brand-teal-subtle);
+  border-color: var(--brand-teal);
+  color: var(--brand-teal);
 }
 
 .mobile-subnav-toggle.expanded svg {
@@ -118,12 +118,12 @@
 
 .mobile-subnav-overview:hover {
   background: #E2E8F0;
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .mobile-subnav-badge {
   font-size: 0.72rem;
-  background: var(--color-red);
+  background: var(--brand-teal);
   color: #FFFFFF;
   padding: 2px 8px;
   border-radius: 999px;
@@ -149,7 +149,7 @@
 
 .mobile-subnav-item:hover {
   background: #FFFFFF;
-  border-color: var(--color-red);
+  border-color: var(--brand-gold);
   transform: translateY(-1px);
 }
 
@@ -161,7 +161,7 @@
 }
 
 .mobile-subnav-item:hover .subnav-mat-name {
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .subnav-mat-tag {
@@ -212,19 +212,19 @@
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .mobile-nav-link:hover .mobile-link-title,
 .mobile-nav-link.active .mobile-link-title {
   transform: translateX(4px);
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .mobile-nav-link:hover .mobile-link-accent,
 .mobile-nav-link.active .mobile-link-accent {
-  background: var(--color-red);
-  box-shadow: 0 0 8px var(--color-red-bright);
+  background: var(--brand-gold);
+  box-shadow: 0 0 8px var(--brand-gold-glow);
 }
 
 /* Footer & CTA */

@@ -1,5 +1,6 @@
 /* ======================================================================
-   REDCORE STEELS — CONTACT PAGE PREMIUM INDUSTRIAL DESIGN
+   BHUWAL STEEL & ENGINEERING COMPANY — CONTACT PAGE PREMIUM INDUSTRIAL DESIGN
+   Brand Palette: Deep Green (#125A48), Gold (#C09642), White, Charcoal (#0F172A)
    ====================================================================== */
 
 .contact-page-master {
@@ -12,8 +13,7 @@
 
 /* ======================================================================
    SECTION 0 — CONTACT HERO
-   Full-screen height (100vh/100dvh) with zero white gap at the bottom
-   and full background image preserving both executives and handshake
+   Full-screen height with zero white gap at bottom
    ====================================================================== */
 .contact-hero {
   position: relative;
@@ -38,39 +38,36 @@
   pointer-events: none;
 }
 
-/* Full image display with object-position: center top so heads and hair are NEVER cut */
+/* Full image display — user-provided image, cover with centered positioning */
 .contact-hero-bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  filter: brightness(0.96) contrast(1.03) saturate(1.02);
+  object-position: center center;
+  filter: brightness(0.88) contrast(1.04) saturate(0.95);
   transform: none;
 }
 
-/* Clean, directional overlay:
-   Leaves the left side completely clear and vibrant,
-   transitions gently across to support the floating dark card on the right */
+/* Controlled dark overlay for card readability */
 .contact-hero-clear-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(8, 11, 17, 0.04) 0%,
-    rgba(8, 11, 17, 0.12) 38%,
-    rgba(8, 11, 17, 0.55) 65%,
-    rgba(8, 11, 17, 0.88) 100%
+    rgba(8, 11, 17, 0.15) 0%,
+    rgba(8, 11, 17, 0.30) 35%,
+    rgba(8, 11, 17, 0.65) 60%,
+    rgba(8, 11, 17, 0.92) 100%
   );
 }
 
-/* Seamless bottom transition:
-   Completely covers any gap and blends into dark industrial tone with zero white */
+/* Seamless bottom transition */
 .contact-hero-bottom-transition {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 90px;
+  height: 100px;
   background: linear-gradient(
     180deg,
     transparent 0%,
@@ -115,14 +112,14 @@
 }
 
 .breadcrumb-item.current {
-  color: #FF5500;
+  color: var(--brand-gold, #C09642);
 }
 
 .breadcrumb-separator {
   color: #64748B;
 }
 
-/* Hero Grid: Left side has generous room to reveal the handshake, Right hosts the compact card */
+/* Hero Grid */
 .contact-hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -135,27 +132,28 @@
   min-height: 80px;
 }
 
-/* Floating Dark Glassmorphism Contact Card (Compact & High-Tech) */
+/* Floating Dark Glassmorphism Contact Card — Brand Palette */
 .contact-hero-floating-card {
-  background: rgba(14, 20, 32, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(14, 20, 32, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
-  padding: 30px 32px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: 32px 34px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  max-width: 485px;
+  max-width: 500px;
   margin-left: auto;
 }
 
+/* Pill — brand gold accent instead of orange */
 .floating-card-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 85, 0, 0.12);
-  border: 1px solid rgba(255, 85, 0, 0.35);
+  background: rgba(192, 150, 66, 0.10);
+  border: 1px solid rgba(192, 150, 66, 0.30);
   border-radius: 4px;
   padding: 4px 10px;
   margin-bottom: 16px;
@@ -163,7 +161,7 @@
 }
 
 .pill-diamond {
-  color: #FF5500;
+  color: var(--brand-gold, #C09642);
   font-size: 0.65rem;
 }
 
@@ -172,7 +170,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #FF7733;
+  color: var(--brand-gold, #C09642);
   text-transform: uppercase;
 }
 
@@ -186,8 +184,10 @@
   margin-bottom: 12px;
 }
 
+/* Title highlight uses brand teal */
+.title-highlight,
 .title-highlight-orange {
-  color: #FF5500;
+  color: var(--brand-gold, #C09642);
 }
 
 .floating-card-description {
@@ -225,15 +225,15 @@
 }
 
 .btn-hero-rfq {
-  background: linear-gradient(135deg, #FF5500 0%, #D3122A 100%);
+  background: linear-gradient(135deg, var(--brand-teal, #125A48) 0%, var(--brand-teal-dark, #0B382D) 100%);
   color: #FFFFFF;
-  box-shadow: 0 4px 18px rgba(255, 85, 0, 0.4);
+  box-shadow: 0 4px 18px rgba(18, 90, 72, 0.4);
   border: none;
 }
 
 .btn-hero-rfq:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 85, 0, 0.55);
+  box-shadow: 0 8px 24px rgba(18, 90, 72, 0.55);
 }
 
 .btn-hero-call {
@@ -253,7 +253,7 @@
   flex-shrink: 0;
 }
 
-/* Bottom Verification Badges Row */
+/* Bottom Verification Badges Row — gold cert icons */
 .floating-card-badges-row {
   display: flex;
   align-items: center;
@@ -279,15 +279,16 @@
 }
 
 .cert-icon {
-  color: #FF7733;
+  color: var(--brand-gold, #C09642);
 }
 
 /* ======================================================================
-   SECTION 1 — CONNECT WITH OUR TECHNICAL TEAM (ADVANCED CARDS)
+   SECTION 1 — TALK TO OUR TECHNICAL SPECIALISTS
    ====================================================================== */
 .contact-intro-section {
-  padding: 70px 24px 70px;
+  padding: clamp(40px, 4.8vw, 58px) 24px;
   background-color: var(--color-bg-main, #F8FAFC);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
   position: relative;
 }
 
@@ -307,7 +308,7 @@
 .eyebrow-accent-line {
   width: 32px;
   height: 3px;
-  background: var(--color-red, #D3122A);
+  background: var(--brand-gold, #C09642);
   border-radius: 2px;
 }
 
@@ -315,7 +316,7 @@
   font-family: var(--font-mono, 'Space Grotesk', monospace);
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -332,7 +333,7 @@
 }
 
 .heading-highlight {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   position: relative;
 }
 
@@ -365,7 +366,7 @@
 }
 
 .check-bar-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   flex-shrink: 0;
 }
 
@@ -393,8 +394,8 @@
 
 .capability-card.advanced-cap-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(211, 18, 42, 0.08);
-  border-color: rgba(211, 18, 42, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(18, 90, 72, 0.08);
+  border-color: rgba(18, 90, 72, 0.35);
 }
 
 .capability-card-border {
@@ -403,7 +404,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #D3122A 0%, #FF5500 100%);
+  background: linear-gradient(90deg, var(--brand-teal, #125A48) 0%, var(--brand-gold, #C09642) 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s ease;
@@ -424,19 +425,19 @@
   width: 46px;
   height: 46px;
   border-radius: 10px;
-  background: rgba(211, 18, 42, 0.07);
-  border: 1px solid rgba(211, 18, 42, 0.16);
+  background: rgba(18, 90, 72, 0.08);
+  border: 1px solid rgba(18, 90, 72, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   transition: all 0.3s ease;
 }
 
 .capability-card.advanced-cap-card:hover .capability-icon-wrap {
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
-  box-shadow: 0 6px 16px rgba(211, 18, 42, 0.3);
+  box-shadow: 0 6px 16px rgba(18, 90, 72, 0.3);
 }
 
 .cap-code-badge {
@@ -455,7 +456,7 @@
   font-family: var(--font-mono, 'Space Grotesk', monospace);
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -498,7 +499,7 @@
 }
 
 .micro-bullet {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   font-size: 0.65rem;
 }
 
@@ -521,12 +522,12 @@
 }
 
 .cap-arrow-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   transition: transform 0.2s ease;
 }
 
 .capability-card.advanced-cap-card:hover .cap-action-link {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .capability-card.advanced-cap-card:hover .cap-arrow-icon {
@@ -537,8 +538,9 @@
    SECTION 2 — CONTACT INFORMATION + EXACT MAP
    ====================================================================== */
 .contact-info-map-section {
-  padding: 40px 24px 75px;
+  padding: clamp(40px, 4.8vw, 58px) 24px;
   background-color: var(--color-bg-main, #F8FAFC);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
 
 .info-map-grid {
@@ -568,7 +570,7 @@
   font-family: var(--font-mono, 'Space Grotesk', monospace);
   font-size: 0.76rem;
   font-weight: 700;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   letter-spacing: 0.08em;
   margin-bottom: 12px;
 }
@@ -582,8 +584,9 @@
   letter-spacing: -0.01em;
 }
 
-.text-red {
-  color: var(--color-red, #D3122A);
+.text-red,
+.text-highlight-teal {
+  color: var(--brand-teal, #125A48);
 }
 
 .contact-info-subtext {
@@ -621,11 +624,11 @@
   width: 42px;
   height: 42px;
   border-radius: 8px;
-  background: rgba(211, 18, 42, 0.08);
+  background: rgba(18, 90, 72, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   flex-shrink: 0;
 }
 
@@ -681,7 +684,7 @@
 }
 
 .clickable-address:hover .address-text {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .address-click-hint {
@@ -690,7 +693,7 @@
   gap: 5px;
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   margin-top: 6px;
 }
 
@@ -724,7 +727,7 @@
 }
 
 .item-link:hover {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .whatsapp-link {
@@ -760,7 +763,7 @@
 }
 
 .trust-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   flex-shrink: 0;
 }
 
@@ -804,14 +807,14 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: var(--color-red, #D3122A);
+  background: var(--brand-gold, #C09642);
 }
 
 .live-ping {
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  background: rgba(211, 18, 42, 0.4);
+  background: rgba(192, 150, 66, 0.4);
   animation: pingAnimation 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
@@ -891,7 +894,7 @@
 }
 
 .btn-open-maps:hover {
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
 }
 
 .btn-get-directions {
@@ -901,9 +904,9 @@
 }
 
 .btn-get-directions:hover {
-  border-color: var(--color-red, #D3122A);
-  color: var(--color-red, #D3122A);
-  background: rgba(211, 18, 42, 0.06);
+  border-color: var(--brand-teal, #125A48);
+  color: var(--brand-teal, #125A48);
+  background: rgba(18, 90, 72, 0.06);
 }
 
 .map-footer-note {
@@ -919,8 +922,9 @@
    SECTION 3 — REQUEST A QUOTE (RFQ) — HIGH-CONTRAST DARK THEME
    ====================================================================== */
 .contact-rfq-section {
-  padding: 40px 24px 80px;
+  padding: clamp(40px, 4.8vw, 58px) 24px;
   background-color: var(--color-bg-main, #F8FAFC);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
 
 .rfq-master-card {
@@ -942,7 +946,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #D3122A 0%, #FF5500 50%, #94A3B8 100%);
+  background: linear-gradient(90deg, var(--brand-teal, #125A48) 0%, var(--brand-gold, #C09642) 50%, #94A3B8 100%);
 }
 
 .rfq-header-block {
@@ -961,9 +965,9 @@
 }
 
 .rfq-official-badge {
-  background: rgba(211, 18, 42, 0.16);
-  border: 1px solid rgba(211, 18, 42, 0.4);
-  color: #FF5566;
+  background: rgba(18, 90, 72, 0.18);
+  border: 1px solid rgba(18, 90, 72, 0.45);
+  color: var(--brand-gold, #C09642);
   font-family: var(--font-mono, 'Space Grotesk', monospace);
   font-size: 0.74rem;
   font-weight: 700;
@@ -1029,7 +1033,7 @@
 }
 
 .req-star {
-  color: #FF4D61;
+  color: var(--brand-gold, #C09642);
   font-weight: 700;
   margin-left: 3px;
 }
@@ -1063,9 +1067,9 @@
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #FF5500;
+  border-color: var(--brand-teal, #125A48);
   background-color: #161F30;
-  box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.22);
+  box-shadow: 0 0 0 3px rgba(18, 90, 72, 0.22);
 }
 
 .form-input::placeholder,
@@ -1142,7 +1146,7 @@
   min-width: 320px;
   padding: 16px 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #FF5500 0%, #D3122A 100%);
+  background: linear-gradient(135deg, var(--brand-teal, #125A48) 0%, var(--brand-teal-dark, #0B382D) 100%);
   color: #FFFFFF;
   border: none;
   font-family: var(--font-display, 'Montserrat', sans-serif);
@@ -1151,13 +1155,14 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(255, 85, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(18, 90, 72, 0.35);
   transition: all 0.25s ease;
 }
 
 .btn-submit-rfq:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 85, 0, 0.5);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px rgba(18, 90, 72, 0.35);
+  opacity: 0.96;
 }
 
 .btn-submit-rfq:active:not(:disabled) {
@@ -1172,7 +1177,7 @@
 .btn-submit-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #FF5500 0%, #D3122A 100%);
+  background: linear-gradient(135deg, var(--brand-teal, #125A48) 0%, var(--brand-teal-dark, #0B382D) 100%);
   z-index: 1;
 }
 
@@ -1214,7 +1219,7 @@
 }
 
 .pill-icon {
-  color: #FF5500;
+  color: var(--brand-gold, #C09642);
 }
 
 .rfq-global-error {
@@ -1339,8 +1344,8 @@
 }
 
 .btn-submit-another:hover {
-  background: #FF5500;
-  border-color: #FF5500;
+  background: var(--brand-teal, #125A48);
+  border-color: var(--brand-teal, #125A48);
 }
 
 .btn-copy-inquiry {
@@ -1367,8 +1372,9 @@
    SECTION 4 — FREQUENTLY ASKED QUESTIONS (FAQ)
    ====================================================================== */
 .contact-faq-section {
-  padding: 40px 24px 75px;
+  padding: clamp(40px, 4.8vw, 58px) 24px;
   background-color: var(--color-bg-main, #F8FAFC);
+  border-bottom: 1px solid rgba(18, 90, 72, 0.12);
 }
 
 .faq-master-wrap {
@@ -1378,11 +1384,11 @@
 
 .faq-header-block {
   text-align: center;
-  margin-bottom: 42px;
+  margin-bottom: 32px;
 }
 
 .eyebrow-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
 }
 
 .faq-header-desc {
@@ -1408,11 +1414,11 @@
 }
 
 .faq-item-card:hover {
-  border-color: rgba(211, 18, 42, 0.35);
+  border-color: rgba(18, 90, 72, 0.35);
 }
 
 .faq-item-card.is-open {
-  border-color: var(--color-red, #D3122A);
+  border-color: var(--brand-teal, #125A48);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
@@ -1433,8 +1439,8 @@
   font-family: var(--font-mono, 'Space Grotesk', monospace);
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--color-red, #D3122A);
-  background: rgba(211, 18, 42, 0.08);
+  color: var(--brand-teal, #125A48);
+  background: rgba(18, 90, 72, 0.08);
   padding: 4px 10px;
   border-radius: 4px;
   flex-shrink: 0;
@@ -1451,7 +1457,7 @@
 }
 
 .faq-item-card.is-open .faq-question-text {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .faq-chevron-box {
@@ -1469,7 +1475,7 @@
 
 .faq-chevron-box.rotated {
   transform: rotate(180deg);
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
 }
 
@@ -1499,7 +1505,7 @@
    SECTION 5 & 6 — DIRECT CALL & EMAIL CTAs
    ====================================================================== */
 .contact-direct-cta-section {
-  padding: 30px 24px 90px;
+  padding: clamp(38px, 4.5vw, 54px) 24px clamp(46px, 5.5vw, 68px);
   background-color: var(--color-bg-main, #F8FAFC);
 }
 
@@ -1527,7 +1533,7 @@
 .cta-card-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.09);
-  border-color: rgba(211, 18, 42, 0.35);
+  border-color: rgba(18, 90, 72, 0.35);
 }
 
 .cta-card-glow {
@@ -1536,11 +1542,11 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #D3122A 0%, #FF5500 100%);
+  background: linear-gradient(90deg, var(--brand-teal, #125A48) 0%, var(--brand-gold, #C09642) 100%);
 }
 
 .email-glow {
-  background: linear-gradient(90deg, #0F172A 0%, #D3122A 100%);
+  background: linear-gradient(90deg, #0F172A 0%, var(--brand-teal, #125A48) 100%);
 }
 
 .cta-card-top {
@@ -1561,9 +1567,9 @@
 }
 
 .call-badge {
-  background: rgba(211, 18, 42, 0.08);
-  color: var(--color-red, #D3122A);
-  border: 1px solid rgba(211, 18, 42, 0.2);
+  background: rgba(18, 90, 72, 0.08);
+  color: var(--brand-teal, #125A48);
+  border: 1px solid rgba(18, 90, 72, 0.2);
 }
 
 .email-badge {
@@ -1591,7 +1597,7 @@
 }
 
 .cta-highlight-red {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .cta-card-description {
@@ -1648,13 +1654,13 @@
 
 .prominent-phone-icon,
 .prominent-email-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   flex-shrink: 0;
 }
 
 .prominent-number-link:hover .prominent-number-text,
 .prominent-email-link:hover .prominent-email-text {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
 }
 
 .cta-card-actions {
@@ -1685,16 +1691,16 @@
 
 .btn-call-primary,
 .btn-email-primary {
-  background: var(--color-red, #D3122A);
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(211, 18, 42, 0.25);
+  box-shadow: 0 4px 14px rgba(18, 90, 72, 0.25);
 }
 
 .btn-call-primary:hover,
 .btn-email-primary:hover {
-  background: #E81935;
+  background: var(--brand-teal-dark, #0B382D);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(211, 18, 42, 0.38);
+  box-shadow: 0 6px 20px rgba(18, 90, 72, 0.38);
 }
 
 .btn-wa-secondary {

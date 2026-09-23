@@ -177,10 +177,10 @@ export default function ContactRFQ() {
       timeStyle: 'medium'
     });
 
-    const generatedTicket = `RS-RFQ-${Math.floor(100000 + Math.random() * 900000)}`;
+    const generatedTicket = `BS-RFQ-${Math.floor(100000 + Math.random() * 900000)}`;
 
-    const targetEmail = brandDetails.contact.email; // 'info@redcoresteels.com'
-    const subjectText = `New RFQ Inquiry — Redcore Steels [${generatedTicket}]`;
+    const targetEmail = brandDetails.contact.email;
+    const subjectText = `New RFQ Inquiry — Bhawal Steel & Engineering Company [${generatedTicket}]`;
 
     const emailBodyText = [
       `Full Name: ${formData.fullName.trim()}`,
@@ -329,7 +329,7 @@ export default function ContactRFQ() {
                 )}
 
                 <a
-                  href={`https://wa.me/919000000000?text=${encodeURIComponent(`Hello Redcore Steels, I have submitted RFQ #${ticketNumber} for ${formData.product}. Please advise dispatch availability.`)}`}
+                  href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello Bhawal Steel & Engineering Company, I have submitted RFQ #${ticketNumber} for ${formData.product}. Please advise dispatch availability.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-success-action btn-wa-followup"

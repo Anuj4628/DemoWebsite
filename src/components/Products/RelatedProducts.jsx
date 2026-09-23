@@ -2,7 +2,7 @@ import React from 'react';
 import './RelatedProducts.css';
 
 /**
- * Related Products Component (Matching Reference Image 2 Design System)
+ * Related Products Component
  */
 function RelatedProducts({ products = [], title = "Related Products & Solutions", onSelect }) {
   if (!products || products.length === 0) return null;
@@ -20,8 +20,6 @@ function RelatedProducts({ products = [], title = "Related Products & Solutions"
       <div className="related-grid">
         {products.map((item) => {
           const route = item.route || `/products/${item.divisionSlug}/${item.groupSlug}/${item.slug}`;
-          const isManufacturer = item.divisionSlug === 'manufacturer';
-          const divisionBadge = isManufacturer ? 'MANUFACTURER' : 'SUPPLIER';
           const materialTag = item.materialName || 'STAINLESS STEEL';
           const gradeTag = item.grade ? item.grade.split('/')[0].trim() : 'CERTIFIED';
 
@@ -41,9 +39,6 @@ function RelatedProducts({ products = [], title = "Related Products & Solutions"
                     loading="lazy" 
                     decoding="async"
                   />
-                  <span className={`related-floating-badge ${item.divisionSlug}`}>
-                    {divisionBadge}
-                  </span>
                 </div>
 
                 <div className="related-body">
@@ -59,16 +54,14 @@ function RelatedProducts({ products = [], title = "Related Products & Solutions"
                   </p>
                 </div>
 
-                <div className="related-footer-bar">
-                  <span className="related-cta-text">
-                    EXPLORE PRODUCT DETAILS
-                  </span>
-                  <div className="related-arrow-box">
+                <div className="related-footer">
+                  <span className="related-cta-text">VIEW SPECIFICATION</span>
+                  <span className="related-arrow-box" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </div>
+                  </span>
                 </div>
               </div>
             </article>

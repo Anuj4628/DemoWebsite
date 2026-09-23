@@ -4,9 +4,9 @@
 
 .top-contact-bar {
   width: 100%;
-  background: #090E17;
-  color: rgba(241, 245, 249, 0.85);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0B251E;
+  color: rgba(241, 245, 249, 0.88);
+  border-bottom: 1px solid rgba(192, 150, 66, 0.2);
   font-size: 0.78rem;
   line-height: 1;
   font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
@@ -38,7 +38,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: rgba(241, 245, 249, 0.82);
+  color: rgba(241, 245, 249, 0.85);
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.015em;
@@ -54,7 +54,7 @@
 }
 
 .top-contact-item:focus-visible {
-  outline: 1px solid var(--color-red, #D3122A);
+  outline: 1px solid var(--brand-gold, #C09642);
   outline-offset: 2px;
 }
 
@@ -63,17 +63,17 @@
 }
 
 .top-contact-item:hover .top-icon {
-  color: var(--color-red-bright, #E81935);
+  color: var(--brand-gold-light, #D4AC58);
 }
 
 .top-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
   flex-shrink: 0;
   transition: color 0.2s ease;
 }
 
 .email-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-gold, #C09642);
 }
 
 .contact-text {

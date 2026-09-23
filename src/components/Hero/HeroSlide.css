@@ -96,7 +96,7 @@
   overflow: hidden;
 }
 
-/* Subtle Redcore Red top accent line on frame */
+/* Subtle Muted Gold top accent line on frame */
 .hero-glass-card::before {
   content: '';
   position: absolute;
@@ -104,8 +104,8 @@
   left: 0;
   width: 52px;
   height: 3px;
-  background: var(--color-red);
-  box-shadow: 0 0 10px var(--color-red-bright);
+  background: var(--brand-gold);
+  box-shadow: 0 0 10px var(--brand-gold-glow);
 }
 
 /* Eyebrow - Industrial Brand Label */
@@ -120,15 +120,14 @@
   display: block;
   width: 26px;
   height: 2px;
-  background-color: var(--color-red);
-  box-shadow: 0 0 8px var(--color-red-bright);
+  background-color: var(--brand-gold);
 }
 
 .eyebrow-text {
-  font-family: var(--font-mono, 'Space Grotesk', monospace);
+  font-family: var(--font-primary);
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #F8FAFC;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
@@ -141,23 +140,23 @@
 }
 
 .hero-headline {
-  font-family: var(--font-display, 'Montserrat', sans-serif);
+  font-family: var(--font-primary);
   font-size: clamp(2.3rem, 3.8vw, 3.35rem);
   font-weight: 800;
   line-height: 1.18;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   color: #FFFFFF;
   text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
-/* Strategic Red Highlight in Hero Headline */
+/* Strategic Brand Gold Highlight in Hero Headline */
 .hero-headline-accent {
-  color: var(--color-red-bright, #E81935);
+  color: var(--brand-gold);
   display: inline;
   font-weight: inherit;
-  text-shadow: 0 2px 20px rgba(232, 25, 53, 0.4);
+  text-shadow: 0 2px 20px rgba(192, 150, 66, 0.4);
 }
 
 /* Description */
@@ -199,9 +198,9 @@
 .spec-indicator {
   width: 6px;
   height: 6px;
-  background-color: var(--color-red);
+  background-color: var(--brand-gold);
   border-radius: 50%;
-  box-shadow: 0 0 6px var(--color-red-bright);
+  box-shadow: 0 0 6px var(--brand-gold-glow);
 }
 
 .spec-text {

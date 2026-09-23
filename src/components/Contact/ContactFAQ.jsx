@@ -10,7 +10,7 @@ const FAQ_DATA = [
     id: 'faq-categories',
     question: 'What categories and products do you offer?',
     answer:
-      'Redcore Steels operates two comprehensive core divisions: the Manufacturer Division and the Supplier Division. Our product families include Butt Weld Fittings, High-Pressure Forged Fittings, Flanges, Fasteners, Ferrule & Instrumentation Fittings, Dairy & Pharma Hygienic Fittings, Flexible Hose Pipes, Perforated Sheets, and Industrial Wire Mesh. In our Supplier Division, we maintain heavy inventory in Seamless and Welded Pipes & Tubes, Plates & Sheets, Coils, Circles, Flat Bars, Patapatti, and High-Tensile Wires across Stainless Steel (304, 316, 904L), Carbon Steel (ASTM A106), Alloy Steel (P11, P22, P91), Duplex (UNS S31803), Super Duplex (UNS S32750/S32760), Inconel (600, 625, 825), Monel 400, Hastelloy C276, and Titanium Alloys.'
+      'Bhawal Steel & Engineering Company operates two comprehensive core divisions: the Manufacturer Division and the Supplier Division. Our product families include Butt Weld Fittings, High-Pressure Forged Fittings, Flanges, Fasteners, Ferrule & Instrumentation Fittings, Dairy & Pharma Hygienic Fittings, Flexible Hose Pipes, Perforated Sheets, and Industrial Wire Mesh. In our Supplier Division, we maintain heavy inventory in Seamless and Welded Pipes & Tubes, Plates & Sheets, Coils, Circles, Flat Bars, Patapatti, and High-Tensile Wires across Stainless Steel (304, 316, 904L), Carbon Steel (ASTM A106), Alloy Steel (P11, P22, P91), Duplex (UNS S31803), Super Duplex (UNS S32750/S32760), Inconel (600, 625, 825), Monel 400, Hastelloy C276, and Titanium Alloys.'
   },
   {
     id: 'faq-specs-bulk',
@@ -22,7 +22,7 @@ const FAQ_DATA = [
     id: 'faq-contact-channels',
     question: 'How can I contact the technical or sales team for an immediate requirement?',
     answer:
-      'You can submit an inquiry through our official RFQ form on this page, email our commercial team directly at info@redcoresteels.com, or call our dedicated Export & Direct Desk at +91 90000 00000 or our office line at +91 22 0000 0000. For quick specification exchanges, drawing reviews, and stock inquiries, you can also reach our instant messaging WhatsApp desk at +91 90000 00000 during business hours (Mon–Sat, 9:30 AM – 6:30 PM IST).'
+      'You can submit an inquiry through our official RFQ form on this page, email our commercial team directly at bhawal@hotmail.com or info@bhawalsteel.com, or call our dedicated Export & Direct Desk at +91 92233 81575 or our direct line at +91 99697 32025. For quick specification exchanges, drawing reviews, and stock inquiries, you can also reach our instant messaging WhatsApp desk at +91 92233 81575 during business hours (Mon–Sat, 9:30 AM – 6:30 PM IST).'
   },
   {
     id: 'faq-response-time',

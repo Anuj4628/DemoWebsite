@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Button from '../UI/Button';
+import { brandDetails } from '../../data/navigationData';
 import slide1Img from '../../assets/images/slide-1.jpg';
 import { Mail, Clock, ShieldCheck } from 'lucide-react';
 import './FinalCTASection.css';
@@ -50,7 +51,7 @@ export default function FinalCTASection({ onNavigate }) {
               loading="lazy"
             />
             <div className="cta-dark-overlay" aria-hidden="true" />
-            <div className="cta-red-gradient" aria-hidden="true" />
+            <div className="cta-brand-gradient" aria-hidden="true" />
           </div>
 
           {/* Top Accent Line */}
@@ -116,7 +117,7 @@ export default function FinalCTASection({ onNavigate }) {
               </div>
               <div className="assurance-item">
                 <Mail size={16} className="assurance-icon" />
-                <span>sales@redcoresteels.com</span>
+                <span>{brandDetails.contact.email}</span>
               </div>
             </div>
           </div>

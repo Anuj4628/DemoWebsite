@@ -131,11 +131,11 @@ export default function ContactIntro() {
           </div>
 
           <h2 className="section-main-heading">
-            CONNECT WITH OUR <span className="heading-highlight">TECHNICAL TEAM</span>
+            TALK TO OUR <span className="heading-highlight">TECHNICAL SPECIALISTS</span>
           </h2>
 
           <p className="contact-intro-description">
-            At Redcore Steels, our metallurgical sales engineers work in direct synergy with procurement heads, structural designers, and project managers across oil & gas, petrochemical, marine, nuclear, and heavy process industries. Whether your procurement requires tight chemical tolerances, specialized high-nickel alloy sourcing, non-standard schedules, or fast CIF project estimation, our team delivers immediate technical clarity and certified documentation.
+            At Bhawal Steel &amp; Engineering Company, our metallurgical sales engineers work in direct synergy with procurement heads, structural designers, and project managers across oil &amp; gas, petrochemical, marine, nuclear, and heavy process industries. Whether your procurement requires tight chemical tolerances, specialized high-nickel alloy sourcing, non-standard schedules, or fast CIF project estimation, our team delivers immediate technical clarity and certified documentation.
           </p>
 
           <div className="contact-intro-check-bar">

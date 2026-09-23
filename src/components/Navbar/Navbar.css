@@ -45,7 +45,7 @@
 
 .navbar-container {
   max-width: var(--max-width);
-  height: 74px;
+  height: 82px;
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
@@ -62,7 +62,7 @@
 }
 
 .navbar-wrapper.is-scrolled .navbar-container {
-  height: 66px;
+  height: 70px;
 }
 
 
@@ -90,15 +90,19 @@
 }
 
 .navbar-brand-logo {
-  height: 52px;
+  height: 78px;
   width: auto;
+  max-width: 340px;
   object-fit: contain;
   display: block;
-  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s ease;
 }
 
 .navbar-wrapper.is-scrolled .navbar-brand-logo {
-  height: 44px;
+  height: 58px;
+  max-width: 280px;
 }
 
 /* Desktop Navigation - Spacious & Comfortable Breathing Room */
@@ -127,56 +131,55 @@
   align-items: center;
   position: relative;
   padding: 8px 4px;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-family: var(--font-primary);
   font-size: 0.92rem;
   font-weight: 550;
   letter-spacing: 0.01em;
   text-decoration: none;
-  transition: color 0.25s ease;
+  transition: color 0.2s ease;
 }
 
 .navbar-link-text {
   position: relative;
   z-index: 2;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  transition: color 0.2s ease;
 }
 
 .navbar-link-indicator {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-  height: 2px;
-  background: var(--color-red);
-  box-shadow: 0 1px 4px rgba(211, 18, 42, 0.4);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 2px;
+  height: 1.5px;
+  background: var(--brand-teal);
+  transition: width 0.2s ease;
+  border-radius: 1px;
 }
 
-/* Desktop Nav Hover States */
+/* Desktop Nav Hover States: Simple color transition and short thin underline */
 .navbar-link:hover {
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .navbar-link:hover .navbar-link-text {
-  transform: translateY(-1px);
-  color: var(--color-red);
+  color: var(--brand-teal);
 }
 
 .products-item:hover .nav-dropdown-chevron,
 .nav-dropdown-chevron.rotated {
   transform: rotate(180deg) !important;
-  color: var(--color-red) !important;
+  color: var(--brand-teal) !important;
 }
 
 .navbar-link:hover .navbar-link-indicator,
 .navbar-link.active .navbar-link-indicator {
-  width: 100%;
+  width: 16px;
 }
 
 .navbar-link.active {
-  color: var(--color-red);
+  color: var(--brand-teal);
   font-weight: 600;
 }
 
@@ -204,9 +207,9 @@
 }
 
 .navbar-mobile-toggle:hover {
-  background: rgba(211, 18, 42, 0.08);
-  border-color: var(--color-red-border);
-  color: var(--color-red);
+  background: var(--brand-teal-subtle);
+  border-color: var(--brand-teal-border);
+  color: var(--brand-teal);
 }
 
 .hamburger-box {
@@ -247,18 +250,30 @@
   }
 
   .navbar-wrapper.at-top {
-    height: 74px;
+    height: 78px;
   }
 
   .navbar-wrapper.is-scrolled {
-    height: 64px;
+    height: 68px;
   }
 
   .navbar-brand-logo {
-    height: 42px;
+    height: 58px;
   }
 
   .navbar-wrapper.is-scrolled .navbar-brand-logo {
-    height: 36px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-brand-title {
+    font-size: 0.85rem;
+  }
+  .navbar-brand-subtitle {
+    display: none;
+  }
+  .navbar-brand-logo {
+    height: 48px;
   }
 }

@@ -44,12 +44,12 @@
 }
 
 .breadcrumb-link:hover {
-  color: var(--color-red, #D3122A);
-  background: rgba(211, 18, 42, 0.04);
+  color: var(--brand-teal, #125A48);
+  background: var(--brand-teal-subtle);
 }
 
 .home-icon {
-  color: var(--color-red, #D3122A);
+  color: var(--brand-teal, #125A48);
   flex-shrink: 0;
 }
 

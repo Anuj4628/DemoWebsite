@@ -21,21 +21,20 @@ export default function Button({
       onClick={onClick}
       {...props}
     >
-      {/* Bottom-to-top Redcore Red fill layer */}
-      <span className="btn-fill-bg" aria-hidden="true" />
       <span className="btn-content">
         <span className="btn-text">{children}</span>
         {icon === 'arrow' && (
           <span className="btn-icon-wrap" aria-hidden="true">
-            <ArrowUpRight className="btn-icon" size={16} />
+            <ArrowUpRight className="btn-icon" size={15} />
           </span>
         )}
         {icon === 'chevron' && (
           <span className="btn-icon-wrap" aria-hidden="true">
-            <ChevronRight className="btn-icon" size={16} />
+            <ChevronRight className="btn-icon" size={15} />
           </span>
         )}
       </span>
     </Component>
   );
 }
+

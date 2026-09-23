@@ -1,23 +1,17 @@
 import React from 'react';
-import { DIVISIONS, PRODUCT_GROUPS } from '../../data/productCatalogData';
+import { PRODUCT_GROUPS } from '../../data/productCatalogData';
 import './ProductMegaMenu.css';
 
 /**
  * Products Mega-Menu Dropdown for Navbar
- * Features a bright white 2-column layout:
- * - Left Side: Manufacturer Division (9 in-house forged & engineered product families)
- * - Right Side: Supplier Division (9 mill stockholding product families)
+ * Features ONE unified 18-product catalog:
+ * - Left Side: 9 product families
+ * - Right Side: 9 product families
+ * - No division headings, badges, or separate division branding
  */
-// Statically pre-computed division product groups (zero re-filtering)
-const manufacturerGroups = PRODUCT_GROUPS.filter(g => g.divisionSlug === 'manufacturer');
-const supplierGroups = PRODUCT_GROUPS.filter(g => g.divisionSlug === 'supplier');
+const leftGroups = PRODUCT_GROUPS.slice(0, 9);
+const rightGroups = PRODUCT_GROUPS.slice(9, 18);
 
-/**
- * Products Mega-Menu Dropdown for Navbar
- * Features a bright white 2-column layout:
- * - Left Side: Manufacturer Division (9 in-house forged & engineered product families)
- * - Right Side: Supplier Division (9 mill stockholding product families)
- */
 function ProductMegaMenu({ isOpen, onSelect, onClose }) {
   const handleItemClick = (e, url) => {
     e.preventDefault();
@@ -35,42 +29,41 @@ function ProductMegaMenu({ isOpen, onSelect, onClose }) {
       role="region"
       aria-label="Products Navigation Menu"
     >
-      <div className="megamenu-inner">
-        {/* Left Column: Manufacturer Division */}
-        <div className="megamenu-column manufacturer-col">
-          <div className="column-header">
-            <div className="header-badge-wrap">
-              <span className="col-badge manufacturer-badge">MANUFACTURER</span>
-              <span className="col-count">9 Families</span>
-            </div>
-            <h3 className="column-title">{DIVISIONS.manufacturer.name}</h3>
-            <p className="column-desc">In-house precision forged, machined & tested piping solutions</p>
-          </div>
+      {/* Unified Clean Header */}
+      <div className="megamenu-header-unified">
+        <div className="megamenu-header-left">
+          <span className="megamenu-header-accent" />
+          <span className="megamenu-header-title">PRODUCTS CATALOG</span>
+        </div>
+        <span className="megamenu-header-count">18 Product Families</span>
+      </div>
 
+      <div className="megamenu-inner">
+        {/* Left Column: 9 Families */}
+        <div className="megamenu-column">
           <ul className="megamenu-list">
-            {manufacturerGroups.map((group) => (
+            {leftGroups.map((group) => (
               <li key={group.id} className="megamenu-item">
                 <a
-                  href={`/products/manufacturer/${group.slug}`}
+                  href={`/products/${group.divisionSlug}/${group.slug}`}
                   className="megamenu-link"
-                  onClick={(e) => handleItemClick(e, `/products/manufacturer/${group.slug}`)}
+                  onClick={(e) => handleItemClick(e, `/products/${group.divisionSlug}/${group.slug}`)}
                 >
                   <div className="item-thumb-box">
                     <img
                       src={group.heroImage}
                       alt=""
                       className="item-thumb"
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                       aria-hidden="true"
                     />
                   </div>
                   <div className="item-content">
                     <span className="item-title">{group.name}</span>
-                    <span className="item-subtitle">{group.tagline}</span>
                   </div>
-                  <svg className="item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+                  <svg className="item-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </a>
               </li>
@@ -78,44 +71,34 @@ function ProductMegaMenu({ isOpen, onSelect, onClose }) {
           </ul>
         </div>
 
-        {/* Column Divider */}
-        <div className="megamenu-divider" aria-hidden="true"></div>
+        {/* Subtle Vertical Divider */}
+        <div className="megamenu-divider" aria-hidden="true" />
 
-        {/* Right Column: Supplier Division */}
-        <div className="megamenu-column supplier-col">
-          <div className="column-header">
-            <div className="header-badge-wrap">
-              <span className="col-badge supplier-badge">SUPPLIER</span>
-              <span className="col-count">9 Families</span>
-            </div>
-            <h3 className="column-title">{DIVISIONS.supplier.name}</h3>
-            <p className="column-desc">Global mill stockist & raw material distribution network</p>
-          </div>
-
+        {/* Right Column: 9 Families */}
+        <div className="megamenu-column">
           <ul className="megamenu-list">
-            {supplierGroups.map((group) => (
+            {rightGroups.map((group) => (
               <li key={group.id} className="megamenu-item">
                 <a
-                  href={`/products/supplier/${group.slug}`}
+                  href={`/products/${group.divisionSlug}/${group.slug}`}
                   className="megamenu-link"
-                  onClick={(e) => handleItemClick(e, `/products/supplier/${group.slug}`)}
+                  onClick={(e) => handleItemClick(e, `/products/${group.divisionSlug}/${group.slug}`)}
                 >
                   <div className="item-thumb-box">
                     <img
                       src={group.heroImage}
                       alt=""
                       className="item-thumb"
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                       aria-hidden="true"
                     />
                   </div>
                   <div className="item-content">
                     <span className="item-title">{group.name}</span>
-                    <span className="item-subtitle">{group.tagline}</span>
                   </div>
-                  <svg className="item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+                  <svg className="item-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </a>
               </li>
@@ -127,8 +110,8 @@ function ProductMegaMenu({ isOpen, onSelect, onClose }) {
       {/* Bottom Full Catalog Action Bar */}
       <div className="megamenu-footer-bar">
         <div className="footer-bar-info">
-          <span className="footer-bar-dot"></span>
-          <span>100% PMI, MTC 3.1 & EN 10204 Certified Mill Inventory</span>
+          <span className="footer-bar-dot" />
+          <span>ASTM, ASME, DIN &amp; EN Certified Mill Specifications</span>
         </div>
         <a
           href="/products"
@@ -136,9 +119,9 @@ function ProductMegaMenu({ isOpen, onSelect, onClose }) {
           onClick={(e) => handleItemClick(e, '/products')}
         >
           <span>View Complete Products Catalog (18 Families)</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
           </svg>
         </a>
       </div>

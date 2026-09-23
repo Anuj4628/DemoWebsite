@@ -38,54 +38,57 @@ export default function GlobalExportSection() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Header GSAP entrance
-      gsap.fromTo(
-        headerRef.current.children,
-        { opacity: 0, y: 32 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.14,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 22 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
           }
-        }
-      );
+        );
+      }
 
-      // Filter bar entrance
-      gsap.fromTo(
-        filterRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: filterRef.current,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
+      // Filter controls entrance
+      if (filterRef.current) {
+        gsap.fromTo(
+          filterRef.current,
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: filterRef.current,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
           }
-        }
-      );
+        );
+      }
 
-      // Initial Country cards scroll entrance
+      // Cards initial entrance
       if (gridRef.current) {
-        const initialCards = gridRef.current.querySelectorAll('.export-country-card');
-        if (initialCards.length > 0) {
+        const cards = gridRef.current.querySelectorAll('.export-country-card');
+        if (cards.length > 0) {
           gsap.fromTo(
-            initialCards,
-            { opacity: 0, y: 30, scale: 0.95 },
+            cards,
+            { opacity: 0, y: 20 },
             {
               opacity: 1,
               y: 0,
-              scale: 1,
-              duration: 0.65,
-              stagger: 0.02,
+              duration: 0.5,
+              stagger: 0.015,
               ease: 'power3.out',
               scrollTrigger: {
                 trigger: gridRef.current,
@@ -101,26 +104,21 @@ export default function GlobalExportSection() {
     return () => ctx.revert();
   }, []);
 
-  // GSAP animation triggered when region category or search query changes
+  // Filter change animation
   useEffect(() => {
     if (!gridRef.current) return;
     const cards = gridRef.current.querySelectorAll('.export-country-card');
     if (cards.length === 0) return;
 
-    // Smooth stagger fade, slide & subtle 3D lift transition
     const ctx = gsap.context(() => {
       gsap.fromTo(
         cards,
-        { opacity: 0, y: 18, scale: 0.95 },
+        { opacity: 0, y: 12 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.45,
-          stagger: {
-            each: 0.02,
-            from: 'start'
-          },
+          duration: 0.35,
+          stagger: 0.012,
           ease: 'power3.out',
           overwrite: 'auto'
         }
@@ -131,34 +129,29 @@ export default function GlobalExportSection() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <section id="export" ref={sectionRef} className="global-export-section" aria-label="Countries We Export To">
+    <section id="export" ref={sectionRef} className="global-export-section" aria-label="Our Global Presence">
       {/* Background Precision Grid */}
       <div className="export-bg-grid" aria-hidden="true" />
 
       <div className="section-container">
-        {/* Standardized Section Header */}
-        <div ref={headerRef} className="export-header">
+        {/* 1. Centered Section Header */}
+        <div ref={headerRef} className="export-centered-header">
           <div className="section-eyebrow">
-            <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">GLOBAL EXPORT NETWORK // INTERNATIONAL TRADE</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
+            <span className="eyebrow-text">INTERNATIONAL EXPORT DESTINATIONS</span>
+            <span className="eyebrow-accent-bar" aria-hidden="true" />
           </div>
 
-          <h2 className="section-display-heading">
-            COUNTRIES WE <span className="text-highlight-red">EXPORT TO</span>
+          <h2 className="export-display-heading">
+            OUR GLOBAL <span className="heading-accent">PRESENCE</span>
           </h2>
 
-          <p className="section-description">
-            Approved material supplier providing seaworthy packed stainless, alloy, and nickel piping products to mission-critical infrastructure across 45+ international destinations.
+          <p className="export-lead-desc">
+            Supplying certified steel, alloy, and nickel piping materials to mission-critical infrastructure projects across worldwide industrial hubs.
           </p>
-
-          {/* Compact Supporting Metric Badge */}
-          <div className="export-metric-pill-badge">
-            <span className="metric-pill-accent">45+</span>
-            <span className="metric-pill-label">GLOBAL EXPORT DESTINATIONS &bull; 100% TRACEABLE DISPATCH</span>
-          </div>
         </div>
 
-        {/* Interactive Controls: Region Filters & Live Search */}
+        {/* 2. Interactive Controls: Region Tabs & Live Search */}
         <div ref={filterRef} className="export-controls-container">
           {/* Region Filter Tabs */}
           <div className="export-region-tabs" role="tablist" aria-label="Filter countries by region">
@@ -179,12 +172,12 @@ export default function GlobalExportSection() {
             })}
           </div>
 
-          {/* Live Search Country Input */}
+          {/* Live Search Input */}
           <div className="export-search-wrapper">
-            <Search size={16} className="search-icon" aria-hidden="true" />
+            <Search size={15} className="search-icon" aria-hidden="true" />
             <input
               type="text"
-              placeholder="Search country..."
+              placeholder="Search destination..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="country-search-input"
@@ -203,12 +196,12 @@ export default function GlobalExportSection() {
           </div>
         </div>
 
-        {/* Count Status Indicator */}
+        {/* 3. Compact Status Bar */}
         <div className="export-status-bar">
           <div className="status-counter-wrap">
-            <Globe size={14} className="status-globe-icon" />
+            <Globe size={14} className="status-globe-icon" aria-hidden="true" />
             <span className="status-counter-text">
-              Showing <strong>{filteredCountries.length}</strong> of <strong>{exportCountriesList.length}</strong> Export Destinations
+              Showing <strong>{filteredCountries.length}</strong> of <strong>{exportCountriesList.length}</strong> destinations
             </span>
           </div>
           {searchQuery && (
@@ -216,27 +209,28 @@ export default function GlobalExportSection() {
           )}
         </div>
 
-        {/* Clean, Minimal Country Cards Grid — Circular Flag + Country Name */}
+        {/* 4. Clean Minimal Country Cards Grid — ONLY Flag + Country Name */}
         <div ref={gridRef} className="export-countries-grid">
           {filteredCountries.map(country => (
-            <div
+            <article
               key={country.code}
               className="export-country-card"
               tabIndex={0}
               role="group"
               aria-label={country.name}
             >
-              {/* Circular Flag Container */}
+              {/* Centered Large Flag Container */}
               <div className="country-flag-box">
                 <img
-                  src={`https://hatscripts.github.io/circle-flags/flags/${country.code.toLowerCase()}.svg`}
+                  src={`https://flagcdn.com/w80/${country.code.toLowerCase()}.png`}
+                  srcSet={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png 2x`}
                   alt={`${country.name} flag`}
                   className="country-flag-img"
                   loading="lazy"
                   onError={(e) => {
                     if (!e.currentTarget.dataset.fallback) {
                       e.currentTarget.dataset.fallback = 'true';
-                      e.currentTarget.src = `https://flagcdn.com/w80/${country.code.toLowerCase()}.png`;
+                      e.currentTarget.src = `https://hatscripts.github.io/circle-flags/flags/${country.code.toLowerCase()}.svg`;
                     } else {
                       e.currentTarget.style.display = 'none';
                       const fallback = e.currentTarget.parentElement.querySelector('.country-flag-fallback');
@@ -251,12 +245,12 @@ export default function GlobalExportSection() {
 
               {/* Country Name */}
               <h3 className="country-name-text">{country.name}</h3>
-            </div>
+            </article>
           ))}
 
           {filteredCountries.length === 0 && (
             <div className="no-countries-state">
-              <p>No export countries found matching "{searchQuery}".</p>
+              <p>No export destinations found matching "{searchQuery}".</p>
               <button
                 type="button"
                 className="reset-filters-btn"
@@ -265,7 +259,7 @@ export default function GlobalExportSection() {
                   setActiveCategory('all');
                 }}
               >
-                Reset Search & Filters
+                Reset Filters
               </button>
             </div>
           )}

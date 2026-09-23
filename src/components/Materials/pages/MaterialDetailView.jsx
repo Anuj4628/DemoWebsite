@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import GradeCard from '../../Products/GradeCard';
 import { getMaterialBySlug, getProductsByMaterial, getMaterialCategories } from '../../../data/materialsData';
+import { brandDetails } from '../../../data/navigationData';
 import { ArrowLeft, Package, Layers, Search, X, ShieldCheck } from 'lucide-react';
 import './MaterialDetailView.css';
 
@@ -146,7 +147,7 @@ export default function MaterialDetailView({ materialSlug, onNavigate }) {
               </div>
 
               <h1 className="material-display-title">
-                {material.name} <span className="text-highlight-red">Products</span>
+                {material.name} <span className="text-highlight-teal">Products</span>
               </h1>
 
               <p className="material-lead-desc">
@@ -337,7 +338,7 @@ export default function MaterialDetailView({ materialSlug, onNavigate }) {
             </div>
             <div className="material-rfq-btns">
               <a
-                href={`https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20need%20a%20quote%20for%20${encodeURIComponent(material.name)}%20products`}
+                href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello ${brandDetails.name}, I need a quote for ${material.name} products.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-rfq-wa"
@@ -345,7 +346,7 @@ export default function MaterialDetailView({ materialSlug, onNavigate }) {
                 <span>WhatsApp Inquiry</span>
               </a>
               <a
-                href="mailto:info@redcoresteels.com"
+                href={`mailto:${brandDetails.contact.email}?subject=${encodeURIComponent(`RFQ for ${material.name} Products — Bhawal Steel`)}`}
                 className="btn-rfq-mail"
               >
                 <span>Email RFQ</span>

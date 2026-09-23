@@ -7,26 +7,26 @@ import {
   Gauge,
   FileCheck,
   ShieldCheck,
-  Cpu,
+  Search,
+  Truck,
   CheckCircle2,
-  ChevronUp,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const principleIcons = {
-  precision: Crosshair,
-  consistency: Gauge,
-  traceability: FileCheck,
-  reliability: ShieldCheck,
-  excellence: Cpu
+  'dimensional-precision': Crosshair,
+  'chemical-integrity': Gauge,
+  'mill-traceability': FileCheck,
+  'severe-service': ShieldCheck,
+  'surface-ndt': Search,
+  'reliable-supply': Truck
 };
 
 export default function AboutQuality() {
   const containerRef = useRef(null);
-  const principlesRef = useRef(null);
-  const cardRefs = useRef([]);
+  const gridRef = useRef(null);
   const [activeCardId, setActiveCardId] = useState(null);
 
   useEffect(() => {
@@ -34,120 +34,61 @@ export default function AboutQuality() {
     if (!el) return;
 
     const ctx = gsap.context(() => {
-      // Scrub timeline for the precision engineering assembly
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          end: 'bottom 25%',
-          scrub: 0.9
-        }
-      });
-
-      // The 5 Principles physically assemble from alternating offset directions
-      const cards = principlesRef.current?.querySelectorAll('.quality-principle-card');
-      if (cards) {
-        cards.forEach((card, index) => {
-          const isEven = index % 2 === 0;
-          tl.fromTo(
-            card,
-            {
-              x: isEven ? -25 : 25,
-              y: 30,
-              opacity: 0,
-              scale: 0.96
-            },
-            {
-              x: 0,
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              duration: 0.85,
-              ease: 'power3.out'
-            },
-            index * 0.12
-          );
-        });
+      const cards = gridRef.current?.querySelectorAll('.quality-card');
+      if (cards && cards.length) {
+        gsap.fromTo(
+          cards,
+          { y: 24, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.08,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 82%'
+            }
+          }
+        );
       }
     }, el);
 
     return () => ctx.revert();
   }, []);
 
-  // Subtle 3D tilt interaction for mouse hover
-  const handleMouseMove = (e, index) => {
-    const card = cardRefs.current[index];
-    if (!card) return;
-
-    // Check if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // Extremely controlled subtle 1.5 - 2.5 deg tilt
-    const rotateX = ((y - centerY) / centerY) * -3;
-    const rotateY = ((x - centerX) / centerX) * 3;
-
-    gsap.to(card, {
-      rotateX,
-      rotateY,
-      duration: 0.25,
-      ease: 'power1.out',
-      transformPerspective: 1000
-    });
-  };
-
-  const handleMouseLeave = (index) => {
-    const card = cardRefs.current[index];
-    if (!card) return;
-
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.45,
-      ease: 'power2.out'
-    });
-  };
-
   const handleCardToggle = (id) => {
     setActiveCardId((prev) => (prev === id ? null : id));
   };
 
   return (
-    <div ref={containerRef} className="about-quality-phase">
+    <section ref={containerRef} className="about-quality-phase" aria-label="Our Quality Promise">
       <div className="about-quality-container">
         {/* Header */}
         <div className="quality-header">
           <div className="quality-eyebrow">
             <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">METALLURGICAL RIGOR & ZERO DEFECTS</span>
+            <span className="eyebrow-text">METALLURGICAL RIGOR &amp; ZERO DEFECTS</span>
           </div>
-          <h3 className="quality-heading">
-            Our Quality <span className="highlight-red">Promise</span>
-          </h3>
+          <h2 className="quality-heading">
+            Our Quality <span className="highlight-teal">Promise</span>
+          </h2>
           <p className="quality-subhead">
-            Engineered compliance across high-stress environments. Calibrated to international ASTM, ASME, DIN, and ISO specifications.
+            Engineered compliance across high-stress industrial environments. Calibrated to international ASTM, ASME, DIN, and ISO standards.
           </p>
         </div>
 
-        {/* 5 Perfectly Aligned Quality Promise Cards */}
-        <div ref={principlesRef} className="quality-principles-grid" role="region" aria-label="Quality Promise Cards">
-          {aboutQualityPrinciples.map((principle, index) => {
+        {/* Clean 3 Columns × 2 Rows Desktop Grid (6 Cards Total) */}
+        <div ref={gridRef} className="quality-cards-grid" role="region" aria-label="Quality Promise Cards">
+          {aboutQualityPrinciples.map((principle) => {
             const IconComp = principleIcons[principle.id] || ShieldCheck;
             const isActive = activeCardId === principle.id;
 
             return (
-              <div
+              <article
                 key={principle.id}
-                ref={(el) => (cardRefs.current[index] = el)}
-                className={`quality-principle-card ${isActive ? 'is-active' : ''}`}
+                className={`quality-card ${isActive ? 'is-active' : ''}`}
                 tabIndex={0}
-                role="article"
-                aria-label={`${principle.title}: ${principle.subtitle}`}
                 onClick={() => handleCardToggle(principle.id)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -155,86 +96,61 @@ export default function AboutQuality() {
                     handleCardToggle(principle.id);
                   }
                 }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={() => handleMouseLeave(index)}
               >
-                {/* Laser Corner Registration Accents */}
-                <div className="card-laser-corner corner-tl" aria-hidden="true" />
-                <div className="card-laser-corner corner-tr" aria-hidden="true" />
+                {/* Precision Corner Marks */}
+                <div className="card-corner-mark corner-top-left" aria-hidden="true" />
+                <div className="card-corner-mark corner-bottom-right" aria-hidden="true" />
 
-                {/* Upper Card Body (Default & Elevated State) */}
-                <div className="card-upper-body">
-                  {/* Top Metadata Header */}
-                  <div className="card-meta-row">
+                {/* Default Visible Card Body */}
+                <div className="quality-card-default-body">
+                  <div className="quality-card-head">
                     <span className="card-spec-code">SPEC // {principle.number}</span>
                     <span className="card-tag-pill">{principle.tag}</span>
                   </div>
 
-                  {/* Central Large Technical Visual Stage */}
-                  <div className="principle-icon-stage" aria-hidden="true">
-                    <div className="icon-reticle-ring" />
-                    <div className="icon-crosshair-h" />
-                    <div className="icon-crosshair-v" />
-                    <div className="icon-glyph-wrapper">
-                      <IconComp size={32} className="principle-glyph" />
-                    </div>
+                  <div className="quality-icon-stage" aria-hidden="true">
+                    <IconComp size={22} className="quality-icon" />
                   </div>
 
-                  {/* Title & Short Description */}
-                  <h4 className="principle-title">{principle.title}</h4>
-                  <span className="principle-subtitle">{principle.subtitle}</span>
-                  <p className="principle-desc">{principle.description}</p>
+                  <h3 className="quality-card-title">{principle.title}</h3>
+                  <span className="quality-card-subtitle">{principle.subtitle}</span>
+                  <p className="quality-card-desc">{principle.description}</p>
 
-                  {/* Elegant Click / Tap Hint in Lower Card Area */}
-                  <div className="card-tap-hint-pill" aria-hidden="true">
-                    <span className="hint-pulse-dot" />
-                    <span className="hint-text">CLICK TO EXPLORE</span>
+                  <div className="quality-hint-row" aria-hidden="true">
+                    <span className="hint-label">INSPECTION CRITERIA</span>
+                    <ChevronRight size={14} className="hint-arrow" />
                   </div>
                 </div>
 
-                {/* Animated Colored Lower Panel (The Layered Expansion) */}
-                <div className="card-lower-panel" aria-live="polite">
-                  {/* Glowing Top Razor Edge */}
-                  <div className="panel-edge-glow" aria-hidden="true" />
+                {/* Smooth Diagonal Reveal Detail Panel (Reveals upward on hover) */}
+                <div className="quality-diagonal-panel" aria-live="polite">
+                  <div className="diagonal-edge-glow" aria-hidden="true" />
 
-                  {/* Default Collapsed Teaser View */}
-                  <div className="panel-teaser-bar">
-                    <span className="teaser-label">INSPECTION CRITERIA</span>
-                    <div className="teaser-icon-wrap">
-                      <ChevronUp size={16} className="teaser-chevron" />
-                    </div>
-                  </div>
-
-                  {/* Hover/Active Expanded Content */}
-                  <div className="panel-expanded-body">
-                    <div className="panel-divider">
-                      <span className="divider-line" />
-                      <span className="divider-dot" />
-                      <span className="divider-line" />
+                  <div className="diagonal-panel-inner">
+                    <div className="diagonal-panel-header">
+                      <span className="panel-spec-chip">CRITERIA // 0{principle.number}</span>
+                      <span className="panel-tag-pill">{principle.tag}</span>
                     </div>
 
-                    <ul className="panel-details-list">
+                    <ul className="diagonal-details-list">
                       {principle.details.map((detail, dIdx) => (
-                        <li key={dIdx} className="panel-detail-item" style={{ '--delay': `${dIdx * 0.06}s` }}>
-                          <CheckCircle2 size={15} className="detail-check-icon" />
-                          <span className="detail-text">{detail}</span>
+                        <li key={dIdx} className="diagonal-detail-item">
+                          <CheckCircle2 size={13} className="diagonal-check-icon" />
+                          <span>{detail}</span>
                         </li>
                       ))}
                     </ul>
 
-                    {/* Bottom Status Tag */}
-                    <div className="panel-status-bar">
-                      <Sparkles size={13} className="status-sparkle" />
-                      <span className="panel-status-text">{principle.statusTag}</span>
+                    <div className="diagonal-panel-footer">
+                      <span className="diagonal-status-tag">{principle.statusTag}</span>
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-

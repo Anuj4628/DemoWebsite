@@ -1,5 +1,5 @@
 // ======================================================================
-// REDCORE STEELS — CENTRAL MATERIALS DATABASE
+// BHAWAL STEEL & ENGINEERING COMPANY — CENTRAL MATERIALS DATABASE
 // Dedicated Single Source of Truth for the 9 Metallurgical Materials
 // ======================================================================
 
@@ -17,7 +17,7 @@ import imgSuperDuplex from '../assets/Product Section/Material Imges/super duple
 import imgTitanium from '../assets/Product Section/Material Imges/titanium.png';
 
 /**
- * The EXACT 9 Material Categories required by Redcore Steels
+ * The EXACT 9 Material Categories required by Bhawal Steel & Engineering Company
  */
 export const MATERIALS = [
   {

@@ -4,6 +4,7 @@ import SpecsTable from '../SpecsTable';
 import InquiryForm from '../InquiryForm';
 import RelatedProducts from '../RelatedProducts';
 import { getProductCategory, getRelatedProducts, DIVISIONS } from '../../../data/productCatalogData';
+import { brandDetails } from '../../../data/navigationData';
 import './ProductDetailView.css';
 
 /**
@@ -63,10 +64,6 @@ export default function ProductDetailView({
   const breadcrumbItems = [
     { label: 'Products', path: '/products' },
     {
-      label: division ? division.title : (product.divisionSlug === 'manufacturer' ? 'Manufacturer Division' : 'Supplier Division'),
-      path: `/products/${product.divisionSlug}`
-    },
-    {
       label: product.groupName,
       path: `/products/${product.divisionSlug}/${product.groupSlug}`
     },
@@ -81,7 +78,7 @@ export default function ProductDetailView({
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Redcore Steels, I am interested in inquiring about ${product.name} (Grade: ${product.grade}). Please share pricing and dispatch availability.`
+    `Hello ${brandDetails.name}, I am interested in inquiring about ${product.name} (Grade: ${product.grade}). Please share pricing and dispatch availability.`
   );
 
   return (
@@ -112,7 +109,7 @@ export default function ProductDetailView({
               {/* Quality & Metallurgical Verification Badges */}
               <div className="quality-assurance-row">
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D3122A" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
@@ -123,7 +120,7 @@ export default function ProductDetailView({
                 </div>
 
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D3122A" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -137,7 +134,7 @@ export default function ProductDetailView({
                 </div>
 
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D3122A" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="m4.93 4.93 4.24 4.24"></path>
                     <path d="m14.83 9.17 4.24-4.24"></path>
@@ -156,7 +153,7 @@ export default function ProductDetailView({
             {/* Right: Commercial & Technical Product Summary */}
             <div className="showcase-info-col">
               <div className="info-division-tag">
-                <span>{product.division}</span>
+                <span>PRECISION INDUSTRIAL STEEL</span>
                 <span className="dot-sep">•</span>
                 <span>{product.groupName}</span>
               </div>
@@ -212,7 +209,7 @@ export default function ProductDetailView({
                 </button>
 
                 <a
-                  href={`https://wa.me/919000000000?text=${whatsappMessage}`}
+                  href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-detail-whatsapp"

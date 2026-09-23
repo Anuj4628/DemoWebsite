@@ -4,7 +4,8 @@ import './MaterialsMegaMenu.css';
 
 /**
  * Materials Mega-Menu Dropdown for Navbar
- * Clean, compact, ultra-premium 3-column layout displaying the EXACT 9 Material Categories.
+ * Text-only 2-column layout displaying the 9 metallurgical grades.
+ * No thumbnails, no photos, no previews.
  */
 function MaterialsMegaMenu({ isOpen, onSelect, onClose }) {
   const handleItemClick = (e, url) => {
@@ -23,46 +24,34 @@ function MaterialsMegaMenu({ isOpen, onSelect, onClose }) {
       role="region"
       aria-label="Materials Navigation Menu"
     >
+      {/* Header */}
       <div className="materials-megamenu-header">
         <div className="materials-header-eyebrow">
           <span className="materials-eyebrow-bar" />
-          <span className="materials-eyebrow-text">METALLURGICAL GRADES</span>
+          <span className="materials-eyebrow-text">MATERIALS</span>
         </div>
-        <span className="materials-header-count">9 Materials</span>
+        <span className="materials-header-count">9 Metallurgical Grades</span>
       </div>
 
-      <div className="materials-megamenu-grid">
+      {/* 2-Column Text Only Grid */}
+      <div className="materials-text-grid">
         {MATERIALS.map((mat) => (
           <a
             key={mat.id}
             href={`/materials/${mat.slug}`}
-            className="materials-nav-card"
+            className="materials-text-item"
             onClick={(e) => handleItemClick(e, `/materials/${mat.slug}`)}
           >
-            <div className="materials-nav-thumb-box">
-              <img
-                src={mat.image}
-                alt=""
-                className="materials-nav-thumb"
-                loading="eager"
-                decoding="async"
-                aria-hidden="true"
-              />
-            </div>
-            <div className="materials-nav-content">
-              <span className="materials-nav-title">{mat.name}</span>
-              <span className="materials-nav-grade" title={mat.grade}>
-                {mat.grade.split(',')[0]}
-              </span>
-            </div>
+            <span className="materials-text-name">{mat.name}</span>
             <svg
-              className="materials-nav-arrow"
-              width="13"
-              height="13"
+              className="materials-text-arrow"
+              width="12"
+              height="12"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
+              aria-hidden="true"
             >
               <polyline points="9 18 15 12 9 6" />
             </svg>
@@ -70,11 +59,11 @@ function MaterialsMegaMenu({ isOpen, onSelect, onClose }) {
         ))}
       </div>
 
-      {/* Bottom Full Materials Action Bar */}
+      {/* Bottom Action Bar */}
       <div className="materials-megamenu-footer">
         <div className="materials-footer-info">
           <span className="materials-footer-dot" />
-          <span>100% Certified Metallurgy • EN 10204 3.1 &amp; 3.2 MTC</span>
+          <span>EN 10204 3.1 &amp; 3.2 MTC Certified</span>
         </div>
         <a
           href="/materials"
@@ -83,8 +72,8 @@ function MaterialsMegaMenu({ isOpen, onSelect, onClose }) {
         >
           <span>Explore All Materials</span>
           <svg
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

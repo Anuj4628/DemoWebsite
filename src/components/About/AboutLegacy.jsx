@@ -7,150 +7,131 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutLegacy() {
   const sectionRef = useRef(null);
-  const pinContainerRef = useRef(null);
-  const trackRef = useRef(null);
-  const pathLineRef = useRef(null);
-  const beaconRefs = useRef([]);
+  const pinWrapperRef = useRef(null);
+  const svgPathRef = useRef(null);
+  const nodeRefs = useRef([]);
   const cardRefs = useRef([]);
-  const [activeYear, setActiveYear] = useState('1998');
+  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const pinContainer = pinContainerRef.current;
-    const track = trackRef.current;
-    if (!section || !pinContainer || !track) return;
+    const pinWrapper = pinWrapperRef.current;
+    const path = svgPathRef.current;
+    if (!section || !pinWrapper) return;
 
     const mm = gsap.matchMedia();
 
-    // Desktop & Laptop: Cinematic Touch-Point Timeline Sequence
+    // Desktop & Laptop (>= 992px): Elegant Pinned Curved Path Draw
     mm.add('(min-width: 992px)', () => {
-      const cards = cardRefs.current.filter(Boolean);
-      const beacons = beaconRefs.current.filter(Boolean);
+      const pathLength = path ? path.getTotalLength() : 1200;
+
+      if (path) {
+        gsap.set(path, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength
+        });
+      }
+
       const totalMilestones = aboutLegacyMilestones.length;
 
-      // Track scroll distance
-      const maxTranslate = Math.max(0, track.scrollWidth - window.innerWidth + 180);
-
-      const masterTimeline = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: `+=${2200 + totalMilestones * 400}`,
-          pin: pinContainer,
-          scrub: 0.9,
+          end: '+=1600',
+          pin: pinWrapper,
+          scrub: 0.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            // Determine active milestone based on scroll progress
-            const activeIndex = Math.min(
+            const p = self.progress;
+            // Draw path smoothly
+            if (path) {
+              gsap.set(path, {
+                strokeDashoffset: pathLength * (1 - p)
+              });
+            }
+
+            // Calculate active index (0 to 4)
+            const step = Math.min(
               totalMilestones - 1,
-              Math.floor(self.progress * totalMilestones * 0.98)
+              Math.floor(p * totalMilestones * 1.05)
             );
-            setActiveYear(aboutLegacyMilestones[activeIndex]?.year || '1998');
+            setActiveStep(step);
           }
         }
       });
 
-      // 1. Horizontal track travel synchronized with scroll
-      masterTimeline.to(
-        track,
-        {
-          x: -maxTranslate,
-          ease: 'none',
-          duration: 10
-        },
-        0
-      );
+      // Sequential card activation and elevation
+      aboutLegacyMilestones.forEach((_, idx) => {
+        const card = cardRefs.current[idx];
+        const node = nodeRefs.current[idx];
+        const triggerTime = idx / (totalMilestones - 1);
 
-      // 2. Glowing connecting path line draws from 1998 to 2026
-      if (pathLineRef.current) {
-        masterTimeline.fromTo(
-          pathLineRef.current,
-          { scaleX: 0 },
-          { scaleX: 1, ease: 'none', duration: 10 },
-          0
-        );
-      }
-
-      // 3. Touch-point activations as path reaches each milestone
-      const stepDuration = 10 / totalMilestones;
-
-      cards.forEach((card, index) => {
-        const beacon = beacons[index];
-        const reachTime = index * stepDuration;
-
-        // Card becomes active and elevates
-        masterTimeline.fromTo(
-          card,
-          { scale: 0.94, opacity: 0.5, y: 15 },
-          {
-            scale: 1.02,
-            opacity: 1,
-            y: -8,
-            duration: stepDuration * 0.65,
-            ease: 'power2.out'
-          },
-          reachTime
-        );
-
-        // De-elevate slightly as timeline moves to the next
-        if (index < totalMilestones - 1) {
-          masterTimeline.to(
+        if (card) {
+          tl.fromTo(
             card,
+            { opacity: 0.35, y: 20, scale: 0.94 },
             {
-              scale: 0.97,
-              opacity: 0.85,
+              opacity: 1,
               y: 0,
-              duration: stepDuration * 0.45,
-              ease: 'power1.inOut'
+              scale: 1.02,
+              duration: 0.4,
+              ease: 'power2.out'
             },
-            reachTime + stepDuration * 0.75
+            triggerTime * 0.9
           );
         }
 
-        // Beacon touch-point pulse & glow
-        if (beacon) {
-          const ripple = beacon.querySelector('.beacon-ripple');
-          const core = beacon.querySelector('.beacon-core');
+        if (node) {
+          const core = node.querySelector('.curved-node-core');
+          const pulse = node.querySelector('.curved-node-pulse');
 
-          masterTimeline.fromTo(
-            core,
-            { scale: 0.8, backgroundColor: '#94A3B8' },
-            { scale: 1.4, backgroundColor: '#D3122A', duration: 0.35, ease: 'back.out(2)' },
-            reachTime
-          );
+          if (core) {
+            tl.fromTo(
+              core,
+              { scale: 0.8, backgroundColor: '#94A3B8' },
+              {
+                scale: 1.35,
+                backgroundColor: '#125A48',
+                duration: 0.3,
+                ease: 'back.out(2)'
+              },
+              triggerTime * 0.9
+            );
+          }
 
-          if (ripple) {
-            masterTimeline.fromTo(
-              ripple,
-              { scale: 0.6, opacity: 0.9 },
-              { scale: 2.6, opacity: 0, duration: 0.65, ease: 'power2.out' },
-              reachTime
+          if (pulse) {
+            tl.fromTo(
+              pulse,
+              { scale: 0.6, opacity: 0.8 },
+              { scale: 2.2, opacity: 0, duration: 0.5 },
+              triggerTime * 0.9
             );
           }
         }
       });
     });
 
-    // Tablet & Mobile: Vertical sequential touch-point scrub
+    // Mobile & Tablet (< 992px): Vertical Sequential Reveal
     mm.add('(max-width: 991px)', () => {
-      const cards = cardRefs.current.filter(Boolean);
-
-      cards.forEach((card) => {
+      cardRefs.current.filter(Boolean).forEach((card, idx) => {
         gsap.fromTo(
           card,
-          { opacity: 0.35, y: 25, scale: 0.95 },
+          { opacity: 0.35, y: 24, scale: 0.96 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.7,
+            duration: 0.6,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 82%',
-              end: 'top 45%',
-              scrub: 0.8
+              start: 'top 85%',
+              end: 'top 50%',
+              scrub: 0.6,
+              onEnter: () => setActiveStep(idx),
+              onEnterBack: () => setActiveStep(idx)
             }
           }
         );
@@ -161,94 +142,127 @@ export default function AboutLegacy() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="about-legacy-phase">
-      <div ref={pinContainerRef} className="legacy-pin-wrapper">
-        {/* Header Bar */}
-        <div className="legacy-header-container">
-          <div className="legacy-eyebrow">
-            <span className="eyebrow-line" />
-            <span className="eyebrow-text">A QUARTER-CENTURY OF METALLURGY</span>
+    <section id="company-journey" ref={sectionRef} className="about-journey-phase" aria-label="Company Journey 2017 to 2026">
+      <div ref={pinWrapperRef} className="journey-pin-container">
+        {/* Section Header */}
+        <div className="journey-header">
+          <div className="journey-eyebrow">
+            <span className="eyebrow-accent-bar" />
+            <span className="eyebrow-text">COMPANY JOURNEY — 2017 TO 2026</span>
           </div>
-          <div className="legacy-title-row">
-            <h3 className="legacy-heading">
-              The Steel Legacy of <span className="highlight-red">Redcore Steels</span>
-            </h3>
-            <div className="legacy-active-hud">
-              <span className="hud-tag">TOUCH-POINT ERA //</span>
-              <span className="hud-year">{activeYear}</span>
+          <div className="journey-title-row">
+            <h2 className="journey-heading">
+              A Trajectory of <span className="highlight-teal">Engineering Excellence</span>
+            </h2>
+            <div className="journey-hud-badge">
+              <span className="hud-label">ACTIVE ERA //</span>
+              <span className="hud-year">{aboutLegacyMilestones[activeStep]?.year || '2017'}</span>
             </div>
           </div>
-          <p className="legacy-subhead">
-            Scroll to follow the metallurgical pipeline from our 1998 foundation through our 2026 global export footprint.
+          <p className="journey-subhead">
+            Tracing our continuous evolution from foundation in 2017 through global supply leadership in 2026.
           </p>
         </div>
 
-        {/* Timeline Path Track Viewport */}
-        <div className="legacy-track-viewport">
-          {/* Central Glowing Touch-Point Pipeline Path */}
-          <div className="legacy-pipeline-stage">
-            <div className="pipeline-track-base" />
-            <div ref={pathLineRef} className="pipeline-laser-progress" />
+        {/* Desktop Journey Canvas with Elegant Curved SVG Path */}
+        <div className="journey-interactive-stage">
+          {/* SVG Curved Path Line */}
+          <div className="journey-svg-canvas" aria-hidden="true">
+            <svg
+              className="journey-curve-svg"
+              viewBox="0 0 1200 180"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="journeyGlowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#125A48" />
+                  <stop offset="50%" stopColor="#C09642" />
+                  <stop offset="100%" stopColor="#125A48" />
+                </linearGradient>
+              </defs>
+
+              {/* Background Guideline Track */}
+              <path
+                d="M 60 110 C 200 40, 260 140, 360 80 C 470 20, 530 140, 630 90 C 740 40, 800 140, 900 70 C 1010 10, 1070 120, 1140 90"
+                className="journey-guide-path"
+                stroke="#E2E8F0"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+
+              {/* Animated Progress Path (Progressively draws itself) */}
+              <path
+                ref={svgPathRef}
+                d="M 60 110 C 200 40, 260 140, 360 80 C 470 20, 530 140, 630 90 C 740 40, 800 140, 900 70 C 1010 10, 1070 120, 1140 90"
+                className="journey-progress-path"
+                stroke="url(#journeyGlowGradient)"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {/* 5 Metallic Touch-Point Nodes Positioned along the Curve */}
+            <div className="journey-nodes-overlay">
+              {aboutLegacyMilestones.map((item, idx) => {
+                const isActive = activeStep >= idx;
+                const isCurrent = activeStep === idx;
+
+                return (
+                  <div
+                    key={item.year}
+                    ref={(el) => (nodeRefs.current[idx] = el)}
+                    className={`curved-node-item node-pos-${idx} ${isActive ? 'is-passed' : ''} ${isCurrent ? 'is-current' : ''}`}
+                  >
+                    <span className="curved-node-pulse" />
+                    <span className="curved-node-core" />
+                    <span className="curved-node-year">{item.year}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div ref={trackRef} className="legacy-cards-track">
-            {aboutLegacyMilestones.map((item, index) => {
-              const isCurrent = activeYear === item.year;
+          {/* 5 Compact Milestone Cards */}
+          <div className="journey-cards-grid">
+            {aboutLegacyMilestones.map((item, idx) => {
+              const isCurrent = activeStep === idx;
+              const isPassed = activeStep >= idx;
 
               return (
-                <div key={item.year} className="legacy-node-group">
-                  {/* Touch-Point Milestone Node */}
-                  <div
-                    ref={(el) => (beaconRefs.current[index] = el)}
-                    className={`legacy-touch-node ${isCurrent ? 'is-active-node' : ''}`}
-                  >
-                    <span className="beacon-ripple" />
-                    <span className="beacon-core" />
-                    <span className="beacon-year-tag">{item.year}</span>
-                    <div className="node-drop-stem" />
+                <article
+                  key={item.year}
+                  ref={(el) => (cardRefs.current[idx] = el)}
+                  className={`journey-compact-card card-step-${idx} ${isCurrent ? 'is-active-card' : ''} ${isPassed ? 'is-revealed' : ''}`}
+                >
+                  <div className="card-top-row">
+                    <span className="card-era-badge">ERA 0{idx + 1}</span>
+                    <span className="card-year-number">{item.year}</span>
                   </div>
 
-                  {/* Compact Milestone Card */}
-                  <article
-                    ref={(el) => (cardRefs.current[index] = el)}
-                    className={`legacy-milestone-card ${isCurrent ? 'is-active-card' : ''}`}
-                  >
-                    {/* Header */}
-                    <div className="milestone-year-header">
-                      <span className="milestone-step-pill">ERA 0{index + 1}</span>
-                      <span className="milestone-year-huge">{item.year}</span>
+                  <div className="card-image-box">
+                    <img
+                      src={item.image}
+                      alt={`${item.year} - ${item.title}`}
+                      className="card-thumb-img"
+                      loading="lazy"
+                    />
+                    <span className="card-spec-chip">{item.spec}</span>
+                  </div>
+
+                  <div className="card-content-box">
+                    <div className="card-tag-row">
+                      <span className="card-tag-pill">{item.tag}</span>
                     </div>
-
-                    {/* Content */}
-                    <div className="milestone-body">
-                      <div className="milestone-tag-wrap">
-                        <span className="milestone-tag">{item.tag}</span>
-                        <span className="milestone-metric-chip">{item.metric}</span>
-                      </div>
-
-                      <h4 className="milestone-title">{item.title}</h4>
-                      <p className="milestone-desc">{item.description}</p>
-
-                      {/* Photo Frame */}
-                      <div className="milestone-img-frame">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="milestone-img"
-                          loading="lazy"
-                        />
-                        <div className="milestone-img-overlay" />
-                        <span className="milestone-spec-badge">{item.spec}</span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
+                    <h3 className="card-title">{item.title}</h3>
+                    <p className="card-desc">{item.description}</p>
+                  </div>
+                </article>
               );
             })}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-

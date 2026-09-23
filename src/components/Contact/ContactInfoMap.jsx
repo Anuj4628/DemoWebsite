@@ -23,12 +23,9 @@ export default function ContactInfoMap() {
 
   const { contact } = brandDetails;
 
-  // Fictional industrial coordinates / query for demo corporate office in Andheri East, Mumbai 400093
-  const mapSearchUrl = `https://www.google.com/maps/search/?api=1&query=MIDC+Industrial+Area+Andheri+East+Mumbai+400093`;
-  const mapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=MIDC+Industrial+Area+Andheri+East+Mumbai+400093`;
-  
-  // High-reliability iframe embed centered on generic industrial cluster
-  const mapEmbedUrl = `https://maps.google.com/maps?q=MIDC+Industrial+Area,+Andheri+East,+Mumbai+-+400093&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+  const mapSearchUrl = contact.mapSearchUrl;
+  const mapDirectionsUrl = contact.mapDirectionsUrl;
+  const mapEmbedUrl = contact.mapEmbedUrl;
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -95,7 +92,7 @@ export default function ContactInfoMap() {
               </div>
 
               <h3 className="contact-info-heading">
-                Corporate Office <span className="text-red">&</span> Communications
+                Corporate Office <span className="text-highlight-teal">&amp;</span> Communications
               </h3>
               
               <p className="contact-info-subtext">
@@ -121,9 +118,9 @@ export default function ContactInfoMap() {
                       title="Click to view exact location in Google Maps"
                     >
                       <address className="address-text">
-                        Plot 42, Heavy Industrial Zone,<br />
-                        Phase II, Andheri East,<br />
-                        MUMBAI - 400093, MAHARASHTRA, INDIA
+                        139 Sant Sena Maharaja Marg,<br />
+                        Near Round Temple,<br />
+                        MUMBAI - 400 004, MAHARASHTRA, INDIA
                       </address>
                       <span className="address-click-hint">
                         <span>Open location in Maps</span>
@@ -152,11 +149,11 @@ export default function ContactInfoMap() {
                         </a>
                       </div>
                       <div className="phone-line-wrap">
-                        <span className="phone-tag">Office Landline:</span>
+                        <span className="phone-tag">Direct Line:</span>
                         <a
                           href={`tel:${contact.phone2Raw}`}
                           className="item-link phone-link"
-                          title="Call Office Line"
+                          title="Call Direct Line"
                         >
                           {contact.phone2}
                         </a>
@@ -172,13 +169,24 @@ export default function ContactInfoMap() {
                   </div>
                   <div className="item-content">
                     <span className="item-label">Commercial & RFQ Inquiries</span>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="item-link email-link"
-                      title="Send email to commercial desk"
-                    >
-                      {contact.email}
-                    </a>
+                    <div className="phones-link-group">
+                      <a
+                        href={`mailto:${contact.email}`}
+                        className="item-link email-link"
+                        title="Send email to commercial desk"
+                      >
+                        {contact.email}
+                      </a>
+                      {contact.secondaryEmail && (
+                        <a
+                          href={`mailto:${contact.secondaryEmail}`}
+                          className="item-link email-link"
+                          title="Send email to secondary desk"
+                        >
+                          {contact.secondaryEmail}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -238,17 +246,17 @@ export default function ContactInfoMap() {
                   </span>
                   <div>
                     <h4 className="map-header-title">Exact Office Location</h4>
-                    <span className="map-header-subtitle">Heavy Industrial Zone, Andheri East, Mumbai 400093</span>
+                    <span className="map-header-subtitle">Sant Sena Maharaja Marg, Near Round Temple, Mumbai 400004</span>
                   </div>
                 </div>
 
-                <span className="map-coord-badge">19.1197° N, 72.8697° E</span>
+                <span className="map-coord-badge">18.9568° N, 72.8258° E</span>
               </div>
 
               {/* Map Viewport Container */}
               <div className="map-viewport">
                 <iframe
-                  title="Redcore Steels Corporate Industrial Office Location Map"
+                  title={`${brandDetails.name} Corporate Office Location Map`}
                   src={mapEmbedUrl}
                   className="interactive-map-iframe"
                   loading="lazy"

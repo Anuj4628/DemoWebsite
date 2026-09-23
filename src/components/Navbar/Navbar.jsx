@@ -144,13 +144,13 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
           <a
             href="/"
             className="navbar-logo-link"
-            aria-label="Redcore Steels Home"
+            aria-label={`${brandDetails.name} Home`}
             onClick={handleLogoClick}
           >
             <div className="navbar-logo-wrap">
               <img
                 src={brandDetails.logoUrl}
-                alt="Redcore Steels"
+                alt={brandDetails.name}
                 className="navbar-brand-logo"
               />
             </div>

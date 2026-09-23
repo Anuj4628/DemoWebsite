@@ -63,7 +63,7 @@ function parseRoute(pathname = window.location.pathname) {
     if (parts.length === 1) {
       const p0 = parts[0].toLowerCase();
       if (p0 === 'manufacturer' || p0 === 'supplier') {
-        return { page: 'products', view: 'division', divisionSlug: p0 };
+        return { page: 'products', view: 'landing' };
       }
       return { page: 'products', view: 'family', groupSlug: parts[0] };
     }
@@ -91,10 +91,41 @@ function parseRoute(pathname = window.location.pathname) {
 }
 
 /**
- * Redcore Steels - Application Root
+ * Bhawal Steel & Engineering Company - Application Root
  */
 export default function App() {
   const [route, setRoute] = useState(parseRoute);
+
+  // Dynamic document title management across routes
+  useEffect(() => {
+    if (route.page === 'about') {
+      document.title = 'About Us | Bhawal Steel & Engineering Company — Metallurgy, Heritage & Supply';
+    } else if (route.page === 'contact') {
+      document.title = 'Contact Us | Bhawal Steel & Engineering Company — Technical Desk & Location';
+    } else if (route.page === 'materials') {
+      if (route.view === 'material' && route.materialSlug) {
+        const matName = route.materialSlug.replace(/-/g, ' ').toUpperCase();
+        document.title = `${matName} Products | Bhawal Steel & Engineering Company`;
+      } else {
+        document.title = 'Materials & Alloys Catalog | Bhawal Steel & Engineering Company';
+      }
+    } else if (route.page === 'products') {
+      if (route.view === 'detail' && route.productSlug) {
+        const prodName = route.productSlug.replace(/-/g, ' ').toUpperCase();
+        document.title = `${prodName} | Bhawal Steel & Engineering Company`;
+      } else if (route.view === 'family' && route.groupSlug) {
+        const grpName = route.groupSlug.replace(/-/g, ' ').toUpperCase();
+        document.title = `${grpName} | Bhawal Steel & Engineering Company`;
+      } else if (route.view === 'division' && route.divisionSlug) {
+        const divName = route.divisionSlug === 'manufacturer' ? 'Manufacturer Division' : 'Supplier Division';
+        document.title = `${divName} | Bhawal Steel & Engineering Company`;
+      } else {
+        document.title = 'Industrial Products Catalog | Bhawal Steel & Engineering Company';
+      }
+    } else {
+      document.title = 'Bhawal Steel & Engineering Company | Steel Products & Solutions, Mumbai';
+    }
+  }, [route]);
 
   // Centralized page and section navigation handler
   const navigateTo = useCallback((target, param = null) => {

@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import FamilyCard from '../FamilyCard';
 import { getDivisionData, DIVISIONS } from '../../../data/productCatalogData';
+import { brandDetails } from '../../../data/navigationData';
 import mfrBgImage from '../../../assets/Product BG/precision pipes and fitting.png';
 import supBgImage from '../../../assets/Product BG/superior round and bars engineeres to be perfomed.png';
 import { Package, Layers, Search, X, FileText } from 'lucide-react';
@@ -226,7 +227,7 @@ export default function DivisionView({ divisionSlug, onNavigate }) {
               <ul className="capabilities-list">
                 {division.features.map((feat, i) => (
                   <li key={i}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D3122A" strokeWidth="2.5">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.5">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     <span>{feat}</span>
@@ -239,7 +240,7 @@ export default function DivisionView({ divisionSlug, onNavigate }) {
               <h4>Direct Tender & Export Desk</h4>
               <p>We supply project packages with complete MTC 3.1, hydro-testing, and third-party inspection (TPI).</p>
               <a
-                href="https://wa.me/919000000000?text=Hello%20Redcore%20Steels,%20I%20have%20an%20inquiry%20for%20the%20commercial%20desk."
+                href={`https://wa.me/${brandDetails.contact.whatsAppRaw}?text=${encodeURIComponent(`Hello ${brandDetails.name}, I have an inquiry for the commercial desk.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-capabilities-rfq"

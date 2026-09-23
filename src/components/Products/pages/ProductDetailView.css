@@ -141,7 +141,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
   margin-bottom: 8px;
 }
 
@@ -253,7 +253,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #D3122A;
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
   border: none;
   padding: 13px 26px;
@@ -261,13 +261,15 @@
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
-  box-shadow: 0 4px 14px rgba(211, 18, 42, 0.25);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px var(--brand-teal-glow);
 }
 
 .btn-detail-rfq:hover {
-  background: #B50E22;
-  transform: translateY(-2px);
+  background: var(--brand-teal-dark, #0b382d);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(18, 90, 72, 0.35);
+  transform: translateY(-1.5px);
 }
 
 .btn-detail-whatsapp {
@@ -322,7 +324,7 @@
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
   margin-bottom: 6px;
 }
 
@@ -380,7 +382,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
   margin-bottom: 14px;
 }
 
@@ -434,12 +436,18 @@
 
 .btn-back-cat {
   padding: 10px 20px;
-  background: #D3122A;
+  background: var(--brand-teal, #125A48);
   color: #FFFFFF;
   border: none;
   border-radius: 6px;
   font-weight: 700;
   cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.btn-back-cat:hover {
+  background: var(--brand-gold, #C09642);
+  color: #0B192C;
 }
 
 .btn-back-all {

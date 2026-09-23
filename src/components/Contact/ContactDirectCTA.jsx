@@ -84,7 +84,7 @@ export default function ContactDirectCTA() {
               <a
                 href={`tel:${contact.phone1Raw}`}
                 className="btn-cta-action btn-call-primary"
-                title="Call Redcore Steels Now"
+                title={`Call ${brandDetails.name} Now`}
               >
                 <span className="btn-cta-fill" aria-hidden="true" />
                 <span className="btn-cta-text-wrap">
@@ -159,7 +159,7 @@ export default function ContactDirectCTA() {
               </a>
 
               <a
-                href={`mailto:${contact.email}?subject=Urgent%20Tender%20Inquiry%20%E2%80%94%20Redcore%20Steels`}
+                href={`mailto:${contact.email}?subject=Urgent%20Tender%20Inquiry%20%E2%80%94%20Bhawal%20Steel%20%26%20Engineering%20Company`}
                 className="btn-cta-action btn-tender-secondary"
                 title="Send Tender Specification"
               >

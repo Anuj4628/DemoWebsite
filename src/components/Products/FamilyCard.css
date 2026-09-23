@@ -1,4 +1,6 @@
-/* FamilyCard.css - Matching Reference Image 2 */
+/* ===================================================
+   PRODUCT FAMILY CARD (CLEAN UNIFIED DESIGN)
+   =================================================== */
 
 .ref-product-card {
   position: relative;
@@ -6,46 +8,46 @@
   flex-direction: column;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.25s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.22s ease;
   height: 100%;
 }
 
 .ref-product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   border-color: #CBD5E1;
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.09);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
 }
 
-/* Top Accent Line (Redcore Red) */
+/* Top Accent Line */
 .card-top-accent {
   width: 100%;
-  height: 4px;
-  background: #D3122A;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  height: 3px;
+  background: var(--brand-teal, #125A48);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 /* Inner Wrap */
 .card-inner-wrap {
-  padding: 16px 16px 0 16px;
+  padding: 14px 14px 0 14px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-/* Image Container with Inner Rounded Corners */
+/* Image Container */
 .card-media-box {
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 180px;
   background: #F8FAFC;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid #F1F5F9;
   display: flex;
@@ -58,101 +60,78 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.38s ease;
+  transition: transform 0.3s ease;
 }
 
 .ref-product-card:hover .card-media-img {
-  transform: scale(1.04);
-}
-
-/* Floating Division Badge (Top Left of Image) */
-.card-floating-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #D3122A;
-  color: #FFFFFF;
-  font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  padding: 4px 10px;
-  border-radius: 6px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 6px rgba(211, 18, 42, 0.3);
-  z-index: 2;
-}
-
-.card-floating-badge.supplier {
-  background: #1E3A8A;
-  box-shadow: 0 2px 6px rgba(30, 58, 138, 0.3);
+  transform: scale(1.025);
 }
 
 /* Card Body Content */
 .card-body-content {
-  padding-top: 16px;
+  padding-top: 14px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .card-title-text {
-  font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #0B192C;
-  line-height: 1.28;
-  margin: 0 0 10px 0;
+  line-height: 1.25;
+  margin: 0 0 8px 0;
   letter-spacing: -0.01em;
-  transition: color 0.18s ease;
+  transition: color 0.16s ease;
 }
 
 .ref-product-card:hover .card-title-text {
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
 }
 
 /* Two-Pill Metadata Row */
 .card-pills-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
 .pill-material {
-  font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.68rem;
-  font-weight: 800;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: #F1F5F9;
   border: 1px solid #E2E8F0;
   color: #1E293B;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 3px 8px;
+  border-radius: 5px;
 }
 
 .pill-grade {
-  font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.68rem;
-  font-weight: 800;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: #FEF2F2;
-  border: 1px solid rgba(211, 18, 42, 0.25);
-  color: #D3122A;
-  padding: 4px 10px;
-  border-radius: 6px;
+  background: var(--brand-gold-subtle, rgba(192, 150, 66, 0.08));
+  border: 1px solid var(--brand-gold-border, rgba(192, 150, 66, 0.25));
+  color: var(--brand-gold-dark, #9E7529);
+  padding: 3px 8px;
+  border-radius: 5px;
 }
 
 /* 2-Line Clamped Description */
 .card-desc-snippet {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 0.84rem;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  line-height: 1.45;
   color: #64748B;
-  margin: 0 0 16px 0;
+  margin: 0 0 14px 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -160,58 +139,54 @@
   text-overflow: ellipsis;
 }
 
-/* Footer Bar */
+/* Footer Bar: "EXPLORE PRODUCT DETAILS" + Arrow */
 .card-footer-bar {
-  margin: auto -16px 0 -16px;
-  padding: 12px 16px;
-  border-top: 1px solid #F1F5F9;
-  background: #FAFCFE;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 0 12px 0;
+  border-top: 1px solid #F1F5F9;
+  margin-top: auto;
 }
 
 .footer-action-label {
-  font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 800;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
+  color: #334155;
   text-transform: uppercase;
-  color: #0F172A;
-  transition: color 0.18s ease;
+  transition: color 0.16s ease;
 }
 
 .ref-product-card:hover .footer-action-label {
-  color: #D3122A;
+  color: var(--brand-teal, #125A48);
 }
 
-/* Bordered Arrow Button Box */
 .footer-arrow-box {
   width: 32px;
   height: 32px;
+  border-radius: 6px;
   border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  background: #FFFFFF;
+  background: #F8FAFC;
+  color: #475569;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0F172A;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.footer-arrow-box svg {
-  transition: transform 0.2s ease;
+  transition: all 0.18s ease;
+  padding: 0;
 }
 
 .ref-product-card:hover .footer-arrow-box {
-  background: #D3122A;
-  border-color: #D3122A;
+  background: var(--brand-teal, #125A48);
+  border-color: var(--brand-teal, #125A48);
   color: #FFFFFF;
-  box-shadow: 0 4px 10px rgba(211, 18, 42, 0.25);
+  transform: translateX(1.5px);
 }
 
-.ref-product-card:hover .footer-arrow-box svg {
-  transform: translateX(2px);
+@media (max-width: 640px) {
+  .card-media-box {
+    height: 160px;
+  }
 }

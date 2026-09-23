@@ -1,13 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { aboutPartnersList } from '../../data/aboutData';
+import { ShieldCheck, FileCheck2, Award } from 'lucide-react';
 
 /**
- * AboutPartners: Professional Continuous Logo Marquee
- * - Continuous infinite Right -> Left smooth gliding (not dependent on user scrolling)
- * - Crystal clear, crisp, sharp logos on clean cards (no cloudy fog, no blurry overlays)
- * - Subtle, sophisticated center zoom/focus effect (0.92 -> 1.05 -> 0.92)
- * - Seamless loop with zero jumps or gaps
+ * AboutPartners: Premium Continuous Enterprise Partner Marquee
+ * - Continuous infinite Right -> Left smooth gliding
+ * - Elegant industrial card design with subtle borders, shadows, and depth
+ * - Sophisticated center focus with deep teal (#125A48) & gold accents (NO red/pink)
+ * - Redesigned integrated verification trust strip with icons and perfect alignment
  */
 export default function AboutPartners() {
   const containerRef = useRef(null);
@@ -29,13 +30,13 @@ export default function AboutPartners() {
     // 1. Continuous smooth infinite horizontal translation from Right to Left
     const tween = gsap.to(track, {
       xPercent: -33.33333333,
-      duration: 35,
+      duration: 22,
       ease: 'none',
       repeat: -1
     });
     tweenRef.current = tween;
 
-    // 2. Clear, prominent center zoom & elevation focus as logos pass through the main viewing area
+    // 2. Refined center zoom & elevation focus with subtle industrial styling
     const cards = track.querySelectorAll('.partner-slider-card');
     const updateCenterFocus = () => {
       const windowCenter = window.innerWidth / 2;
@@ -48,8 +49,8 @@ export default function AboutPartners() {
 
         if (distanceFromCenter < focusRadius) {
           const factor = Math.max(0, 1 - distanceFromCenter / focusRadius);
-          const logoScale = 1.0 + factor * 0.12; // Scaled up to 1.12 at center
-          const translateY = factor * -6; // Smooth subtle elevation forward
+          const logoScale = 1.0 + factor * 0.08;
+          const translateY = factor * -5;
 
           const imgEl = card.querySelector('.partner-slider-logo');
           if (imgEl) {
@@ -59,12 +60,13 @@ export default function AboutPartners() {
           card.style.transform = `translateY(${translateY}px)`;
 
           if (factor > 0.45) {
-            card.style.borderColor = 'rgba(211, 18, 42, 0.55)';
-            card.style.boxShadow = '0 14px 32px -6px rgba(15, 23, 42, 0.14), 0 0 0 1.5px rgba(211, 18, 42, 0.22)';
+            // Refined industrial focus: Brand Teal & subtle depth
+            card.style.borderColor = 'rgba(18, 90, 72, 0.45)';
+            card.style.boxShadow = '0 12px 24px -4px rgba(18, 90, 72, 0.08), 0 0 0 1px rgba(18, 90, 72, 0.15)';
             card.classList.add('is-focused');
           } else {
-            card.style.borderColor = 'rgba(226, 232, 240, 0.9)';
-            card.style.boxShadow = '0 4px 14px rgba(15, 23, 42, 0.04)';
+            card.style.borderColor = 'rgba(226, 232, 240, 0.95)';
+            card.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.04)';
             card.classList.remove('is-focused');
           }
         } else {
@@ -73,8 +75,8 @@ export default function AboutPartners() {
             imgEl.style.transform = 'scale(1.0)';
           }
           card.style.transform = 'translateY(0px)';
-          card.style.borderColor = 'rgba(226, 232, 240, 0.9)';
-          card.style.boxShadow = '0 4px 14px rgba(15, 23, 42, 0.04)';
+          card.style.borderColor = 'rgba(226, 232, 240, 0.95)';
+          card.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.04)';
           card.classList.remove('is-focused');
         }
       });
@@ -97,17 +99,17 @@ export default function AboutPartners() {
         <div className="partners-header">
           <div className="partners-eyebrow">
             <span className="eyebrow-accent-bar" />
-            <span className="eyebrow-text">ENTERPRISE SUPPLY NETWORK</span>
+            <span className="eyebrow-text">ENTERPRISE CLIENT NETWORK</span>
           </div>
           <h3 className="partners-heading">
-            Trusted and Approved by <span className="highlight-red">Industry Leaders</span>
+            Trusted and Approved by <span className="highlight-teal">Industry Leaders</span>
           </h3>
           <p className="partners-subhead">
-            Continuous certified alloy supplies powering Fortune 500 energy conglomerates, heavy engineering titans, and national infrastructure projects.
+            Supplying certified alloy piping and engineered steel components to leading industrial conglomerates, energy majors, and global EPC contractors.
           </p>
         </div>
 
-        {/* Clean, Continuous Logo Slider Viewport (Crystal clear viewing area, zero cloudy fog) */}
+        {/* Continuous Logo Slider Viewport */}
         <div className="partners-slider-viewport">
           <div ref={trackRef} className="partners-slider-track">
             {tripledPartners.map((partner, index) => (
@@ -116,6 +118,7 @@ export default function AboutPartners() {
                 className="partner-slider-card"
                 title={partner.name}
               >
+                <div className="partner-card-accent" />
                 <div className="partner-logo-box">
                   <img
                     src={partner.logo}
@@ -124,27 +127,51 @@ export default function AboutPartners() {
                     loading="lazy"
                   />
                 </div>
-                <span className="partner-card-label">{partner.name}</span>
+                <div className="partner-card-footer">
+                  <span className="partner-card-label">{partner.name}</span>
+                  <span className="partner-card-status">APPROVED VENDOR</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom Trust Metric Bar - Clean corporate aesthetic */}
+        {/* Redesigned Integrated Verification Strip */}
         <div className="partners-trust-strip">
-          <div className="trust-strip-item">
-            <span className="trust-strip-icon">✓</span>
-            <span>100% Verified Mill Test Certifications</span>
-          </div>
-          <div className="trust-strip-divider" />
-          <div className="trust-strip-item">
-            <span className="trust-strip-icon">✓</span>
-            <span>Third-Party Inspection by Lloyds / TUV / DNV / BV</span>
-          </div>
-          <div className="trust-strip-divider" />
-          <div className="trust-strip-item">
-            <span className="trust-strip-icon">✓</span>
-            <span>Zero-Defect International Shipment Record</span>
+          <div className="trust-strip-inner">
+            <div className="trust-strip-item">
+              <div className="trust-strip-icon-box">
+                <FileCheck2 size={16} className="trust-strip-icon" />
+              </div>
+              <div className="trust-strip-text">
+                <span className="trust-item-title">100% Mill Certified</span>
+                <span className="trust-item-detail">EN 10204 3.1 & 3.2 Traceability</span>
+              </div>
+            </div>
+
+            <div className="trust-strip-separator" />
+
+            <div className="trust-strip-item">
+              <div className="trust-strip-icon-box">
+                <ShieldCheck size={16} className="trust-strip-icon" />
+              </div>
+              <div className="trust-strip-text">
+                <span className="trust-item-title">Third-Party Inspected</span>
+                <span className="trust-item-detail">Lloyds • TUV • DNV • Bureau Veritas</span>
+              </div>
+            </div>
+
+            <div className="trust-strip-separator" />
+
+            <div className="trust-strip-item">
+              <div className="trust-strip-icon-box">
+                <Award size={16} className="trust-strip-icon" />
+              </div>
+              <div className="trust-strip-text">
+                <span className="trust-item-title">Zero-Defect Record</span>
+                <span className="trust-item-detail">International High-Pressure Compliance</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

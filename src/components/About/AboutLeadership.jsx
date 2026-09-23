@@ -2,133 +2,127 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aboutLeadershipData } from '../../data/aboutData';
+import { Compass, ShieldCheck, Handshake } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const pillarIcons = [Compass, ShieldCheck, Handshake];
 
 export default function AboutLeadership() {
   const containerRef = useRef(null);
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
-  const centerLineRef = useRef(null);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
     const ctx = gsap.context(() => {
-      // Scrub timeline for the converging split composition
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          end: 'bottom 35%',
-          scrub: 0.8
+      gsap.fromTo(
+        leftColRef.current,
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 82%'
+          }
         }
-      });
+      );
 
-      // 1. Vertical engineering line draws from top to bottom
-      if (centerLineRef.current) {
-        tl.fromTo(
-          centerLineRef.current,
-          { scaleY: 0, opacity: 0 },
-          { scaleY: 1, opacity: 0.6, duration: 1, ease: 'power2.inOut' },
-          0
-        );
-      }
-
-      // 2. Left and right columns converge toward center
-      if (leftColRef.current && rightColRef.current) {
-        tl.fromTo(
-          leftColRef.current,
-          { x: -50, opacity: 0.3 },
-          { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-          0.1
-        );
-
-        tl.fromTo(
-          rightColRef.current,
-          { x: 50, opacity: 0.3 },
-          { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-          0.1
-        );
-      }
+      gsap.fromTo(
+        rightColRef.current,
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          delay: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 82%'
+          }
+        }
+      );
     }, el);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="about-leadership-phase">
-      <div className="about-leadership-container">
-        {/* Header Ribbon */}
-        <div className="leadership-header-ribbon">
-          <div className="leadership-eyebrow">
+    <section ref={containerRef} className="about-story-phase" aria-label="Company Story & Philosophy">
+      <div className="about-story-container">
+        {/* Section Header */}
+        <div className="story-header">
+          <div className="story-eyebrow">
             <span className="eyebrow-accent-bar" />
             <span className="eyebrow-text">{aboutLeadershipData.eyebrow}</span>
           </div>
-          <div className="leadership-tagline-chain">
-            <span className="chain-step">VISION</span>
-            <span className="chain-arrow">&rarr;</span>
-            <span className="chain-step">DIRECTION</span>
-            <span className="chain-arrow">&rarr;</span>
-            <span className="chain-step">EXECUTION</span>
-            <span className="chain-arrow">&rarr;</span>
-            <span className="chain-step active-step">FUTURE</span>
+          <div className="story-tagline-chain">
+            {aboutLeadershipData.tagline}
           </div>
         </div>
 
-        {/* Converging Split Composition */}
-        <div className="leadership-split-layout">
-          {/* Left Column: Industrial Leadership Visual */}
-          <div ref={leftColRef} className="leadership-visual-col">
-            <div className="leadership-frame">
+        {/* Refined Split Layout with Perfect Alignment */}
+        <div className="story-split-grid">
+          {/* Left Column: Quote Statement + Refined Industrial Steel Image */}
+          <div ref={leftColRef} className="story-statement-col">
+            <blockquote className="story-large-statement">
+              "{aboutLeadershipData.statement}"
+            </blockquote>
+
+            {/* Balanced Slender Metallic Accent Bar */}
+            <div className="story-slender-accent-bar">
+              <span className="accent-bar-indicator" />
+              <span className="accent-bar-text">METALLURGICAL STANDARDS // MUMBAI LOGISTICS HUB</span>
+              <span className="accent-bar-badge">EN-10204 3.1 &amp; 3.2</span>
+            </div>
+
+            <div className="story-image-frame">
               <img
                 src={aboutLeadershipData.image}
-                alt="Redcore Steels Operations"
-                className="leadership-photo"
+                alt="Bhawal Steel Industrial Metallurgy Facility"
+                className="story-photo"
                 loading="lazy"
               />
-              <div className="leadership-photo-overlay" />
-              
-              {/* Technical Spec Callout Badge */}
-              <div className="leadership-spec-box">
-                <span className="spec-label">ESTABLISHED STANDARDS</span>
-                <span className="spec-val">FOUNDED ON UNCOMPROMISING INTEGRITY</span>
-                <span className="spec-sub">MUMBAI GLOBAL DESK • EST. 1998</span>
-              </div>
+              <div className="story-photo-overlay" />
             </div>
           </div>
 
-          {/* Center Vertical Engineering Divider */}
-          <div ref={centerLineRef} className="leadership-vertical-axis" aria-hidden="true">
-            <span className="axis-node-top" />
-            <span className="axis-node-bottom" />
-          </div>
+          {/* Right Column: Narrative + 3 Polished Engineering Pillars */}
+          <div ref={rightColRef} className="story-narrative-col">
+            <div className="story-paragraphs">
+              <p className="story-lead-p">{aboutLeadershipData.lead}</p>
+              <p className="story-sub-p">{aboutLeadershipData.subtext}</p>
+            </div>
 
-          {/* Right Column: Manifesto & Pillars */}
-          <div ref={rightColRef} className="leadership-text-col">
-            <blockquote className="leadership-quote">
-              {aboutLeadershipData.quote}
-            </blockquote>
-            
-            <p className="leadership-lead-text">
-              {aboutLeadershipData.lead}
-            </p>
+            <div className="story-pillars-list">
+              {aboutLeadershipData.pillars.map((pillar, idx) => {
+                const IconComp = pillarIcons[idx % pillarIcons.length];
 
-            <div className="leadership-pillars-stack">
-              {aboutLeadershipData.pillars.map((pillar, idx) => (
-                <div key={pillar.title} className="pillar-item">
-                  <div className="pillar-header">
-                    <span className="pillar-idx">0{idx + 1}</span>
-                    <h5 className="pillar-title">{pillar.title}</h5>
+                return (
+                  <div key={pillar.num} className="story-pillar-item">
+                    <div className="pillar-num-box">
+                      <span className="pillar-number">{pillar.num}</span>
+                    </div>
+                    <div className="pillar-body">
+                      <div className="pillar-header-row">
+                        <IconComp size={15} className="pillar-icon" />
+                        <h3 className="pillar-heading">{pillar.title}</h3>
+                      </div>
+                      <p className="pillar-description">{pillar.desc}</p>
+                    </div>
                   </div>
-                  <p className="pillar-desc">{pillar.desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

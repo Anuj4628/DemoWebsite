@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { navLinks, brandDetails } from '../../data/navigationData';
 import { MATERIALS } from '../../data/materialsData';
+import { PRODUCT_GROUPS } from '../../data/productCatalogData';
 import Button from '../UI/Button';
 import { ChevronDown } from 'lucide-react';
 import './MobileMenu.css';
 
 export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, onNavigate }) {
   const [materialsExpanded, setMaterialsExpanded] = useState(false);
+  const [productsExpanded, setProductsExpanded] = useState(false);
   const menuRef = useRef(null);
   const linksContainerRef = useRef(null);
   const footerRef = useRef(null);
@@ -91,8 +93,13 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
       setMaterialsExpanded(prev => !prev);
       return;
     }
+    if (id === 'products') {
+      setProductsExpanded(prev => !prev);
+      return;
+    }
 
     setMaterialsExpanded(false);
+    setProductsExpanded(false);
     onClose();
     if (onNavigate) {
       if (id === 'about') {
@@ -101,8 +108,6 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
         onNavigate('contact');
       } else if (id === 'home') {
         onNavigate('home');
-      } else if (id === 'products') {
-        onNavigate('/products');
       } else {
         if (currentPage === 'about' || currentPage === 'materials' || currentPage === 'products' || currentPage === 'contact') {
           onNavigate('home', id);
@@ -119,6 +124,7 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
   const handleSubMaterialClick = (e, slug) => {
     e.preventDefault();
     setMaterialsExpanded(false);
+    setProductsExpanded(false);
     onClose();
     if (onNavigate) {
       if (slug === 'all') {
@@ -126,6 +132,16 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
       } else {
         onNavigate(`/materials/${slug}`);
       }
+    }
+  };
+
+  const handleSubProductClick = (e, url) => {
+    e.preventDefault();
+    setProductsExpanded(false);
+    setMaterialsExpanded(false);
+    onClose();
+    if (onNavigate) {
+      onNavigate(url);
     }
   };
 
@@ -143,6 +159,8 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
           {navLinks.map((link, index) => {
             const isActive = activeLink === link.id;
             const isMaterials = link.id === 'materials';
+            const isProducts = link.id === 'products';
+            const hasSubnav = isMaterials || isProducts;
 
             let targetHref = link.href;
             if (link.id === 'about') targetHref = '/about';
@@ -151,7 +169,7 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
             else if (link.id === 'materials') targetHref = '/materials';
 
             return (
-              <li key={link.id} className={`mobile-nav-item ${isMaterials ? 'has-subnav' : ''}`}>
+              <li key={link.id} className={`mobile-nav-item ${hasSubnav ? 'has-subnav' : ''}`}>
                 <div className="mobile-nav-row">
                   <a
                     href={targetHref}
@@ -174,9 +192,21 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
                       <ChevronDown size={18} />
                     </button>
                   )}
+
+                  {isProducts && (
+                    <button
+                      type="button"
+                      className={`mobile-subnav-toggle ${productsExpanded ? 'expanded' : ''}`}
+                      onClick={() => setProductsExpanded(prev => !prev)}
+                      aria-label={productsExpanded ? 'Collapse Products Menu' : 'Expand Products Menu'}
+                      aria-expanded={productsExpanded}
+                    >
+                      <ChevronDown size={18} />
+                    </button>
+                  )}
                 </div>
 
-                {/* Expandable 9 Materials Sub-menu */}
+                {/* Expandable 9 Materials Sub-menu (Names Only) */}
                 {isMaterials && materialsExpanded && (
                   <div className="mobile-subnav-container">
                     <a
@@ -184,7 +214,7 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
                       className="mobile-subnav-item mobile-subnav-overview"
                       onClick={(e) => handleSubMaterialClick(e, 'all')}
                     >
-                      <span>Explore All 9 Materials Page</span>
+                      <span>Explore All 9 Materials</span>
                       <span className="mobile-subnav-badge">View All</span>
                     </a>
 
@@ -197,7 +227,33 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
                           onClick={(e) => handleSubMaterialClick(e, mat.slug)}
                         >
                           <span className="subnav-mat-name">{mat.name}</span>
-                          <span className="subnav-mat-tag">{mat.grade.split(',')[0].split('/')[0].trim()}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Expandable Unified 18 Products Sub-menu */}
+                {isProducts && productsExpanded && (
+                  <div className="mobile-subnav-container">
+                    <a
+                      href="/products"
+                      className="mobile-subnav-item mobile-subnav-overview"
+                      onClick={(e) => handleSubProductClick(e, '/products')}
+                    >
+                      <span>View Complete Products Catalog</span>
+                      <span className="mobile-subnav-badge">18 Families</span>
+                    </a>
+
+                    <div className="mobile-subnav-grid">
+                      {PRODUCT_GROUPS.map((group) => (
+                        <a
+                          key={group.id}
+                          href={`/products/${group.divisionSlug}/${group.slug}`}
+                          className="mobile-subnav-item"
+                          onClick={(e) => handleSubProductClick(e, `/products/${group.divisionSlug}/${group.slug}`)}
+                        >
+                          <span className="subnav-mat-name">{group.name}</span>
                         </a>
                       ))}
                     </div>
