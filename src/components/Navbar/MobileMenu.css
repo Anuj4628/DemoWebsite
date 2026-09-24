@@ -236,6 +236,34 @@
   border-top: 1px solid rgba(226, 232, 240, 0.9);
 }
 
+.mobile-catalog-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #C09642 0%, #A87C2B 100%);
+  color: #071F18;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(192, 150, 66, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.22s ease;
+  box-sizing: border-box;
+}
+
+.mobile-catalog-cta-btn:hover,
+.mobile-catalog-cta-btn:active {
+  background: linear-gradient(135deg, #D4AC58 0%, #B88B32 100%);
+  color: #04130F;
+  transform: translateY(-1px);
+}
+
 .mobile-quote-btn {
   width: 100%;
 }

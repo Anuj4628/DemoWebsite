@@ -2,6 +2,7 @@ import React from 'react';
 import { brandDetails } from '../../data/navigationData';
 import Button from '../UI/Button';
 import { MapPin, Phone, Mail, ArrowUp, ShieldCheck, Award } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './Footer.css';
 
 export default function Footer({ onNavigate }) {
@@ -71,6 +72,18 @@ export default function Footer({ onNavigate }) {
               <li><a href="/about" className="footer-link" onClick={(e) => handleLinkClick(e, 'about')}>About Us</a></li>
               <li><a href="/products" className="footer-link" onClick={(e) => handleLinkClick(e, '/products')}>Products</a></li>
               <li><a href="/#materials" className="footer-link" onClick={(e) => handleLinkClick(e, 'home', 'materials')}>Materials</a></li>
+              <li>
+                <a
+                  href={BHAWAL_CATALOG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link footer-catalog-link"
+                  title="Explore Bhawal Steel & Engineering Official Product Catalog (PDF)"
+                >
+                  <span>Explore Catalog</span>
+                  <span className="footer-catalog-badge">PDF</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -96,6 +109,18 @@ export default function Footer({ onNavigate }) {
             </h4>
             <ul className="footer-links-list">
               <li><a href="/products" className="footer-link" onClick={(e) => handleLinkClick(e, '/products')}>All Products Catalog</a></li>
+              <li>
+                <a
+                  href={BHAWAL_CATALOG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link footer-catalog-link"
+                  title="Explore Bhawal Steel Engineering Client Catalog (PDF)"
+                >
+                  <span>Client Product Catalog</span>
+                  <span className="footer-catalog-badge">PDF</span>
+                </a>
+              </li>
               <li><a href="/products/manufacturer" className="footer-link" onClick={(e) => handleLinkClick(e, '/products/manufacturer')}>Manufacturer Division</a></li>
               <li><a href="/products/supplier" className="footer-link" onClick={(e) => handleLinkClick(e, '/products/supplier')}>Supplier Division</a></li>
               <li><a href="/products/manufacturer/butt-weld-fittings" className="footer-link" onClick={(e) => handleLinkClick(e, '/products/manufacturer/butt-weld-fittings')}>Butt Weld Fittings</a></li>

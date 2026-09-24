@@ -1,5 +1,7 @@
 import React from 'react';
 import { PRODUCT_GROUPS } from '../../data/productCatalogData';
+import { FileText, ExternalLink, ArrowRight } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './ProductMegaMenu.css';
 
 /**
@@ -109,20 +111,25 @@ function ProductMegaMenu({ isOpen, onSelect, onClose }) {
 
       {/* Bottom Full Catalog Action Bar */}
       <div className="megamenu-footer-bar">
-        <div className="footer-bar-info">
-          <span className="footer-bar-dot" />
-          <span>ASTM, ASME, DIN &amp; EN Certified Mill Specifications</span>
-        </div>
+        <a
+          href={BHAWAL_CATALOG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-download-pdf-catalog"
+          title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+        >
+          <FileText size={14} aria-hidden="true" />
+          <span>Explore Catalog (PDF)</span>
+          <ExternalLink size={12} aria-hidden="true" />
+        </a>
+
         <a
           href="/products"
           className="btn-view-all-catalog"
           onClick={(e) => handleItemClick(e, '/products')}
         >
-          <span>View Complete Products Catalog (18 Families)</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
+          <span>View All 18 Product Families</span>
+          <ArrowRight size={13} aria-hidden="true" />
         </a>
       </div>
     </div>

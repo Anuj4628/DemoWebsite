@@ -2,7 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aboutCTAData } from '../../data/aboutData';
-import { ArrowRight, PhoneCall } from 'lucide-react';
+import { ArrowRight, PhoneCall, FileText } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -126,6 +127,18 @@ export default function AboutCTA({ onNavigate }) {
           >
             <span>{aboutCTAData.primaryAction.label}</span>
             <ArrowRight size={18} className="cta-btn-icon" />
+          </a>
+
+          <a
+            href={BHAWAL_CATALOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-cta-catalog-btn"
+            aria-label="Explore Bhawal Steel Official Catalog"
+            title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+          >
+            <FileText size={17} className="cta-btn-icon" />
+            <span>Explore Catalog</span>
           </a>
 
           <a

@@ -3,7 +3,8 @@ import gsap from 'gsap';
 import FamilyCard from '../FamilyCard';
 import { PRODUCT_GROUPS } from '../../../data/productCatalogData';
 import heroBgImage from '../../../assets/Product BG/premium steel solution build for industry.png';
-import { Package, Search, X } from 'lucide-react';
+import { Package, Search, X, FileText, ArrowUpRight } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../../constants/catalog';
 import './ProductsLandingView.css';
 
 /**
@@ -127,6 +128,21 @@ export default function ProductsLandingView({ onNavigate }) {
               )}
             </div>
 
+            {/* Catalog Download / Explore Quick Link */}
+            <div className="card-catalog-cta-wrap">
+              <a
+                href={BHAWAL_CATALOG_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-catalog-btn"
+                title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+              >
+                <FileText size={15} aria-hidden="true" />
+                <span>Explore Official Catalog (PDF)</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+
           </div>
         </div>
       </section>
@@ -146,20 +162,34 @@ export default function ProductsLandingView({ onNavigate }) {
               </h2>
             </div>
 
-            {searchQuery && (
-              <div className="heading-right">
-                <span className="active-query-chip">
-                  Results for "{searchQuery}"
-                </span>
-                <button
-                  type="button"
-                  className="btn-clear-query"
-                  onClick={() => setSearchQuery('')}
+            <div className="heading-right">
+              {searchQuery ? (
+                <>
+                  <span className="active-query-chip">
+                    Results for "{searchQuery}"
+                  </span>
+                  <button
+                    type="button"
+                    className="btn-clear-query"
+                    onClick={() => setSearchQuery('')}
+                  >
+                    Clear search
+                  </button>
+                </>
+              ) : (
+                <a
+                  href={BHAWAL_CATALOG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-heading-catalog"
+                  title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
                 >
-                  Clear search
-                </button>
-              </div>
-            )}
+                  <FileText size={14} aria-hidden="true" />
+                  <span>Download Catalog (PDF)</span>
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* 3-Column Desktop Grid with Clean Product Cards */}

@@ -3,7 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aboutIntroData } from '../../data/aboutData';
 import aboutHeroSteels from '../../assets/images/about-hero-steels.jpg';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, FileText, ArrowUpRight } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,8 +108,19 @@ export default function AboutIntro() {
           </div>
 
           <div className="hero-cta-action">
+            <a
+              href={BHAWAL_CATALOG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-catalog-btn"
+              title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+            >
+              <FileText size={16} className="hero-catalog-icon" aria-hidden="true" />
+              <span>Explore Catalog</span>
+              <ArrowUpRight size={15} className="hero-catalog-arrow" aria-hidden="true" />
+            </a>
             <a href="#company-journey" className="hero-explore-btn">
-              <span>Explore Company Journey</span>
+              <span>Company Journey</span>
               <ArrowRight size={16} />
             </a>
           </div>

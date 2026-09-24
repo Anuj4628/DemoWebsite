@@ -578,3 +578,59 @@
   font-size: 0.72rem;
   color: #64748B;
 }
+
+/* ===================================================
+   Catalog Buttons for Products Landing
+   =================================================== */
+.card-catalog-cta-wrap {
+  margin-top: 14px;
+  display: flex;
+}
+
+.card-catalog-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(192, 150, 66, 0.15);
+  border: 1px solid rgba(192, 150, 66, 0.45);
+  color: var(--brand-gold-light, #D4AC58);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  backdrop-filter: blur(6px);
+}
+
+.card-catalog-btn:hover {
+  background: var(--brand-gold, #C09642);
+  color: #071F18;
+  border-color: var(--brand-gold, #C09642);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(192, 150, 66, 0.35);
+}
+
+.btn-heading-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #125A48 0%, #0A3A2E 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid rgba(18, 90, 72, 0.4);
+  transition: all 0.22s ease;
+  box-shadow: 0 3px 10px rgba(18, 90, 72, 0.2);
+}
+
+.btn-heading-catalog:hover {
+  background: var(--brand-teal, #125A48);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(18, 90, 72, 0.35);
+}

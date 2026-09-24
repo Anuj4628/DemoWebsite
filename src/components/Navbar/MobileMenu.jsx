@@ -5,7 +5,8 @@ import { MATERIALS } from '../../data/materialsData';
 import { PRODUCT_GROUPS } from '../../data/productCatalogData';
 import { CERTIFICATES_DATA } from './CertificatesDropdown';
 import Button from '../UI/Button';
-import { ChevronDown, ExternalLink } from 'lucide-react';
+import { ChevronDown, ExternalLink, FileText } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './MobileMenu.css';
 
 export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, onNavigate }) {
@@ -325,6 +326,19 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
 
         {/* Footer info & CTA */}
         <div ref={footerRef} className="mobile-menu-footer">
+          <a
+            href={BHAWAL_CATALOG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-catalog-cta-btn"
+            title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+            onClick={onClose}
+          >
+            <FileText size={17} aria-hidden="true" />
+            <span>Explore Catalog (PDF)</span>
+            <ExternalLink size={14} aria-hidden="true" />
+          </a>
+
           <Button
             href="/contact"
             variant="primary"

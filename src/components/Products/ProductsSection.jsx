@@ -3,7 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { productsData, productCategories } from '../../data/homeSectionsData';
 import ProductCard from './ProductCard';
-import { ArrowRight, Layers } from 'lucide-react';
+import { ArrowRight, Layers, FileText, ArrowUpRight } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './ProductsSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -119,19 +120,33 @@ export default function ProductsSection({ onNavigate }) {
             </div>
           </div>
 
-          <a
-            href="/products"
-            className="products-complete-catalog-btn"
-            onClick={(e) => {
-              if (onNavigate) {
-                e.preventDefault();
-                onNavigate('/products');
-              }
-            }}
-          >
-            <span>VIEW COMPLETE CATALOG</span>
-            <ArrowRight size={16} />
-          </a>
+          <div className="cta-banner-actions">
+            <a
+              href={BHAWAL_CATALOG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="products-catalog-pdf-btn"
+              title="Open Bhawal Steel Engineering Client Catalog (PDF)"
+            >
+              <FileText size={15} aria-hidden="true" />
+              <span>Explore Catalog PDF</span>
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+
+            <a
+              href="/products"
+              className="products-complete-catalog-btn"
+              onClick={(e) => {
+                if (onNavigate) {
+                  e.preventDefault();
+                  onNavigate('/products');
+                }
+              }}
+            >
+              <span>VIEW ALL 18 FAMILIES</span>
+              <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

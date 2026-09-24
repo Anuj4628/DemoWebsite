@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ContactHero from './ContactHero';
 import ContactIntro from './ContactIntro';
+import ContactCatalogSection from './ContactCatalogSection';
 import ContactInfoMap from './ContactInfoMap';
 import ContactRFQ from './ContactRFQ';
 import ContactFAQ from './ContactFAQ';
@@ -9,7 +10,7 @@ import './Contact.css';
 
 /**
  * Bhawal Steel & Engineering Company — Master Contact Page Orchestrator
- * Integrates all 7 sections seamlessly into the existing site architecture.
+ * Integrates all sections seamlessly into the existing site architecture.
  */
 export default function ContactPage() {
   useEffect(() => {
@@ -45,6 +46,9 @@ export default function ContactPage() {
 
       {/* SECTION 1 — CONNECT WITH OUR TECHNICAL TEAM */}
       <ContactIntro />
+
+      {/* HIGHLIGHTED DEDICATED CATALOG SECTION */}
+      <ContactCatalogSection />
 
       {/* SECTION 2 — CONTACT INFORMATION + EXACT MAP */}
       <ContactInfoMap />

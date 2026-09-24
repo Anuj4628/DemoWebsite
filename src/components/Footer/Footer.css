@@ -166,6 +166,37 @@
   width: 100%;
 }
 
+.footer-catalog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--brand-gold, #C09642) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-catalog-link:hover {
+  color: #FFFFFF !important;
+}
+
+.footer-catalog-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(192, 150, 66, 0.2);
+  border: 1px solid rgba(192, 150, 66, 0.5);
+  color: var(--brand-gold, #C09642);
+  letter-spacing: 0.04em;
+  transition: all 0.2s ease;
+}
+
+.footer-catalog-link:hover .footer-catalog-badge {
+  background: var(--brand-gold, #C09642);
+  color: #07221B;
+}
+
 /* ---- Contact Row (below grid) ---- */
 .footer-contact-row {
   padding: 22px 0 20px;
