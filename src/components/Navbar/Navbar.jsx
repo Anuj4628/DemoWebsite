@@ -117,8 +117,8 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
   }, []);
 
   const handleLinkClick = (e, link) => {
+    e.preventDefault();
     if (link.id === 'certificate') {
-      e.preventDefault();
       setMegaMenuOpen(false);
       setMaterialsMenuOpen(false);
       setCertificatesMenuOpen((prev) => !prev);
