@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Button from '../UI/Button';
+import { FileText, ArrowUpRight } from 'lucide-react';
+import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './HeroSlide.css';
 
 // Helper function to render headline with strategic red accent on [bracketed] words and newline support
@@ -241,6 +243,18 @@ function HeroSlide({ slide, isActive, direction = 1, onNavigate }) {
                     {slide.secondaryCta.label}
                   </Button>
                 )}
+
+                <a
+                  href={BHAWAL_CATALOG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-catalog-direct-btn"
+                  title="Open Bhawal Steel & Engineering Official Product Catalog (PDF)"
+                >
+                  <FileText size={16} className="catalog-btn-icon" aria-hidden="true" />
+                  <span>Explore Catalog</span>
+                  <ArrowUpRight size={14} className="catalog-btn-arrow" aria-hidden="true" />
+                </a>
               </div>
 
               {/* Technical Specification Badge */}

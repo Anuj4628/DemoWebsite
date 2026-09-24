@@ -181,6 +181,53 @@
   flex-wrap: wrap;
 }
 
+.hero-catalog-direct-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(192, 150, 66, 0.16);
+  border: 1px solid rgba(192, 150, 66, 0.65);
+  color: #FFFFFF;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 13px 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.hero-catalog-direct-btn:hover {
+  background: linear-gradient(135deg, #C09642 0%, #A87C2B 100%);
+  color: #071F18;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(192, 150, 66, 0.45);
+}
+
+.hero-catalog-direct-btn .catalog-btn-icon {
+  color: var(--brand-gold, #C09642);
+  transition: color 0.2s ease;
+}
+
+.hero-catalog-direct-btn:hover .catalog-btn-icon {
+  color: #071F18;
+}
+
+.hero-catalog-direct-btn .catalog-btn-arrow {
+  opacity: 0.85;
+  transition: transform 0.2s ease;
+}
+
+.hero-catalog-direct-btn:hover .catalog-btn-arrow {
+  transform: translate(2px, -2px);
+}
+
 /* Technical Specification Badge */
 .hero-spec-tag {
   display: inline-flex;
@@ -300,9 +347,11 @@
     gap: 10px;
   }
 
-  .hero-cta-group .btn {
+  .hero-cta-group .btn,
+  .hero-cta-group .hero-catalog-direct-btn {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
 
   .hero-spec-tag {
