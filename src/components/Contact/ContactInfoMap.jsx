@@ -228,7 +228,7 @@ export default function ContactInfoMap() {
               {/* Verified Trust Strip */}
               <div className="info-card-trust-strip">
                 <ShieldCheck size={16} className="trust-icon" aria-hidden="true" />
-                <span>ISO 9001:2015 Registered • MSME Certified • ASME Code Compliant</span>
+                <span>ISO 9001:2015 Registered • MSME Certified</span>
               </div>
             </div>
           </div>

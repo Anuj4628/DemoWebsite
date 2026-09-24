@@ -21,7 +21,7 @@ export const brandDetails = {
   },
   contact: {
     email: "bhawal@hotmail.com",
-    secondaryEmail: "info@bhawalsteel.com",
+    secondaryEmail: "info@rohitmetal.com",
     salesEmail: "bhawal@hotmail.com",
     phone1: "+91 92233 81575",
     phone1Raw: "+919223381575",
