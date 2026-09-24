@@ -5,6 +5,7 @@ import MobileMenu from './MobileMenu';
 import TopContactBar from './TopContactBar';
 import ProductMegaMenu from '../Products/ProductMegaMenu';
 import MaterialsMegaMenu from './MaterialsMegaMenu';
+import CertificatesDropdown from './CertificatesDropdown';
 import { Menu, X } from 'lucide-react';
 import { preloadRoute } from '../../utils/preloadRoute';
 import './Navbar.css';
@@ -14,8 +15,10 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [materialsMenuOpen, setMaterialsMenuOpen] = useState(false);
+  const [certificatesMenuOpen, setCertificatesMenuOpen] = useState(false);
   const megaMenuTimeoutRef = useRef(null);
   const materialsMenuTimeoutRef = useRef(null);
+  const certificatesMenuTimeoutRef = useRef(null);
 
   const activeLink = currentPage === 'about' 
     ? 'about' 
@@ -49,6 +52,7 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
       clearTimeout(megaMenuTimeoutRef.current);
     }
     setMaterialsMenuOpen(false);
+    setCertificatesMenuOpen(false);
     setMegaMenuOpen(true);
     preloadRoute('products');
   }, []);
@@ -64,6 +68,7 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
       clearTimeout(materialsMenuTimeoutRef.current);
     }
     setMegaMenuOpen(false);
+    setCertificatesMenuOpen(false);
     setMaterialsMenuOpen(true);
     preloadRoute('materials');
   }, []);
@@ -71,6 +76,21 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
   const handleMouseLeaveMaterials = useCallback(() => {
     materialsMenuTimeoutRef.current = setTimeout(() => {
       setMaterialsMenuOpen(false);
+    }, 180);
+  }, []);
+
+  const handleMouseEnterCertificates = useCallback(() => {
+    if (certificatesMenuTimeoutRef.current) {
+      clearTimeout(certificatesMenuTimeoutRef.current);
+    }
+    setMegaMenuOpen(false);
+    setMaterialsMenuOpen(false);
+    setCertificatesMenuOpen(true);
+  }, []);
+
+  const handleMouseLeaveCertificates = useCallback(() => {
+    certificatesMenuTimeoutRef.current = setTimeout(() => {
+      setCertificatesMenuOpen(false);
     }, 180);
   }, []);
 
@@ -92,10 +112,21 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
     setMaterialsMenuOpen(false);
   }, []);
 
+  const handleCertificatesMenuClose = useCallback(() => {
+    setCertificatesMenuOpen(false);
+  }, []);
+
   const handleLinkClick = (e, link) => {
-    e.preventDefault();
+    if (link.id === 'certificate') {
+      e.preventDefault();
+      setMegaMenuOpen(false);
+      setMaterialsMenuOpen(false);
+      setCertificatesMenuOpen((prev) => !prev);
+      return;
+    }
     setMegaMenuOpen(false);
     setMaterialsMenuOpen(false);
+    setCertificatesMenuOpen(false);
     if (onNavigate) {
       if (link.id === 'about') {
         onNavigate('about');
@@ -108,7 +139,7 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
       } else if (link.id === 'materials') {
         onNavigate('/materials');
       } else {
-        // Other section links (certificate, contact)
+        // Other section links
         if (currentPage !== 'home') {
           onNavigate('home', link.id);
         } else {
@@ -163,16 +194,19 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                 const isActive = activeLink === link.id;
                 const isProducts = link.id === 'products';
                 const isMaterials = link.id === 'materials';
+                const isCertificate = link.id === 'certificate';
 
                 let mouseEnterHandler = undefined;
                 if (isProducts) mouseEnterHandler = handleMouseEnterProducts;
                 else if (isMaterials) mouseEnterHandler = handleMouseEnterMaterials;
+                else if (isCertificate) mouseEnterHandler = handleMouseEnterCertificates;
                 else if (link.id === 'about') mouseEnterHandler = () => preloadRoute('about');
                 else if (link.id === 'contact') mouseEnterHandler = () => preloadRoute('contact');
 
                 let mouseLeaveHandler = undefined;
                 if (isProducts) mouseLeaveHandler = handleMouseLeaveProducts;
                 else if (isMaterials) mouseLeaveHandler = handleMouseLeaveMaterials;
+                else if (isCertificate) mouseLeaveHandler = handleMouseLeaveCertificates;
 
                 let linkHref = link.href;
                 if (link.id === 'about') linkHref = '/about';
@@ -183,20 +217,22 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                 return (
                   <li
                     key={link.id}
-                    className={`navbar-item ${isProducts ? 'products-item' : ''} ${isMaterials ? 'materials-item' : ''}`}
+                    className={`navbar-item ${isProducts ? 'products-item' : ''} ${isMaterials ? 'materials-item' : ''} ${isCertificate ? 'certificate-item' : ''}`}
                     onMouseEnter={mouseEnterHandler}
                     onMouseLeave={mouseLeaveHandler}
                   >
                     <a
                       href={linkHref}
-                      className={`navbar-link ${isActive ? 'active' : ''}`}
+                      className={`navbar-link ${isActive ? 'active' : ''} ${isCertificate && certificatesMenuOpen ? 'menu-active' : ''}`}
                       onClick={(e) => handleLinkClick(e, link)}
+                      aria-haspopup={isCertificate ? 'true' : undefined}
+                      aria-expanded={isCertificate ? certificatesMenuOpen : undefined}
                     >
                       <span className="navbar-link-text">
                         {link.label}
-                        {(isProducts || isMaterials) && (
+                        {(isProducts || isMaterials || isCertificate) && (
                           <svg
-                            className={`nav-dropdown-chevron ${(isProducts ? megaMenuOpen : materialsMenuOpen) ? 'rotated' : ''}`}
+                            className={`nav-dropdown-chevron ${(isProducts ? megaMenuOpen : (isMaterials ? materialsMenuOpen : certificatesMenuOpen)) ? 'rotated' : ''}`}
                             width="12"
                             height="12"
                             viewBox="0 0 24 24"
@@ -208,7 +244,7 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                               display: 'inline-block',
                               verticalAlign: 'middle',
                               transition: 'transform 0.2s ease',
-                              transform: (isProducts ? megaMenuOpen : materialsMenuOpen) ? 'rotate(180deg)' : 'rotate(0deg)'
+                              transform: (isProducts ? megaMenuOpen : (isMaterials ? materialsMenuOpen : certificatesMenuOpen)) ? 'rotate(180deg)' : 'rotate(0deg)'
                             }}
                           >
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -231,6 +267,13 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                         isOpen={materialsMenuOpen}
                         onSelect={handleMaterialsMenuSelect}
                         onClose={handleMaterialsMenuClose}
+                      />
+                    )}
+
+                    {isCertificate && (
+                      <CertificatesDropdown
+                        isOpen={certificatesMenuOpen}
+                        onClose={handleCertificatesMenuClose}
                       />
                     )}
                   </li>

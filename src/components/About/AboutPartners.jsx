@@ -127,10 +127,6 @@ export default function AboutPartners() {
                     loading="lazy"
                   />
                 </div>
-                <div className="partner-card-footer">
-                  <span className="partner-card-label">{partner.name}</span>
-                  <span className="partner-card-status">APPROVED VENDOR</span>
-                </div>
               </div>
             ))}
           </div>

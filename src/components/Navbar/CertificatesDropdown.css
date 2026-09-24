@@ -1,0 +1,283 @@
+/* ===================================================
+   CERTIFICATES DROPDOWN PANEL
+   Clean, Premium Corporate Layout for 3 Documents
+   =================================================== */
+
+.certificates-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate3d(-50%, 6px, 0);
+  width: 420px;
+  max-width: min(420px, calc(100vw - 32px));
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.14), 0 4px 14px rgba(15, 23, 42, 0.04);
+  margin-top: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: opacity, transform;
+  transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover bridge for seamless cursor transition */
+.certificates-dropdown-panel::after {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: transparent;
+}
+
+/* Pointer arrow */
+.certificates-dropdown-panel::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(226, 232, 240, 0.95);
+  border-left: 1px solid rgba(226, 232, 240, 0.95);
+  z-index: 1;
+}
+
+/* Trigger on hover or is-open state */
+.certificate-item:hover .certificates-dropdown-panel,
+.certificates-dropdown-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(-50%, 0, 0);
+}
+
+/* Header */
+.certificates-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.15rem 0.65rem;
+  border-bottom: 1px solid #F1F5F9;
+  background: #FAFAFC;
+}
+
+.certificates-header-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.certificates-eyebrow-bar {
+  width: 14px;
+  height: 2px;
+  background-color: var(--brand-teal, #125A48);
+  border-radius: 2px;
+}
+
+.certificates-eyebrow-text {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: var(--color-text-secondary, #334155);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.certificates-header-count {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 650;
+  color: #047857;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+/* Certificates List */
+.certificates-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 4px;
+}
+
+/* Individual Certificate Item */
+.certificate-drop-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.certificate-drop-item:hover {
+  background: #F8FAFC;
+  border-color: rgba(18, 90, 72, 0.18);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(18, 90, 72, 0.06);
+}
+
+/* Icon Box */
+.cert-drop-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(18, 90, 72, 0.06);
+  border: 1px solid rgba(18, 90, 72, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--brand-teal, #125A48);
+  transition: all 0.2s ease;
+}
+
+.certificate-drop-item:hover .cert-drop-icon-box {
+  background: var(--brand-teal, #125A48);
+  color: #FFFFFF;
+  border-color: var(--brand-teal, #125A48);
+  transform: scale(1.05);
+}
+
+/* Content */
+.cert-drop-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cert-drop-header-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cert-drop-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.86rem;
+  font-weight: 650;
+  color: #0F172A;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.certificate-drop-item:hover .cert-drop-title {
+  color: var(--brand-teal, #125A48);
+}
+
+.cert-drop-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+  text-transform: uppercase;
+}
+
+.certificate-drop-item:hover .cert-drop-tag {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+}
+
+.cert-drop-desc {
+  font-size: 0.73rem;
+  color: #64748B;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Action Area */
+.cert-drop-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cert-drop-badge {
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(192, 150, 66, 0.12);
+  color: #8C6A1E;
+  border: 1px solid rgba(192, 150, 66, 0.25);
+  transition: all 0.2s ease;
+}
+
+.certificate-drop-item:hover .cert-drop-badge {
+  background: #C09642;
+  color: #FFFFFF;
+  border-color: #C09642;
+}
+
+.cert-drop-ext {
+  color: #94A3B8;
+  transition: all 0.2s ease;
+}
+
+.certificate-drop-item:hover .cert-drop-ext {
+  color: var(--brand-teal, #125A48);
+  transform: translate(2px, -2px);
+}
+
+/* Footer Strip */
+.certificates-dropdown-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.15rem;
+  border-top: 1px solid #F1F5F9;
+  background: #FAFAFC;
+  font-size: 0.72rem;
+  color: #64748B;
+}
+
+.certificates-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 550;
+}
+
+.cert-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  flex-shrink: 0;
+}
+
+.certificates-footer-note {
+  font-size: 0.68rem;
+  color: #94A3B8;
+  font-weight: 500;
+}

@@ -172,7 +172,7 @@
   margin-right: 20px;
   background-color: #FFFFFF;
   border-radius: 6px;
-  padding: 16px 24px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -187,12 +187,14 @@
 }
 
 .client-logo-img {
-  max-width: 82%;
-  max-height: 52px;
+  max-width: 88%;
+  max-height: 58px;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
 }
 
 /* ===================================================
@@ -210,13 +212,13 @@
     width: 175px;
     height: 78px;
     margin-right: 14px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 5px;
   }
 
   .client-logo-img {
-    max-width: 84%;
-    max-height: 40px;
+    max-width: 88%;
+    max-height: 46px;
   }
 
   .client-marquee-track-1 {
@@ -233,11 +235,11 @@
     width: 155px;
     height: 72px;
     margin-right: 12px;
-    padding: 10px 14px;
+    padding: 8px 12px;
   }
 
   .client-logo-img {
-    max-width: 86%;
-    max-height: 36px;
+    max-width: 90%;
+    max-height: 42px;
   }
 }

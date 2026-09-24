@@ -1,15 +1,15 @@
 // Partner Logos
 import adaniLogo from '../assets/partners/adani.svg';
-import tataLogo from '../assets/partners/tata_steel.svg';
-import relianceLogo from '../assets/partners/reliance.svg';
-import jswLogo from '../assets/partners/jsw_steel.svg';
+import tataLogo from '../assets/partners/tata_steel.png';
+import relianceLogo from '../assets/partners/reliance.png';
+import jswLogo from '../assets/partners/jsw_steel.png';
 import indianOilLogo from '../assets/partners/indian_oil.svg';
 import godrejLogo from '../assets/partners/godrej.svg';
 import haldiaLogo from '../assets/partners/haldia_petrochemicals.svg';
-import birlaLogo from '../assets/partners/aditya_birla.svg';
-import bhushanLogo from '../assets/partners/bhushan_power.svg';
-import jindalLogo from '../assets/partners/jindal_steel.svg';
-import hpclLogo from '../assets/partners/hindustan_petroleum.svg';
+import birlaLogo from '../assets/partners/aditya_birla.png';
+import bhushanLogo from '../assets/partners/bhushan_power.png';
+import jindalLogo from '../assets/partners/jindal_steel.png';
+import hpclLogo from '../assets/partners/hindustan_petroleum.png';
 
 // Industry Visuals
 import aerospaceImg from '../assets/Serving Global Mission-Critical Sectors/aerospace and defence.png';

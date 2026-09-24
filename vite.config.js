@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  assetsInclude: ['**/*.pdf'],
   build: {
     cssCodeSplit: true,
     chunkSizeWarningLimit: 600,

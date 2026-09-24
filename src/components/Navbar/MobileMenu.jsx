@@ -3,13 +3,15 @@ import gsap from 'gsap';
 import { navLinks, brandDetails } from '../../data/navigationData';
 import { MATERIALS } from '../../data/materialsData';
 import { PRODUCT_GROUPS } from '../../data/productCatalogData';
+import { CERTIFICATES_DATA } from './CertificatesDropdown';
 import Button from '../UI/Button';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ExternalLink } from 'lucide-react';
 import './MobileMenu.css';
 
 export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, onNavigate }) {
   const [materialsExpanded, setMaterialsExpanded] = useState(false);
   const [productsExpanded, setProductsExpanded] = useState(false);
+  const [certificatesExpanded, setCertificatesExpanded] = useState(false);
   const menuRef = useRef(null);
   const linksContainerRef = useRef(null);
   const footerRef = useRef(null);
@@ -97,9 +99,14 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
       setProductsExpanded(prev => !prev);
       return;
     }
+    if (id === 'certificate') {
+      setCertificatesExpanded(prev => !prev);
+      return;
+    }
 
     setMaterialsExpanded(false);
     setProductsExpanded(false);
+    setCertificatesExpanded(false);
     onClose();
     if (onNavigate) {
       if (id === 'about') {
@@ -160,7 +167,8 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
             const isActive = activeLink === link.id;
             const isMaterials = link.id === 'materials';
             const isProducts = link.id === 'products';
-            const hasSubnav = isMaterials || isProducts;
+            const isCertificate = link.id === 'certificate';
+            const hasSubnav = isMaterials || isProducts || isCertificate;
 
             let targetHref = link.href;
             if (link.id === 'about') targetHref = '/about';
@@ -200,6 +208,18 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
                       onClick={() => setProductsExpanded(prev => !prev)}
                       aria-label={productsExpanded ? 'Collapse Products Menu' : 'Expand Products Menu'}
                       aria-expanded={productsExpanded}
+                    >
+                      <ChevronDown size={18} />
+                    </button>
+                  )}
+
+                  {isCertificate && (
+                    <button
+                      type="button"
+                      className={`mobile-subnav-toggle ${certificatesExpanded ? 'expanded' : ''}`}
+                      onClick={() => setCertificatesExpanded(prev => !prev)}
+                      aria-label={certificatesExpanded ? 'Collapse Certificate Menu' : 'Expand Certificate Menu'}
+                      aria-expanded={certificatesExpanded}
                     >
                       <ChevronDown size={18} />
                     </button>
@@ -256,6 +276,45 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
                           <span className="subnav-mat-name">{group.name}</span>
                         </a>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Expandable 3 Certificates Sub-menu */}
+                {isCertificate && certificatesExpanded && (
+                  <div className="mobile-subnav-container">
+                    <div className="mobile-subnav-grid mobile-subnav-grid-single">
+                      {CERTIFICATES_DATA.map((cert) => {
+                        const IconComponent = cert.icon;
+                        return (
+                          <a
+                            key={cert.id}
+                            href={cert.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mobile-subnav-item mobile-cert-subnav-item"
+                            onClick={() => {
+                              setCertificatesExpanded(false);
+                              onClose();
+                            }}
+                            title={`Open ${cert.name} (PDF)`}
+                          >
+                            <div className="mobile-cert-item-inner">
+                              <span className="mobile-cert-icon-wrap">
+                                <IconComponent size={16} />
+                              </span>
+                              <div className="mobile-cert-text">
+                                <span className="subnav-mat-name">{cert.name}</span>
+                                <span className="mobile-cert-category">{cert.category}</span>
+                              </div>
+                            </div>
+                            <div className="mobile-cert-right">
+                              <span className="mobile-subnav-badge">PDF</span>
+                              <ExternalLink size={13} className="mobile-cert-ext" />
+                            </div>
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

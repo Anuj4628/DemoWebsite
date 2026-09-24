@@ -168,17 +168,21 @@
 }
 
 .products-item:hover .nav-dropdown-chevron,
+.materials-item:hover .nav-dropdown-chevron,
+.certificate-item:hover .nav-dropdown-chevron,
 .nav-dropdown-chevron.rotated {
   transform: rotate(180deg) !important;
   color: var(--brand-teal) !important;
 }
 
 .navbar-link:hover .navbar-link-indicator,
-.navbar-link.active .navbar-link-indicator {
+.navbar-link.active .navbar-link-indicator,
+.navbar-link.menu-active .navbar-link-indicator {
   width: 16px;
 }
 
-.navbar-link.active {
+.navbar-link.active,
+.navbar-link.menu-active {
   color: var(--brand-teal);
   font-weight: 600;
 }

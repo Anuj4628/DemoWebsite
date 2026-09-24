@@ -28,9 +28,9 @@ export default function Footer({ onNavigate }) {
       <div className="footer-top-glow" aria-hidden="true" />
 
       <div className="footer-container">
-        {/* Main 5-Column Grid */}
+        {/* Main 4-Column Grid */}
         <div className="footer-main-grid">
-          {/* Brand Col */}
+          {/* Column 1: Brand */}
           <div className="footer-brand-col">
             <a
               href="#home"
@@ -63,7 +63,7 @@ export default function Footer({ onNavigate }) {
             </div>
           </div>
 
-          {/* Column 1: Quick Links */}
+          {/* Column 2: Quick Links */}
           <div className="footer-col">
             <h4 className="footer-col-title">
               Quick Links
@@ -77,7 +77,7 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* Column 2: Company */}
+          {/* Column 3: Company */}
           <div className="footer-col">
             <h4 className="footer-col-title">
               Company
@@ -91,7 +91,7 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* Column 3: Products */}
+          {/* Column 4: Products */}
           <div className="footer-col">
             <h4 className="footer-col-title">
               Products
@@ -106,72 +106,73 @@ export default function Footer({ onNavigate }) {
               <li><a href="/products/manufacturer/flanges" className="footer-link" onClick={(e) => handleLinkClick(e, '/products/manufacturer/flanges')}>Flanges</a></li>
             </ul>
           </div>
+        </div>
 
-          {/* Contact Column */}
-          <div className="footer-col footer-contact-col">
-            <h4 className="footer-col-title">
-              Contact Us
-              <span className="title-accent-dot" />
-            </h4>
-            <div className="footer-contact-details">
-              {/* Phone Numbers */}
-              <div className="contact-line">
-                <Phone size={16} className="contact-icon" />
-                <div>
-                  <span className="contact-lbl">Direct &amp; Export Desk</span>
-                  <div className="contact-phones-wrap">
-                    <a href={`tel:${contact.phone1Raw}`} className="contact-val">{contact.phone1}</a>
-                    <span className="contact-sep">/</span>
-                    <a href={`tel:${contact.phone2Raw}`} className="contact-val">{contact.phone2}</a>
-                  </div>
+        {/* Contact Us Row — compact, below grid */}
+        <div className="footer-contact-row">
+          <h4 className="footer-contact-row-title">
+            Contact Us
+            <span className="title-accent-dot" />
+          </h4>
+
+          <div className="footer-contact-items">
+            {/* Phone Numbers */}
+            <div className="contact-line">
+              <Phone size={15} className="contact-icon" />
+              <div>
+                <span className="contact-lbl">Direct &amp; Export Desk</span>
+                <div className="contact-phones-wrap">
+                  <a href={`tel:${contact.phone1Raw}`} className="contact-val">{contact.phone1}</a>
+                  <span className="contact-sep">/</span>
+                  <a href={`tel:${contact.phone2Raw}`} className="contact-val">{contact.phone2}</a>
                 </div>
-              </div>
-
-              {/* Email */}
-              <div className="contact-line">
-                <Mail size={16} className="contact-icon" />
-                <div>
-                  <span className="contact-lbl">Commercial Enquiries</span>
-                  <div className="contact-phones-wrap">
-                    <a href={`mailto:${contact.email}`} className="contact-val">{contact.email}</a>
-                    {contact.secondaryEmail && (
-                      <>
-                        <span className="contact-sep">/</span>
-                        <a href={`mailto:${contact.secondaryEmail}`} className="contact-val">{contact.secondaryEmail}</a>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="contact-line">
-                <MapPin size={16} className="contact-icon" />
-                <div>
-                  <span className="contact-lbl">Registered Office</span>
-                  <address className="contact-val contact-address">
-                    139 Sant Sena Maharaja Marg,<br />
-                    Near Round Temple,<br />
-                    Mumbai - 400 004,<br />
-                    Maharashtra, India
-                  </address>
-                </div>
-              </div>
-
-              <div className="footer-cta-wrap">
-                <Button
-                  href="/contact"
-                  variant="primary"
-                  size="sm"
-                  icon="arrow"
-                  onClick={(e) => handleLinkClick(e, 'contact')}
-                >
-                  Get a Quote
-                </Button>
               </div>
             </div>
-          </div>
 
+            {/* Email */}
+            <div className="contact-line">
+              <Mail size={15} className="contact-icon" />
+              <div>
+                <span className="contact-lbl">Commercial Enquiries</span>
+                <div className="contact-phones-wrap">
+                  <a href={`mailto:${contact.email}`} className="contact-val">{contact.email}</a>
+                  {contact.secondaryEmail && (
+                    <>
+                      <span className="contact-sep">/</span>
+                      <a href={`mailto:${contact.secondaryEmail}`} className="contact-val">{contact.secondaryEmail}</a>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="contact-line">
+              <MapPin size={15} className="contact-icon" />
+              <div>
+                <span className="contact-lbl">Registered Office</span>
+                <address className="contact-val contact-address">
+                  139 Sant Sena Maharaja Marg,<br />
+                  Near Round Temple,<br />
+                  Mumbai - 400 004,<br />
+                  Maharashtra, India
+                </address>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="footer-cta-wrap">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="sm"
+                icon="arrow"
+                onClick={(e) => handleLinkClick(e, 'contact')}
+              >
+                Get a Quote
+              </Button>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar: Copyright & Legal */}

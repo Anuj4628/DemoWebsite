@@ -22,16 +22,16 @@ import precisionPipingImg from '../assets/Serving Global Mission-Critical Sector
 
 // Authentic Client Network Partner Logos from Partners Folder
 import adaniLogo from '../assets/partners/adani.svg';
-import adityaBirlaLogo from '../assets/partners/aditya_birla.svg';
-import bhushanPowerLogo from '../assets/partners/bhushan_power.svg';
+import adityaBirlaLogo from '../assets/partners/aditya_birla.png';
+import bhushanPowerLogo from '../assets/partners/bhushan_power.png';
 import godrejLogo from '../assets/partners/godrej.svg';
 import haldiaLogo from '../assets/partners/haldia_petrochemicals.svg';
-import hpclLogo from '../assets/partners/hindustan_petroleum.svg';
+import hpclLogo from '../assets/partners/hindustan_petroleum.png';
 import ioclLogo from '../assets/partners/indian_oil.svg';
-import jindalLogo from '../assets/partners/jindal_steel.svg';
-import jswLogo from '../assets/partners/jsw_steel.svg';
-import relianceLogo from '../assets/partners/reliance.svg';
-import tataSteelLogo from '../assets/partners/tata_steel.svg';
+import jindalLogo from '../assets/partners/jindal_steel.png';
+import jswLogo from '../assets/partners/jsw_steel.png';
+import relianceLogo from '../assets/partners/reliance.png';
+import tataSteelLogo from '../assets/partners/tata_steel.png';
 
 // ==========================================
 // 1. MATERIALS SPECIFICATION RAIL (Industrial Technical Panels)

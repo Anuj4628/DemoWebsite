@@ -293,3 +293,61 @@
   color: var(--color-text-muted);
 }
 
+/* Mobile Certificates Subnav */
+.mobile-subnav-grid-single {
+  grid-template-columns: 1fr;
+}
+
+.mobile-cert-subnav-item {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.mobile-cert-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mobile-cert-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(18, 90, 72, 0.08);
+  color: var(--brand-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobile-cert-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mobile-cert-category {
+  font-size: 0.72rem;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-cert-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mobile-cert-ext {
+  color: #94A3B8;
+}
+
+
