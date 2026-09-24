@@ -28,7 +28,7 @@ import legacyImg2026 from '../assets/Product BG/precision pipes and fitting.png'
 import storyImg from '../assets/images/company-story-steel.jpg';
 
 export const aboutIntroData = {
-  eyebrow: "ABOUT BHAWAL STEEL & ENGINEERING",
+  eyebrow: "ABOUT BHAWAL STEEL & ENGINEERING COMPANY",
   headlineLine1: "ENGINEERED INTEGRITY.",
   headlineLine2: "GLOBAL INDUSTRIAL STEEL.",
   lead: "Specialized high-performance ferrous and exotic alloys engineered for severe operating environments, extreme pressures, and mission-critical infrastructure worldwide.",

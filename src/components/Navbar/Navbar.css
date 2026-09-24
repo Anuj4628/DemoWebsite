@@ -80,16 +80,16 @@
 }
 
 .navbar-brand-logo {
-  height: 44px;
+  height: 50px;
   width: auto;
-  max-width: 220px;
+  max-width: 240px;
   object-fit: contain;
   display: block;
 }
 
 .navbar-wrapper.is-scrolled .navbar-brand-logo {
-  height: 44px;
-  max-width: 220px;
+  height: 50px;
+  max-width: 240px;
 }
 
 /* Desktop Navigation - Spacious & Comfortable Breathing Room */
@@ -252,8 +252,8 @@
 
   .navbar-brand-logo,
   .navbar-wrapper.is-scrolled .navbar-brand-logo {
-    height: 38px;
-    max-width: 185px;
+    height: 42px;
+    max-width: 200px;
   }
 }
 
@@ -272,7 +272,7 @@
   }
   .navbar-brand-logo,
   .navbar-wrapper.is-scrolled .navbar-brand-logo {
-    height: 34px;
-    max-width: 160px;
+    height: 38px;
+    max-width: 175px;
   }
 }

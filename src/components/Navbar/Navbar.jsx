@@ -183,8 +183,8 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                 src={brandDetails.logoUrl}
                 alt={brandDetails.name}
                 className="navbar-brand-logo"
-                width="203"
-                height="44"
+                width="230"
+                height="50"
                 decoding="async"
               />
             </div>

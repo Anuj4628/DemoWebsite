@@ -54,12 +54,9 @@ export default function Footer({ onNavigate }) {
             <div className="footer-cert-tags">
               <div className="cert-tag">
                 <ShieldCheck size={14} className="cert-icon" />
-                <span>ISO 9001:2015 CERTIFIED</span>
+                <span>ISO 9001:2015 CERTIFIED COMPANY</span>
               </div>
-              <div className="cert-tag">
-                <Award size={14} className="cert-icon" />
-                <span>ASME BOILER CODE COMPLIANT</span>
-              </div>
+              
             </div>
           </div>
 
@@ -157,6 +154,14 @@ export default function Footer({ onNavigate }) {
                   Mumbai - 400 004,<br />
                   Maharashtra, India
                 </address>
+              </div>
+            </div>
+
+            {/* Warehouse / Godown */}
+            <div className="contact-line">
+              <div>
+                <span className="contact-lbl">Warehouse / Godown</span>
+                <span className="contact-val">Kalamboli</span>
               </div>
             </div>
 
