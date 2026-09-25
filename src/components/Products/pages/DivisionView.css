@@ -302,6 +302,34 @@
   color: var(--brand-teal, #125A48);
 }
 
+/* Multi-Column Desktop Grid for Narrower Compact Cards */
+.compact-families-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+@media (min-width: 1240px) {
+  .compact-families-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .compact-families-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .compact-families-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
 /* Capabilities Card */
 .division-capabilities-card {
   margin-top: 36px;

@@ -300,7 +300,14 @@
   transition: color 0.2s ease;
 }
 
-.material-category-card:hover .mat-card-title {
+.mat-card-title-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.material-category-card:hover .mat-card-title,
+.material-category-card:hover .mat-card-title-link {
   color: var(--brand-teal, #125A48);
 }
 
@@ -348,6 +355,7 @@
   justify-content: space-between;
   padding-top: 12px;
   border-top: 1px solid #F1F5F9;
+  text-decoration: none;
 }
 
 .mat-card-action-text {

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { aboutCertificationsData } from '../../data/aboutData';
 import { ShieldCheck, Award, CheckCircle2, Layers, FileCheck, Check, FileText, ExternalLink, X, ZoomIn } from 'lucide-react';
 
 // Import certificate PDFs

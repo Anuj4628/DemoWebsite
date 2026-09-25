@@ -1,0 +1,14 @@
+# robots.txt for https://www.bhawalsteel.com
+# Bhawal Steel & Engineering Company
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /src/
+
+# Disallow internal API endpoints from search index
+Disallow: /api/
+
+# Host and Sitemap
+Host: https://www.bhawalsteel.com
+Sitemap: https://www.bhawalsteel.com/sitemap.xml

@@ -1,10 +1,17 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/rfq", "destination": "/request-for-quote", "permanent": true },
+    { "source": "/rfq/", "destination": "/request-for-quote", "permanent": true },
+    { "source": "/quote", "destination": "/request-for-quote", "permanent": true },
+    { "source": "/quote/", "destination": "/request-for-quote", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/contact/", "destination": "/contact.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/about/", "destination": "/about.html" },
-    { "source": "/((?!assets/|.*\\..*).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|assets/|.*\\..*).*)", "destination": "/index.html" }
   ]
 }

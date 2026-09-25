@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { getAllProductGroups } from '../../data/productCatalogData';
 import { brandDetails } from '../../data/navigationData';
+import { submitQuoteRequest } from '../../utils/quoteSubmissionService';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -177,11 +178,6 @@ export default function ContactRFQ() {
       timeStyle: 'medium'
     });
 
-    const generatedTicket = `BS-RFQ-${Math.floor(100000 + Math.random() * 900000)}`;
-
-    const targetEmail = brandDetails.contact.email;
-    const subjectText = `New RFQ Inquiry — Bhawal Steel & Engineering Company [${generatedTicket}]`;
-
     const emailBodyText = [
       `Full Name: ${formData.fullName.trim()}`,
       `Company Name: ${formData.companyName.trim()}`,
@@ -193,24 +189,31 @@ export default function ContactRFQ() {
     ].join('\n');
 
     try {
-      // Simulate real asynchronous submission network round-trip
-      await new Promise((resolve) => setTimeout(resolve, 850));
+      const result = await submitQuoteRequest({
+        fullName: formData.fullName.trim(),
+        companyName: formData.companyName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        product: formData.product,
+        specsAndQuantity: formData.specsAndQuantity.trim(),
+        source: 'Contact Page RFQ Form'
+      });
 
-      setTicketNumber(generatedTicket);
-      setSubmitSuccess(true);
-      setIsSubmitting(false);
+      if (result.success) {
+        setTicketNumber(result.ticketId);
+        setSubmitSuccess(true);
+        setIsSubmitting(false);
 
-      // Attempt background dispatch / mailto protocol trigger if client permits
-      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(emailBodyText)}`;
-      
-      // Store formatted text for easy clipboard copy in the success banner
-      setFormData((prev) => ({
-        ...prev,
-        _formattedEmail: emailBodyText,
-        _mailtoUrl: mailtoUrl
-      }));
-
-    } catch (_err) {
+        // Store formatted summary text for easy clipboard copy in the success banner
+        setFormData((prev) => ({
+          ...prev,
+          _formattedEmail: emailBodyText
+        }));
+      } else {
+        setIsSubmitting(false);
+        setSubmitError(result.error || 'Failed to transmit RFQ inquiry. Please try again or reach our desk directly.');
+      }
+    } catch {
       setIsSubmitting(false);
       setSubmitError('An unexpected transmission error occurred. Please retry or contact our desk directly.');
     }
@@ -574,7 +577,7 @@ export default function ContactRFQ() {
                     ) : (
                       <>
                         <Send size={16} className="btn-send-icon" aria-hidden="true" />
-                        <span>SUBMIT FORMAL RFQ INQUIRY</span>
+                        <span>SUBMIT RFQ</span>
                       </>
                     )}
                   </span>

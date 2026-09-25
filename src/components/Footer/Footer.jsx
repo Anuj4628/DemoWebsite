@@ -1,7 +1,7 @@
 import React from 'react';
 import { brandDetails } from '../../data/navigationData';
 import Button from '../UI/Button';
-import { MapPin, Phone, Mail, ArrowUp, ShieldCheck, Award } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowUp, ShieldCheck } from 'lucide-react';
 import { BHAWAL_CATALOG_URL } from '../../constants/catalog';
 import './Footer.css';
 
@@ -44,6 +44,8 @@ export default function Footer({ onNavigate }) {
                   src={brandDetails.logoUrl}
                   alt={brandDetails.name}
                   className="footer-logo-img"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </a>
@@ -57,7 +59,7 @@ export default function Footer({ onNavigate }) {
                 <ShieldCheck size={14} className="cert-icon" />
                 <span>ISO 9001:2015 CERTIFIED COMPANY</span>
               </div>
-              
+
             </div>
           </div>
 
@@ -71,7 +73,8 @@ export default function Footer({ onNavigate }) {
               <li><a href="/" className="footer-link" onClick={(e) => handleLinkClick(e, 'home')}>Home</a></li>
               <li><a href="/about" className="footer-link" onClick={(e) => handleLinkClick(e, 'about')}>About Us</a></li>
               <li><a href="/products" className="footer-link" onClick={(e) => handleLinkClick(e, '/products')}>Products</a></li>
-              <li><a href="/#materials" className="footer-link" onClick={(e) => handleLinkClick(e, 'home', 'materials')}>Materials</a></li>
+              <li><a href="/materials" className="footer-link" onClick={(e) => handleLinkClick(e, '/materials')}>Materials</a></li>
+              <li><a href="/request-for-quote" className="footer-link" onClick={(e) => handleLinkClick(e, '/request-for-quote')}>Request for Quote</a></li>
               <li>
                 <a
                   href={BHAWAL_CATALOG_URL}
@@ -186,18 +189,18 @@ export default function Footer({ onNavigate }) {
             <div className="contact-line">
               <div>
                 <span className="contact-lbl">Warehouse / Godown</span>
-                <span className="contact-val">Kalamboli</span>
+                <span className="contact-val">Kalamboli,Taloja Navi mumbai, Maharashtra</span>
               </div>
             </div>
 
             {/* CTA */}
             <div className="footer-cta-wrap">
               <Button
-                href="/contact"
+                href="/request-for-quote"
                 variant="primary"
                 size="sm"
                 icon="arrow"
-                onClick={(e) => handleLinkClick(e, 'contact')}
+                onClick={(e) => handleLinkClick(e, '/request-for-quote')}
               >
                 Get a Quote
               </Button>

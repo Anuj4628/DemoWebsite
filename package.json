@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate_sitemap.cjs && vite build",
+    "test:seo": "node scripts/test_seo_routes.cjs",
+    "test:audit": "node scripts/full_production_audit.cjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
     "gsap": "^3.15.0",
     "lucide-react": "^1.46.0",
+    "nodemailer": "^10.0.10",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

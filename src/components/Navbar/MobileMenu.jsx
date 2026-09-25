@@ -340,14 +340,14 @@ export default function MobileMenu({ isOpen, onClose, activeLink, currentPage, o
           </a>
 
           <Button
-            href="/contact"
+            href="/request-for-quote"
             variant="primary"
             size="md"
             icon="arrow"
             onClick={(e) => {
               e.preventDefault();
               onClose();
-              if (onNavigate) onNavigate('contact');
+              if (onNavigate) onNavigate('rfq');
             }}
             className="mobile-quote-btn"
           >

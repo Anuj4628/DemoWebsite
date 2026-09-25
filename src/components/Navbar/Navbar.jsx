@@ -288,14 +288,14 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
           {/* Desktop Right CTA */}
           <div className="navbar-actions-desktop">
             <Button
-              href="/contact"
+              href="/request-for-quote"
               variant="nav-quote"
               size="sm"
               icon="arrow"
               onClick={(e) => {
                 if (onNavigate) {
                   e.preventDefault();
-                  onNavigate('contact');
+                  onNavigate('rfq');
                 }
               }}
             >

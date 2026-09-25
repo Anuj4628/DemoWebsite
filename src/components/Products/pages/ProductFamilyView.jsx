@@ -24,9 +24,6 @@ export default function ProductFamilyView({
     return getProductGroup(divisionSlug, groupSlug);
   }, [divisionSlug, groupSlug]);
 
-  const division = useMemo(() => {
-    return (group && DIVISIONS[group.divisionSlug]) || DIVISIONS[divisionSlug] || null;
-  }, [group, divisionSlug]);
 
   // Extract unique materials that actually exist in this family
   const materialList = useMemo(() => {
@@ -103,7 +100,6 @@ export default function ProductFamilyView({
     );
   }
 
-  const divisionName = division ? division.badge : (group.divisionSlug === 'manufacturer' ? 'MANUFACTURER' : 'SUPPLIER');
   const shortDescription = group.shortDesc || group.fullDesc;
 
   return (
@@ -121,9 +117,27 @@ export default function ProductFamilyView({
             
             {/* Breadcrumb inside Card: Home > Products > [Family Name] */}
             <nav className="family-breadcrumb-nav" aria-label="Breadcrumb">
-              <span className="crumb-text" onClick={() => onNavigate('/')}>Home</span>
+              <a
+                href="/"
+                className="crumb-text"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/');
+                }}
+              >
+                Home
+              </a>
               <span className="crumb-arrow">&gt;</span>
-              <span className="crumb-text" onClick={() => onNavigate('/products')}>Products</span>
+              <a
+                href="/products"
+                className="crumb-text"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/products');
+                }}
+              >
+                Products
+              </a>
               <span className="crumb-arrow">&gt;</span>
               <span className="crumb-active">{group.name}</span>
             </nav>

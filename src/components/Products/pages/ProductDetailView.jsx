@@ -62,12 +62,13 @@ export default function ProductDetailView({
   }
 
   const breadcrumbItems = [
-    { label: 'Products', path: '/products' },
+    { label: 'Products', path: '/products', url: '/products' },
     {
       label: product.groupName,
-      path: `/products/${product.divisionSlug}/${product.groupSlug}`
+      path: `/products/${product.divisionSlug}/${product.groupSlug}`,
+      url: `/products/${product.divisionSlug}/${product.groupSlug}`
     },
-    { label: product.name, path: null }
+    { label: product.name, path: null, url: null }
   ];
 
   const scrollToRFQ = () => {
@@ -85,12 +86,29 @@ export default function ProductDetailView({
     <div className="bright-detail-view">
       <main className="detail-main-content">
         <div className="detail-container">
-          <ProductBreadcrumb items={breadcrumbItems} onNavigate={onNavigate} />
+          
+          {/* 1. Top Utility Header Strip */}
+          <div className="pdp-top-utility-bar">
+            <ProductBreadcrumb items={breadcrumbItems} onNavigate={onNavigate} />
 
-          {/* Top Showcase: 2-Column Industrial Layout */}
-          <section className="product-showcase-grid">
+            <div className="pdp-status-chips">
+              <span className="pdp-status-pill stock-ready">
+                <span className="pdp-status-dot" aria-hidden="true" />
+                <span>EX-STOCK &amp; MILL MAKE</span>
+              </span>
+              <span className="pdp-status-pill mtc-certified">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>EN 10204 3.1 CERTIFIED</span>
+              </span>
+            </div>
+          </div>
+
+          {/* 2. Master Product Engineering Showcase (Modern Split Architecture) */}
+          <section className="product-showcase-grid" aria-label="Product Showcase">
             
-            {/* Left: Product Visual Card */}
+            {/* Left Column: Visual Viewport & Metallurgical Certification Deck */}
             <div className="showcase-visual-col">
               <div className="showcase-media-box">
                 <img
@@ -101,15 +119,22 @@ export default function ProductDetailView({
                   decoding="async"
                   fetchPriority="high"
                 />
+                
+                {/* Floating Alloy Pill */}
                 <div className="showcase-floating-badge">
                   <span>{product.materialName || 'PREMIUM ALLOY'}</span>
+                </div>
+
+                {/* Viewport Industrial Watermark Code */}
+                <div className="showcase-corner-indicator">
+                  <span>MILL SPEC // BSE-{product.id ? product.id.slice(0, 4).toUpperCase() : 'CERT'}</span>
                 </div>
               </div>
 
               {/* Quality & Metallurgical Verification Badges */}
               <div className="quality-assurance-row">
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2" aria-hidden="true">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
@@ -120,7 +145,7 @@ export default function ProductDetailView({
                 </div>
 
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2" aria-hidden="true">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -128,13 +153,13 @@ export default function ProductDetailView({
                     <polyline points="10 9 9 9 8 9"></polyline>
                   </svg>
                   <div>
-                    <strong>EN 10204 3.1 & 3.2</strong>
+                    <strong>EN 10204 3.1 &amp; 3.2</strong>
                     <span>Full MTC Supplied</span>
                   </div>
                 </div>
 
                 <div className="qa-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#125A48" strokeWidth="2.2" aria-hidden="true">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="m4.93 4.93 4.24 4.24"></path>
                     <path d="m14.83 9.17 4.24-4.24"></path>
@@ -144,18 +169,26 @@ export default function ProductDetailView({
                   </svg>
                   <div>
                     <strong>Pressure Tested</strong>
-                    <span>Hydro & Ultrasonic</span>
+                    <span>Hydro &amp; Ultrasonic</span>
                   </div>
                 </div>
               </div>
+
+              {/* Sourcing Guarantee Snippet */}
+              <div className="sourcing-guarantee">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Third-Party Inspection (TPI) accepted: Lloyd's, BV, DNV, TUV, SGS</span>
+              </div>
             </div>
 
-            {/* Right: Commercial & Technical Product Summary */}
+            {/* Right Column: Commercial & Technical Product Console */}
             <div className="showcase-info-col">
               <div className="info-division-tag">
-                <span>PRECISION INDUSTRIAL STEEL</span>
+                <span className="division-kicker">PRECISION INDUSTRIAL STEEL</span>
                 <span className="dot-sep">•</span>
-                <span>{product.groupName}</span>
+                <span className="group-name-tag">{product.groupName}</span>
               </div>
 
               <h1 className="product-title">{product.name}</h1>
@@ -173,25 +206,25 @@ export default function ProductDetailView({
               <div className="quick-specs-matrix">
                 {product.specs?.size && (
                   <div className="matrix-cell">
-                    <span className="cell-label">Size Range</span>
+                    <span className="cell-label">Nominal Size Range</span>
                     <span className="cell-val">{product.specs.size}</span>
                   </div>
                 )}
                 {(product.specs?.schedule || product.specs?.thickness || product.specs?.class) && (
                   <div className="matrix-cell">
-                    <span className="cell-label">Schedule / Rating</span>
+                    <span className="cell-label">Schedule / Pressure Class</span>
                     <span className="cell-val">{product.specs.schedule || product.specs.thickness || product.specs.class}</span>
                   </div>
                 )}
                 {product.specs?.standards && (
                   <div className="matrix-cell">
-                    <span className="cell-label">Governing Code</span>
+                    <span className="cell-label">Manufacturing Code</span>
                     <span className="cell-val">{product.specs.standards}</span>
                   </div>
                 )}
                 <div className="matrix-cell">
-                  <span className="cell-label">Stock Availability</span>
-                  <span className="cell-val stock-ready">Ex-Stock & Mill Make</span>
+                  <span className="cell-label">Inventory &amp; Supply</span>
+                  <span className="cell-val stock-ready">Ex-Stock &amp; Mill Make</span>
                 </div>
               </div>
 
@@ -202,7 +235,7 @@ export default function ProductDetailView({
                   className="btn-detail-rfq"
                   onClick={scrollToRFQ}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                   </svg>
                   <span>Request Instant Quotation</span>
@@ -214,19 +247,17 @@ export default function ProductDetailView({
                   rel="noopener noreferrer"
                   className="btn-detail-whatsapp"
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
                   </svg>
                   <span>WhatsApp Inquiry</span>
                 </a>
               </div>
 
-              {/* Sourcing Guarantee Snippet */}
-              <div className="sourcing-guarantee">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span>Third-Party Inspection (TPI) accepted: Lloyd's, BV, DNV, TUV, SGS</span>
+              {/* Fast Response Assurance */}
+              <div className="pdp-turnaround-note">
+                <span className="turnaround-dot" aria-hidden="true" />
+                <span>Priority Technical Desk: Detailed commercial quotation within 2 to 4 business hours.</span>
               </div>
             </div>
           </section>
@@ -298,7 +329,7 @@ export default function ProductDetailView({
             <InquiryForm
               productName={product.name}
               materialGrade={product.grade}
-              division={product.division}
+              division={division?.name || product.division}
             />
           </section>
 

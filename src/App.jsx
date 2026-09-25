@@ -22,8 +22,9 @@ const MaterialsLandingView = lazy(() => import('./components/Materials/pages/Mat
 const MaterialDetailView = lazy(() => import('./components/Materials/pages/MaterialDetailView'));
 const ContactPage = lazy(() => import('./components/Contact/ContactPage'));
 
-export { preloadRoute } from './utils/preloadRoute';
 import { preloadRoute } from './utils/preloadRoute';
+import { applySEO } from './utils/seoManager';
+import NotFoundPage from './components/UI/NotFoundPage';
 
 import './App.css';
 
@@ -33,14 +34,27 @@ import './App.css';
 function parseRoute(pathname = window.location.pathname) {
   const clean = (pathname || '').toLowerCase();
 
-  if (clean.includes('about')) {
+  // 1. Direct RFQ Routes
+  if (
+    clean === '/request-for-quote' || 
+    clean === '/rfq' || 
+    clean.startsWith('/request-for-quote') || 
+    clean.startsWith('/rfq')
+  ) {
+    return { page: 'rfq' };
+  }
+
+  // 2. About Route
+  if (clean === '/about' || clean.startsWith('/about')) {
     return { page: 'about' };
   }
 
-  if (clean.includes('contact')) {
+  // 3. Contact Route
+  if (clean === '/contact' || clean.startsWith('/contact')) {
     return { page: 'contact' };
   }
 
+  // 4. Materials Routes
   if (clean.startsWith('/materials')) {
     const raw = pathname.replace(/^\/materials\/?/i, '');
     const parts = raw.split('/').filter(Boolean);
@@ -52,6 +66,7 @@ function parseRoute(pathname = window.location.pathname) {
     return { page: 'materials', view: 'material', materialSlug: parts[0].toLowerCase() };
   }
 
+  // 5. Products Routes
   if (clean.startsWith('/products')) {
     const raw = pathname.replace(/^\/products\/?/i, '');
     const parts = raw.split('/').filter(Boolean);
@@ -63,7 +78,7 @@ function parseRoute(pathname = window.location.pathname) {
     if (parts.length === 1) {
       const p0 = parts[0].toLowerCase();
       if (p0 === 'manufacturer' || p0 === 'supplier') {
-        return { page: 'products', view: 'landing' };
+        return { page: 'products', view: 'division', divisionSlug: p0 };
       }
       return { page: 'products', view: 'family', groupSlug: parts[0] };
     }
@@ -87,7 +102,13 @@ function parseRoute(pathname = window.location.pathname) {
     }
   }
 
-  return { page: 'home' };
+  // 6. Home Route
+  if (clean === '/' || clean === '' || clean.startsWith('/#')) {
+    return { page: 'home' };
+  }
+
+  // 7. Non-matching Route -> 404
+  return { page: 'not-found' };
 }
 
 /**
@@ -96,35 +117,9 @@ function parseRoute(pathname = window.location.pathname) {
 export default function App() {
   const [route, setRoute] = useState(parseRoute);
 
-  // Dynamic document title management across routes
+  // Dynamic document title, canonical, OG, Twitter, and JSON-LD management across routes
   useEffect(() => {
-    if (route.page === 'about') {
-      document.title = 'About Us | Bhawal Steel & Engineering Company — Metallurgy, Heritage & Supply';
-    } else if (route.page === 'contact') {
-      document.title = 'Contact Us | Bhawal Steel & Engineering Company — Technical Desk & Location';
-    } else if (route.page === 'materials') {
-      if (route.view === 'material' && route.materialSlug) {
-        const matName = route.materialSlug.replace(/-/g, ' ').toUpperCase();
-        document.title = `${matName} Products | Bhawal Steel & Engineering Company`;
-      } else {
-        document.title = 'Materials & Alloys Catalog | Bhawal Steel & Engineering Company';
-      }
-    } else if (route.page === 'products') {
-      if (route.view === 'detail' && route.productSlug) {
-        const prodName = route.productSlug.replace(/-/g, ' ').toUpperCase();
-        document.title = `${prodName} | Bhawal Steel & Engineering Company`;
-      } else if (route.view === 'family' && route.groupSlug) {
-        const grpName = route.groupSlug.replace(/-/g, ' ').toUpperCase();
-        document.title = `${grpName} | Bhawal Steel & Engineering Company`;
-      } else if (route.view === 'division' && route.divisionSlug) {
-        const divName = route.divisionSlug === 'manufacturer' ? 'Manufacturer Division' : 'Supplier Division';
-        document.title = `${divName} | Bhawal Steel & Engineering Company`;
-      } else {
-        document.title = 'Industrial Products Catalog | Bhawal Steel & Engineering Company';
-      }
-    } else {
-      document.title = 'Bhawal Steel & Engineering Company | Steel Products & Solutions, Mumbai';
-    }
+    applySEO(route);
   }, [route]);
 
   // Centralized page and section navigation handler
@@ -153,6 +148,15 @@ export default function App() {
         window.history.pushState({ page: 'contact' }, '', '/contact');
       }
       setRoute({ page: 'contact' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+
+    if (target === 'rfq' || target === '/request-for-quote' || target === '/rfq') {
+      if (window.location.pathname !== '/request-for-quote') {
+        window.history.pushState({ page: 'rfq' }, '', '/request-for-quote');
+      }
+      setRoute({ page: 'rfq' });
       window.scrollTo({ top: 0, behavior: 'instant' });
       return;
     }
@@ -239,7 +243,12 @@ export default function App() {
       <Navbar currentPage={route.page} onNavigate={navigateTo} />
 
       {/* 2. Page Switcher with Instant Suspense Fallback */}
-      {route.page === 'about' ? (
+      {route.page === 'not-found' ? (
+        /* 404 Not Found Page */
+        <main id="main-content" className="not-found-page-main">
+          <NotFoundPage onNavigate={navigateTo} />
+        </main>
+      ) : route.page === 'about' ? (
         /* Dedicated Independent About Page */
         <main id="main-content" className="about-page-main">
           <Suspense fallback={<div className="page-load-shell about-shell" aria-hidden="true" />}>
@@ -251,6 +260,13 @@ export default function App() {
         <main id="main-content" className="contact-page-main">
           <Suspense fallback={<div className="page-load-shell contact-shell" aria-hidden="true" />}>
             <ContactPage onNavigate={navigateTo} />
+          </Suspense>
+        </main>
+      ) : route.page === 'rfq' ? (
+        /* Direct Request for Quote Page */
+        <main id="main-content" className="contact-page-main rfq-page-main">
+          <Suspense fallback={<div className="page-load-shell contact-shell" aria-hidden="true" />}>
+            <ContactPage onNavigate={navigateTo} initialSection="rfq-section" />
           </Suspense>
         </main>
       ) : route.page === 'materials' ? (

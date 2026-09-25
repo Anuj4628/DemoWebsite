@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import heroBg from '../../assets/images/contact-hero-new.png';
+import heroBg from '../../assets/images/contact-hero.jpg';
 import {
   Send,
   Phone,

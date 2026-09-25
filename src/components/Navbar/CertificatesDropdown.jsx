@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Award, CheckCircle2, ExternalLink, FileText, Check } from 'lucide-react';
+import { ShieldCheck, Award, CheckCircle2, ExternalLink } from 'lucide-react';
 import isoCertificate from '../../assets/Certificates/BSEC ISO CERTIFICATE.pdf';
 import iecCertificate from '../../assets/Certificates/BSEC IEC CERTIFICATE 1.pdf';
 import udhyamCertificate from '../../assets/Certificates/BSEC UDHYAM CERTIFICATE.pdf';
@@ -39,7 +39,7 @@ export const CERTIFICATES_DATA = [
 ];
 
 function CertificatesDropdown({ isOpen, onClose }) {
-  const handleItemClick = (e, file) => {
+  const handleItemClick = () => {
     // PDF opens natively in new tab via href & target="_blank"
     if (onClose) {
       onClose();

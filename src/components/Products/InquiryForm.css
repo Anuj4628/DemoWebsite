@@ -1,6 +1,6 @@
 /* ======================================================================
-   BHAWAL STEEL & ENGINEERING COMPANY — PRODUCT RFQ FORM (INDUSTRIAL DARK THEME)
-   Styled to match the global dark theme RFQ specification across all pages
+   BHAWAL STEEL & ENGINEERING COMPANY — PRODUCT RFQ FORM (PREMIUM LIGHT THEME)
+   Clean, high-visibility procurement specification form with subtle dark accents
    ====================================================================== */
 
 .bright-rfq-section {
@@ -10,13 +10,13 @@
 
 .rfq-card-white {
   position: relative;
-  background: #0B0F17;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
   border-radius: 14px;
-  padding: 2.8rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  padding: clamp(26px, 3.8vw, 42px);
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.05), 0 2px 6px rgba(15, 23, 42, 0.02);
   overflow: hidden;
-  color: #F8FAFC;
+  color: #0F172A;
 }
 
 .rfq-top-bar {
@@ -25,11 +25,11 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--brand-teal) 0%, var(--brand-gold) 50%, var(--brand-teal) 100%);
+  background: #0F172A;
 }
 
 .rfq-head {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.5rem;
 }
 
 .rfq-badge-row {
@@ -42,11 +42,11 @@
 .rfq-badge-red {
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  background: var(--brand-teal-subtle);
-  color: var(--brand-gold-light, #D4AC58);
-  border: 1px solid var(--brand-gold-border);
+  background: #0F172A;
+  color: #FFFFFF;
+  border: none;
   padding: 0.25rem 0.65rem;
   border-radius: 4px;
   text-transform: uppercase;
@@ -56,34 +56,34 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 0.78rem;
   font-weight: 600;
-  color: #94A3B8;
+  color: #64748B;
 }
 
 .rfq-title {
   font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
   font-weight: 800;
-  color: #FFFFFF;
+  color: #0F172A;
   line-height: 1.25;
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .rfq-subtitle {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 0.92rem;
-  color: #94A3B8;
-  line-height: 1.65;
+  color: #475569;
+  line-height: 1.6;
   margin: 0;
   max-width: 780px;
 }
 
-/* Summary Strip in Dark Theme */
+/* Summary Strip in Light Theme */
 .rfq-summary-strip {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
-  background: #121824;
-  border: 1px solid #243044;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: 8px;
   padding: 1rem 1.4rem;
   margin-bottom: 2rem;
@@ -99,7 +99,7 @@
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 0.72rem;
   font-weight: 600;
-  color: #94A3B8;
+  color: #64748B;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -108,10 +108,10 @@
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.9rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #0F172A;
 }
 
-/* Dark Fields Grid */
+/* Light Fields Grid with High Contrast */
 .rfq-fields-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -131,55 +131,64 @@
 
 .form-group label {
   font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   font-weight: 700;
-  color: #E2E8F0;
-  letter-spacing: 0.02em;
+  color: #0F172A;
+  letter-spacing: 0.01em;
 }
 
 .form-group .req {
-  color: #FF4D61;
+  color: #DC2626;
   font-weight: 800;
+  font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  background: #121824;
-  border: 1.5px solid #283548;
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1;
   border-radius: 8px;
   padding: 0.75rem 1rem;
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 0.88rem;
-  color: #FFFFFF;
-  transition: all 0.2s ease;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #0F172A !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
   box-sizing: border-box;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: #94A3B8;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #64748B;
+  color: #64748B !important;
+  opacity: 1;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--brand-gold, #C09642);
-  box-shadow: 0 0 0 3px var(--brand-gold-glow);
-  background: #161F30;
+  border-color: #0F172A;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12);
+  background: #FFFFFF !important;
 }
 
 .form-group input.has-error {
-  border-color: #F43F5E;
-  background: rgba(244, 63, 94, 0.1);
+  border-color: #DC2626 !important;
+  background: #FEF2F2 !important;
 }
 
 .err-text {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 0.75rem;
-  color: #FB7185;
+  font-size: 0.78rem;
+  color: #DC2626;
   font-weight: 600;
 }
 
@@ -193,19 +202,19 @@
 }
 
 .qty-wrap select {
-  width: 150px;
+  width: 160px;
   flex-shrink: 0;
-  background-color: #121824;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #0F172A;
   cursor: pointer;
 }
 
 .qty-wrap select option {
-  background-color: #0F172A;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #0F172A;
 }
 
-/* Dark Submit Row */
+/* Submit Row */
 .rfq-submit-row {
   display: flex;
   flex-wrap: wrap;
@@ -213,33 +222,32 @@
   justify-content: space-between;
   gap: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1.5px solid #F1F5F9;
 }
 
 .btn-transmit-rfq {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.95rem 2rem;
-  background: var(--brand-teal, #125A48);
+  padding: 0.9rem 2rem;
+  background: #0F172A;
   color: #FFFFFF;
-  border: 1px solid var(--brand-gold-border);
+  border: none;
   border-radius: 8px;
   font-family: var(--font-heading, 'Montserrat', sans-serif);
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 6px 20px var(--brand-teal-glow);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16);
   transition: all 0.2s ease;
 }
 
 .btn-transmit-rfq:hover:not(:disabled) {
-  transform: translateY(-1.5px);
-  background: #0E4B3C;
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 14px rgba(18, 90, 72, 0.25);
+  transform: translateY(-1px);
+  background: #1E293B;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.24);
 }
 
 .btn-transmit-rfq:disabled {
@@ -256,7 +264,7 @@
 .direct-hint {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 0.75rem;
-  color: #94A3B8;
+  color: #64748B;
 }
 
 .direct-btns-wrap {
@@ -290,9 +298,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #1E293B;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #0F172A;
   padding: 0.6rem 1rem;
   border-radius: 6px;
   text-decoration: none;
@@ -304,16 +312,16 @@
 }
 
 .btn-call-direct:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: #E2E8F0;
+  border-color: #94A3B8;
 }
 
-/* Success Box in Dark Theme */
+/* Success Box in Light Theme */
 .rfq-success-box {
   text-align: center;
   padding: 2.2rem 1.6rem;
-  background: #121824;
-  border: 1px solid #243044;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
   border-radius: 10px;
 }
 
@@ -322,9 +330,9 @@
   height: 64px;
   margin: 0 auto 1.2rem;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.15);
-  border: 2px solid #10B981;
-  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 2px solid #059669;
+  color: #059669;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -334,30 +342,30 @@
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 1.4rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: #0F172A;
   margin: 0 0 0.6rem 0;
 }
 
 .rfq-success-box p {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 0.92rem;
-  color: #CBD5E1;
+  font-size: 0.95rem;
+  color: #334155;
   max-width: 580px;
   margin: 0 auto 0.6rem;
   line-height: 1.6;
 }
 
 .success-hint {
-  font-size: 0.82rem !important;
-  color: #94A3B8 !important;
+  font-size: 0.84rem !important;
+  color: #64748B !important;
 }
 
 .btn-rfq-again {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
-  background: #1E293B;
+  background: #0F172A;
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: 6px;
   font-family: var(--font-heading, 'Montserrat', sans-serif);
   font-size: 0.8rem;
@@ -369,8 +377,7 @@
 }
 
 .btn-rfq-again:hover {
-  background: #FF5500;
-  border-color: #FF5500;
+  background: #1E293B;
 }
 
 @media (max-width: 768px) {

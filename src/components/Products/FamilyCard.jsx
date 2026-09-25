@@ -55,7 +55,18 @@ function FamilyCard({ group, onSelect }) {
 
         {/* Card Body */}
         <div className="card-body-content">
-          <h3 className="card-title-text">{group.name}</h3>
+          <h3 className="card-title-text">
+            <a
+              href={targetUrl}
+              className="card-title-link"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick();
+              }}
+            >
+              {group.name}
+            </a>
+          </h3>
 
           {/* Two-Pill Row: [MATERIAL] [ALLOY COUNT] */}
           <div className="card-pills-row">
@@ -67,26 +78,26 @@ function FamilyCard({ group, onSelect }) {
           <p className="card-desc-snippet">{desc}</p>
         </div>
 
-        {/* Footer Bar: "EXPLORE PRODUCT DETAILS" + Arrow Icon Box */}
-        <div className="card-footer-bar">
+        {/* Footer Bar: "Explore Details" + Arrow Icon Box */}
+        <a
+          href={targetUrl}
+          className="card-footer-bar"
+          aria-label={`Explore ${group.name} specifications`}
+          onClick={(e) => {
+            e.preventDefault();
+            handleClick();
+          }}
+        >
           <span className="footer-action-label">
-            EXPLORE PRODUCT DETAILS
+            Explore Details
           </span>
-          <button
-            type="button"
-            className="footer-arrow-box"
-            aria-label={`Explore ${group.name}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClick();
-            }}
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <span className="footer-arrow-box" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>
-          </button>
-        </div>
+          </span>
+        </a>
 
       </div>
     </article>

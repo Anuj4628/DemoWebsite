@@ -9,8 +9,9 @@ export default function ProductBreadcrumb({ items = [], onNavigate }) {
 
   const handleClick = (e, item) => {
     e.preventDefault();
-    if (onNavigate && item.url) {
-      onNavigate(item.url);
+    const dest = item.url || item.path;
+    if (onNavigate && dest) {
+      onNavigate(dest);
     }
   };
 
@@ -19,6 +20,7 @@ export default function ProductBreadcrumb({ items = [], onNavigate }) {
       <ol className="breadcrumb-list">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
+          const dest = item.url || item.path;
           return (
             <li
               key={item.label + index}
@@ -32,11 +34,11 @@ export default function ProductBreadcrumb({ items = [], onNavigate }) {
                   </svg>
                 </span>
               )}
-              {isLast || !item.url ? (
+              {isLast || !dest ? (
                 <span className="breadcrumb-current">{item.label}</span>
               ) : (
                 <a
-                  href={item.url}
+                  href={dest}
                   className="breadcrumb-link"
                   onClick={(e) => handleClick(e, item)}
                 >

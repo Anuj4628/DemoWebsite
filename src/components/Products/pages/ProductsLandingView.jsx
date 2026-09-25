@@ -80,7 +80,16 @@ export default function ProductsLandingView({ onNavigate }) {
             
             {/* Breadcrumbs inside the card: Home > Products */}
             <nav className="card-breadcrumb-nav" aria-label="Breadcrumb">
-              <span className="crumb-link" onClick={() => onNavigate('/')}>Home</span>
+              <a
+                href="/"
+                className="crumb-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/');
+                }}
+              >
+                Home
+              </a>
               <span className="crumb-sep">&gt;</span>
               <span className="crumb-current">Products</span>
             </nav>

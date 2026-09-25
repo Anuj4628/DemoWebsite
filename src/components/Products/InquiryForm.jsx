@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { brandDetails } from '../../data/navigationData';
+import { submitQuoteRequest } from '../../utils/quoteSubmissionService';
 import './InquiryForm.css';
 
 /**
@@ -48,12 +49,14 @@ export default function InquiryForm({
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors(prev => ({ ...prev, [name]: undefined, submit: undefined }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -61,12 +64,42 @@ export default function InquiryForm({
     }
 
     setIsSubmitting(true);
-    const newTicket = 'BS-' + Math.floor(100000 + Math.random() * 900000);
-    setTimeout(() => {
+    setErrors(prev => ({ ...prev, submit: undefined }));
+
+    try {
+      const result = await submitQuoteRequest({
+        fullName: formData.fullName.trim(),
+        companyName: formData.company.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        product: productName,
+        productName: productName,
+        materialGrade: materialGrade,
+        quantity: formData.quantity,
+        unit: formData.unit,
+        deliveryLocation: formData.deliveryLocation.trim(),
+        notes: formData.notes.trim(),
+        source: `Product Page RFQ (${productName})`
+      });
+
+      if (result.success) {
+        setIsSubmitting(false);
+        setTicketId(result.ticketId);
+        setSubmitted(true);
+      } else {
+        setIsSubmitting(false);
+        setErrors(prev => ({
+          ...prev,
+          submit: result.error || 'Failed to transmit quotation request. Please retry.'
+        }));
+      }
+    } catch {
       setIsSubmitting(false);
-      setTicketId(newTicket);
-      setSubmitted(true);
-    }, 500);
+      setErrors(prev => ({
+        ...prev,
+        submit: 'An unexpected transmission error occurred. Please retry or contact our sales desk directly.'
+      }));
+    }
   };
 
   const handleReset = () => {
@@ -137,6 +170,20 @@ export default function InquiryForm({
           </div>
         ) : (
           <form className="bright-rfq-form" onSubmit={handleSubmit} noValidate>
+            {errors.submit && (
+              <div className="rfq-submit-error" role="alert" style={{
+                background: '#FEF2F2',
+                border: '1px solid #FCA5A5',
+                color: '#DC2626',
+                padding: '12px 16px',
+                borderRadius: '6px',
+                marginBottom: '16px',
+                fontSize: '0.88rem',
+                fontWeight: 600
+              }}>
+                {errors.submit}
+              </div>
+            )}
             <div className="rfq-fields-grid">
               {/* Full Name */}
               <div className="form-group">

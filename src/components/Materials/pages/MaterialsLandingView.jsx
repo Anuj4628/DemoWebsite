@@ -129,7 +129,18 @@ export default function MaterialsLandingView({ onNavigate }) {
                 {/* Card Content */}
                 <div className="mat-card-content">
                   <div className="mat-card-header-row">
-                    <h3 className="mat-card-title">{mat.name}</h3>
+                    <h3 className="mat-card-title">
+                      <a
+                        href={`/materials/${mat.slug}`}
+                        className="mat-card-title-link"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleCardClick(mat.slug);
+                        }}
+                      >
+                        {mat.name}
+                      </a>
+                    </h3>
                     <span className="mat-card-badge">{mat.badge}</span>
                   </div>
 
@@ -142,12 +153,20 @@ export default function MaterialsLandingView({ onNavigate }) {
                   </p>
 
                   {/* Card Action Footer */}
-                  <div className="mat-card-action-bar">
+                  <a
+                    href={`/materials/${mat.slug}`}
+                    className="mat-card-action-bar"
+                    aria-label={`Explore ${mat.name} products`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCardClick(mat.slug);
+                    }}
+                  >
                     <span className="mat-card-action-text">Explore {mat.name}</span>
                     <span className="mat-card-action-arrow">
                       <ArrowRight size={14} />
                     </span>
-                  </div>
+                  </a>
                 </div>
               </article>
             ))}

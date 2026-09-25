@@ -101,9 +101,27 @@ export default function DivisionView({ divisionSlug, onNavigate }) {
             
             {/* Breadcrumb inside Card: Home > Products > [Division Name] */}
             <nav className="division-breadcrumb-nav" aria-label="Breadcrumb">
-              <span className="crumb-text" onClick={() => onNavigate('/')}>Home</span>
+              <a
+                href="/"
+                className="crumb-text"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/');
+                }}
+              >
+                Home
+              </a>
               <span className="crumb-arrow">&gt;</span>
-              <span className="crumb-text" onClick={() => onNavigate('/products')}>Products</span>
+              <a
+                href="/products"
+                className="crumb-text"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/products');
+                }}
+              >
+                Products
+              </a>
               <span className="crumb-arrow">&gt;</span>
               <span className="crumb-active">{division.name}</span>
             </nav>

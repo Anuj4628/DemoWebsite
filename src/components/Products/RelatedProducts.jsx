@@ -42,7 +42,18 @@ function RelatedProducts({ products = [], title = "Related Products & Solutions"
                 </div>
 
                 <div className="related-body">
-                  <h4 className="related-name">{item.name}</h4>
+                  <h4 className="related-name">
+                    <a
+                      href={route}
+                      className="related-name-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onSelect) onSelect(route);
+                      }}
+                    >
+                      {item.name}
+                    </a>
+                  </h4>
                   
                   <div className="related-pills-row">
                     <span className="related-pill-mat">{materialTag}</span>
@@ -54,15 +65,23 @@ function RelatedProducts({ products = [], title = "Related Products & Solutions"
                   </p>
                 </div>
 
-                <div className="related-footer">
-                  <span className="related-cta-text">VIEW SPECIFICATION</span>
+                <a
+                  href={route}
+                  className="related-footer"
+                  aria-label={`Explore ${item.name} specifications`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onSelect) onSelect(route);
+                  }}
+                >
+                  <span className="related-cta-text">Explore Details</span>
                   <span className="related-arrow-box" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
                   </span>
-                </div>
+                </a>
               </div>
             </article>
           );

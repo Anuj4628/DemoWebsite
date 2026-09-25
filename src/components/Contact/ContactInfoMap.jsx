@@ -78,13 +78,77 @@ export default function ContactInfoMap() {
       aria-label="Contact Information and Registered Office Map"
     >
       <div className="section-container">
-        {/* Two-Column Grid: Info on Left, Map on Right */}
+        {/* Two-Column Grid: Map on Left, Contact Details on Right */}
         <div className="info-map-grid">
           
           {/* ========================================================= */}
-          {/* LEFT SIDE: VERIFIED CORPORATE CONTACT INFORMATION */}
+          {/* LEFT SIDE: EXACT INTERACTIVE GOOGLE MAP & LOCATION */}
           {/* ========================================================= */}
-          <div ref={leftColRef} className="contact-info-col">
+          <div ref={leftColRef} className="contact-map-col">
+            <div className="map-wrapper-card">
+              <div className="map-card-header">
+                <div className="map-header-title-wrap">
+                  <span className="map-live-indicator" aria-hidden="true">
+                    <span className="live-ping" />
+                    <span className="live-dot" />
+                  </span>
+                  <div>
+                    <h4 className="map-header-title">Exact Office Location</h4>
+                    <span className="map-header-subtitle">Sant Sena Maharaja Marg, Near Round Temple, Mumbai 400004</span>
+                  </div>
+                </div>
+
+                <span className="map-coord-badge">18.9568° N, 72.8258° E</span>
+              </div>
+
+              {/* Map Viewport Container */}
+              <div className="map-viewport">
+                <iframe
+                  title={`${brandDetails.name} Corporate Office Location Map`}
+                  src={mapEmbedUrl}
+                  className="interactive-map-iframe"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              {/* Action Buttons: Open in Maps & Get Directions */}
+              <div className="map-actions-bar">
+                <a
+                  href={mapSearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-map-action btn-open-maps"
+                  title="Open exact location in Google Maps"
+                >
+                  <ExternalLink size={16} className="map-btn-icon" aria-hidden="true" />
+                  <span>OPEN IN MAPS</span>
+                </a>
+
+                <a
+                  href={mapDirectionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-map-action btn-get-directions"
+                  title="Get turn-by-turn navigation directions"
+                >
+                  <Navigation size={16} className="map-btn-icon" aria-hidden="true" />
+                  <span>GET DIRECTIONS</span>
+                </a>
+              </div>
+
+              {/* Transit & Landmark Note */}
+              <div className="map-footer-note">
+                <span>Nearest Railway Stations: Charni Road (0.6 km) • Marine Lines (1.1 km) • Churchgate (2.2 km)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================= */}
+          {/* RIGHT SIDE: VERIFIED CORPORATE CONTACT INFORMATION */}
+          {/* ========================================================= */}
+          <div ref={rightColRef} className="contact-info-col">
             <div className="contact-info-card">
               <div className="card-top-tag">
                 <Building2 size={15} className="card-tag-icon" aria-hidden="true" />
@@ -229,70 +293,6 @@ export default function ContactInfoMap() {
               <div className="info-card-trust-strip">
                 <ShieldCheck size={16} className="trust-icon" aria-hidden="true" />
                 <span>ISO 9001:2015 Registered • MSME Certified</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ========================================================= */}
-          {/* RIGHT SIDE: EXACT INTERACTIVE GOOGLE MAP */}
-          {/* ========================================================= */}
-          <div ref={rightColRef} className="contact-map-col">
-            <div className="map-wrapper-card">
-              <div className="map-card-header">
-                <div className="map-header-title-wrap">
-                  <span className="map-live-indicator" aria-hidden="true">
-                    <span className="live-ping" />
-                    <span className="live-dot" />
-                  </span>
-                  <div>
-                    <h4 className="map-header-title">Exact Office Location</h4>
-                    <span className="map-header-subtitle">Sant Sena Maharaja Marg, Near Round Temple, Mumbai 400004</span>
-                  </div>
-                </div>
-
-                <span className="map-coord-badge">18.9568° N, 72.8258° E</span>
-              </div>
-
-              {/* Map Viewport Container */}
-              <div className="map-viewport">
-                <iframe
-                  title={`${brandDetails.name} Corporate Office Location Map`}
-                  src={mapEmbedUrl}
-                  className="interactive-map-iframe"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              {/* Action Buttons: Open in Maps & Get Directions */}
-              <div className="map-actions-bar">
-                <a
-                  href={mapSearchUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-map-action btn-open-maps"
-                  title="Open exact location in Google Maps"
-                >
-                  <ExternalLink size={16} className="map-btn-icon" aria-hidden="true" />
-                  <span>OPEN IN MAPS</span>
-                </a>
-
-                <a
-                  href={mapDirectionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-map-action btn-get-directions"
-                  title="Get turn-by-turn navigation directions"
-                >
-                  <Navigation size={16} className="map-btn-icon" aria-hidden="true" />
-                  <span>GET DIRECTIONS</span>
-                </a>
-              </div>
-
-              {/* Transit & Landmark Note */}
-              <div className="map-footer-note">
-                <span>Nearest Railway Stations: Charni Road (0.6 km) • Marine Lines (1.1 km) • Churchgate (2.2 km)</span>
               </div>
             </div>
           </div>

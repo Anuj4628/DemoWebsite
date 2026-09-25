@@ -196,13 +196,23 @@ function HeroSlide({ slide, isActive, direction = 1, onNavigate }) {
 
               {/* Headline with Overflow Mask */}
               <div ref={headlineMaskRef} className="hero-headline-mask">
-                <h1
-                  ref={headlineTextRef}
-                  className="hero-headline"
-                  aria-label={slide.headline ? slide.headline.replace(/\[|\]/g, '') : undefined}
-                >
-                  {renderHeadline(slide.headline)}
-                </h1>
+                {isActive ? (
+                  <h1
+                    ref={headlineTextRef}
+                    className="hero-headline"
+                    aria-label={slide.headline ? slide.headline.replace(/\[|\]/g, '') : undefined}
+                  >
+                    {renderHeadline(slide.headline)}
+                  </h1>
+                ) : (
+                  <div
+                    ref={headlineTextRef}
+                    className="hero-headline"
+                    aria-hidden="true"
+                  >
+                    {renderHeadline(slide.headline)}
+                  </div>
+                )}
               </div>
 
               {/* Concise Description */}

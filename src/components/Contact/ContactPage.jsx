@@ -12,32 +12,25 @@ import './Contact.css';
  * Bhawal Steel & Engineering Company — Master Contact Page Orchestrator
  * Integrates all sections seamlessly into the existing site architecture.
  */
-export default function ContactPage() {
+export default function ContactPage({ initialSection = null }) {
   useEffect(() => {
-    // Dynamically update document title & meta description for SEO best practices
-    const originalTitle = document.title;
-    document.title = 'Contact Us | Bhuwal Steel & Engineering Company — Technical Desk & Location';
+    // If targeted for RFQ or URL has rfq/quote
+    const isRfqTarget = initialSection === 'rfq-section' || 
+      window.location.pathname.includes('quote') || 
+      window.location.pathname.includes('rfq') ||
+      window.location.hash === '#rfq-section';
 
-    let metaDesc = document.querySelector('meta[name="description"]');
-    const originalDesc = metaDesc ? metaDesc.getAttribute('content') : '';
-
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Contact Bhawal Steel & Engineering Company technical engineering and commercial sales desk. Submit RFQ inquiries for industrial steel pipes, fittings, flanges, plates, and fasteners with fast CIF/FOB pricing.'
-      );
+    if (isRfqTarget) {
+      setTimeout(() => {
+        const el = document.getElementById('rfq-section');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
-
-    // Smoothly scroll to top on initial page mount
-    window.scrollTo({ top: 0, behavior: 'instant' });
-
-    return () => {
-      document.title = originalTitle;
-      if (metaDesc && originalDesc) {
-        metaDesc.setAttribute('content', originalDesc);
-      }
-    };
-  }, []);
+  }, [initialSection]);
 
   return (
     <div className="contact-page-master" id="contact-page-top">
