@@ -1,45 +1,58 @@
+import { brandDetails } from '../data/navigationData';
+
 /**
  * Centralized Quote & RFQ Submission Service
- * Direct backend submission without opening external mail applications or Gmail.
+ * Triggers direct mailto: action with prefilled recipient, subject, and formatted enquiry body.
  */
-
 export async function submitQuoteRequest(quotePayload) {
   try {
-    const response = await fetch('/api/send-quote', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(quotePayload)
-    });
+    const recipient = brandDetails.contact.email;
+    const productName = quotePayload.product || quotePayload.productName || 'Steel Products';
+    const subject = `Get Quote Enquiry - ${productName}`;
 
-    let data;
+    const lines = [
+      `Name: ${quotePayload.fullName || ''}`,
+      `Company: ${quotePayload.companyName || quotePayload.company || ''}`,
+      `Email: ${quotePayload.email || ''}`,
+      `Phone: ${quotePayload.phone || ''}`,
+      `Product: ${productName}`,
+      `Quantity: ${quotePayload.quantity || quotePayload.specsAndQuantity || 'Standard requirement'}`,
+      `Message: ${quotePayload.notes || quotePayload.specsAndQuantity || 'Please provide quotation and technical details.'}`
+    ];
+
+    const body = lines.join('\n');
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    const gmailWindow = window.open(gmailUrl, '_blank');
+
     try {
-      data = await response.json();
+      const mailtoLink = document.createElement('a');
+      mailtoLink.href = mailtoUrl;
+      mailtoLink.style.display = 'none';
+      document.body.appendChild(mailtoLink);
+      mailtoLink.click();
+      setTimeout(() => {
+        if (document.body.contains(mailtoLink)) {
+          document.body.removeChild(mailtoLink);
+        }
+      }, 1000);
     } catch {
-      data = null;
-    }
-
-    if (!response.ok || !data?.success) {
-      const errorMsg = data?.error || `Server responded with status ${response.status}. Please retry or contact our desk.`;
-      return {
-        success: false,
-        error: errorMsg
-      };
+      if (!gmailWindow) {
+        window.location.href = mailtoUrl;
+      }
     }
 
     return {
       success: true,
-      ticketId: data.ticketId,
-      message: data.message || 'Quote request sent successfully.',
-      details: data.details
+      message: 'Email client opened.'
     };
   } catch (err) {
     console.error('[Quote Submission Error]:', err);
     return {
       success: false,
-      error: 'Unable to reach the procurement transmission server. Please check your internet connection and retry.'
+      error: 'Unable to open mail client.'
     };
   }
 }
+

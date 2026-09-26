@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { brandDetails } from '../../data/navigationData';
-import { submitQuoteRequest } from '../../utils/quoteSubmissionService';
 import './InquiryForm.css';
 
 /**
@@ -23,9 +22,6 @@ export default function InquiryForm({
   });
 
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [ticketId, setTicketId] = useState('');
 
   const validate = () => {
     const errs = {};
@@ -53,9 +49,8 @@ export default function InquiryForm({
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -63,59 +58,44 @@ export default function InquiryForm({
       return;
     }
 
-    setIsSubmitting(true);
-    setErrors(prev => ({ ...prev, submit: undefined }));
+    const recipient = brandDetails.contact.email;
+    const subject = `Get Quote Enquiry - ${productName}`;
 
+    const lines = [
+      `Name: ${formData.fullName.trim()}`,
+      `Company: ${formData.company.trim()}`,
+      `Email: ${formData.email.trim()}`,
+      `Phone: ${formData.phone.trim()}`,
+      `Product: ${productName}${materialGrade ? ` (${materialGrade})` : ''}`,
+      `Quantity: ${formData.quantity.trim()} ${formData.unit}`,
+      ...(formData.deliveryLocation.trim() ? [`Delivery Location: ${formData.deliveryLocation.trim()}`] : []),
+      `Message: ${formData.notes.trim() || 'Please provide quotation and delivery schedule.'}`
+    ];
+
+    const body = lines.join('\n');
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 1. Open Gmail compose directly in a new tab (guarantees Gmail opens with populated details)
+    const gmailWindow = window.open(gmailUrl, '_blank');
+
+    // 2. Also trigger standard mailto: link action for default system email clients
     try {
-      const result = await submitQuoteRequest({
-        fullName: formData.fullName.trim(),
-        companyName: formData.company.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        product: productName,
-        productName: productName,
-        materialGrade: materialGrade,
-        quantity: formData.quantity,
-        unit: formData.unit,
-        deliveryLocation: formData.deliveryLocation.trim(),
-        notes: formData.notes.trim(),
-        source: `Product Page RFQ (${productName})`
-      });
-
-      if (result.success) {
-        setIsSubmitting(false);
-        setTicketId(result.ticketId);
-        setSubmitted(true);
-      } else {
-        setIsSubmitting(false);
-        setErrors(prev => ({
-          ...prev,
-          submit: result.error || 'Failed to transmit quotation request. Please retry.'
-        }));
-      }
+      const mailtoLink = document.createElement('a');
+      mailtoLink.href = mailtoUrl;
+      mailtoLink.style.display = 'none';
+      document.body.appendChild(mailtoLink);
+      mailtoLink.click();
+      setTimeout(() => {
+        if (document.body.contains(mailtoLink)) {
+          document.body.removeChild(mailtoLink);
+        }
+      }, 1000);
     } catch {
-      setIsSubmitting(false);
-      setErrors(prev => ({
-        ...prev,
-        submit: 'An unexpected transmission error occurred. Please retry or contact our sales desk directly.'
-      }));
+      if (!gmailWindow) {
+        window.location.href = mailtoUrl;
+      }
     }
-  };
-
-  const handleReset = () => {
-    setSubmitted(false);
-    setTicketId('');
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      company: '',
-      quantity: '',
-      unit: 'Pieces (PCS)',
-      deliveryLocation: '',
-      notes: ''
-    });
-    setErrors({});
   };
 
   return (
@@ -150,41 +130,8 @@ export default function InquiryForm({
           </div>
         </div>
 
-        {submitted ? (
-          <div className="rfq-success-box">
-            <div className="success-icon-circle">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-            <h4>Quotation Request Received</h4>
-            <p>
-              Thank you, <strong>{formData.fullName}</strong>. Your inquiry for <strong>{productName}</strong> ({formData.quantity} {formData.unit}) has been registered under ticket <strong>#{ticketId}</strong>.
-            </p>
-            <p className="success-hint">
-              Our metallurgical export desk will transmit your technical pricing and MTC report to <strong>{formData.email}</strong> shortly.
-            </p>
-            <button type="button" className="btn-rfq-again" onClick={handleReset}>
-              Submit Another Specification
-            </button>
-          </div>
-        ) : (
-          <form className="bright-rfq-form" onSubmit={handleSubmit} noValidate>
-            {errors.submit && (
-              <div className="rfq-submit-error" role="alert" style={{
-                background: '#FEF2F2',
-                border: '1px solid #FCA5A5',
-                color: '#DC2626',
-                padding: '12px 16px',
-                borderRadius: '6px',
-                marginBottom: '16px',
-                fontSize: '0.88rem',
-                fontWeight: 600
-              }}>
-                {errors.submit}
-              </div>
-            )}
-            <div className="rfq-fields-grid">
+        <form className="bright-rfq-form" onSubmit={handleSubmit} noValidate>
+          <div className="rfq-fields-grid">
               {/* Full Name */}
               <div className="form-group">
                 <label htmlFor="fullName">Procurement Officer / Full Name <span className="req">*</span></label>
@@ -304,19 +251,12 @@ export default function InquiryForm({
               <button
                 type="submit"
                 className="btn-transmit-rfq"
-                disabled={isSubmitting}
               >
-                {isSubmitting ? (
-                  <span>Transmitting RFQ...</span>
-                ) : (
-                  <>
-                    <span>Transmit Official RFQ</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                  </>
-                )}
+                <span>SEND / GET QUOTE</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
               </button>
 
               <div className="rfq-instant-links">
@@ -343,7 +283,6 @@ export default function InquiryForm({
               </div>
             </div>
           </form>
-        )}
       </div>
     </section>
   );
