@@ -1,7 +1,7 @@
 // Authentic Product Images from Product Folders
 import buttWeldFittingImg from '../assets/Product Images/Butt weld fit/exotic.jpg';
 import flangesImg from '../assets/Product Images/Flanges/hastelloy.png';
-import forgedFittingsImg from '../assets/Product Images/Forged Fittings/super duplex.jpeg';
+import forgedFittingsImg from '../assets/Product Images/Forged Fittings/forge-fittings.png';
 import shimsImg from '../assets/Product Images/shims/hastelloy.jpg';
 import pipesImg from '../assets/Product Images/Pipes and Tubes/alloy steel.png';
 import tubesImg from '../assets/Product Images/Pipes and Tubes/duplex.png';
