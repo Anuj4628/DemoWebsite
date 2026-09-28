@@ -68,8 +68,8 @@ export default async function handler(req, res) {
       timeStyle: 'medium'
     });
 
-    const primaryRecipient = process.env.BUSINESS_EMAIL || 'bhawal@hotmail.com';
-    const secondaryRecipient = process.env.SECONDARY_EMAIL || 'info@rohitmetal.com';
+    const primaryRecipient = process.env.BUSINESS_EMAIL || 'info@bhawalsengg.com';
+    const secondaryRecipient = process.env.SECONDARY_EMAIL || '';
     const recipients = [primaryRecipient, secondaryRecipient].filter(Boolean);
 
     const emailSubject = `[${ticketId}] Official RFQ Inquiry: ${effectiveProduct} — ${effectiveName}`;
