@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate_sitemap.cjs && vite build",
+    "build": "node scripts/generate_sitemap.cjs && vite build && node scripts/post_build.cjs",
     "test:seo": "node scripts/test_seo_routes.cjs",
     "test:audit": "node scripts/full_production_audit.cjs",
     "lint": "oxlint",

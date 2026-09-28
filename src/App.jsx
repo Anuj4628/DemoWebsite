@@ -12,15 +12,32 @@ import FinalCTASection from './components/CTA/FinalCTASection';
 import Footer from './components/Footer/Footer';
 import FloatingContactButtons from './components/UI/FloatingContactButtons';
 
+// Resilient lazy loader that retries chunk import once before failing
+function lazyWithRetry(importer) {
+  return lazy(async () => {
+    try {
+      return await importer();
+    } catch (error) {
+      console.warn('[Chunk Load Error] Retrying chunk import...', error);
+      try {
+        return await importer();
+      } catch (retryError) {
+        console.error('[Chunk Load Failure]:', retryError);
+        throw retryError;
+      }
+    }
+  });
+}
+
 // Lazy-loaded routes for ultra-fast initial bundle and snappy navigation
-const AboutSection = lazy(() => import('./components/About/AboutSection'));
-const ProductsLandingView = lazy(() => import('./components/Products/pages/ProductsLandingView'));
-const DivisionView = lazy(() => import('./components/Products/pages/DivisionView'));
-const ProductFamilyView = lazy(() => import('./components/Products/pages/ProductFamilyView'));
-const ProductDetailView = lazy(() => import('./components/Products/pages/ProductDetailView'));
-const MaterialsLandingView = lazy(() => import('./components/Materials/pages/MaterialsLandingView'));
-const MaterialDetailView = lazy(() => import('./components/Materials/pages/MaterialDetailView'));
-const ContactPage = lazy(() => import('./components/Contact/ContactPage'));
+const AboutSection = lazyWithRetry(() => import('./components/About/AboutSection'));
+const ProductsLandingView = lazyWithRetry(() => import('./components/Products/pages/ProductsLandingView'));
+const DivisionView = lazyWithRetry(() => import('./components/Products/pages/DivisionView'));
+const ProductFamilyView = lazyWithRetry(() => import('./components/Products/pages/ProductFamilyView'));
+const ProductDetailView = lazyWithRetry(() => import('./components/Products/pages/ProductDetailView'));
+const MaterialsLandingView = lazyWithRetry(() => import('./components/Materials/pages/MaterialsLandingView'));
+const MaterialDetailView = lazyWithRetry(() => import('./components/Materials/pages/MaterialDetailView'));
+const ContactPage = lazyWithRetry(() => import('./components/Contact/ContactPage'));
 
 import { preloadRoute } from './utils/preloadRoute';
 import { applySEO } from './utils/seoManager';
@@ -32,7 +49,22 @@ import './App.css';
  * Route parser for native history-based client routing
  */
 function parseRoute(pathname = window.location.pathname) {
-  const clean = (pathname || '').toLowerCase();
+  let clean = (pathname || '').toLowerCase();
+
+  // Strip index.html or .html extension
+  clean = clean.replace(/\/index\.html$/i, '').replace(/\.html$/i, '');
+
+  // Strip common subfolder prefixes if hosted in subpaths (like /dist or GitHub repo /demowebsite)
+  clean = clean.replace(/^\/dist(?:\/|$)/i, '/').replace(/^\/demowebsite(?:\/|$)/i, '/');
+
+  // Normalize duplicate slashes and ensure leading slash
+  clean = clean.replace(/\/+/g, '/');
+  if (!clean.startsWith('/')) {
+    clean = '/' + clean;
+  }
+  if (clean.length > 1 && clean.endsWith('/')) {
+    clean = clean.slice(0, -1);
+  }
 
   // 1. Direct RFQ Routes
   if (
@@ -56,19 +88,19 @@ function parseRoute(pathname = window.location.pathname) {
 
   // 4. Materials Routes
   if (clean.startsWith('/materials')) {
-    const raw = pathname.replace(/^\/materials\/?/i, '');
+    const raw = clean.replace(/^\/materials\/?/i, '');
     const parts = raw.split('/').filter(Boolean);
 
     if (parts.length === 0) {
       return { page: 'materials', view: 'landing' };
     }
 
-    return { page: 'materials', view: 'material', materialSlug: parts[0].toLowerCase() };
+    return { page: 'materials', view: 'material', materialSlug: parts[0] };
   }
 
   // 5. Products Routes
   if (clean.startsWith('/products')) {
-    const raw = pathname.replace(/^\/products\/?/i, '');
+    const raw = clean.replace(/^\/products\/?/i, '');
     const parts = raw.split('/').filter(Boolean);
 
     if (parts.length === 0) {
@@ -103,7 +135,7 @@ function parseRoute(pathname = window.location.pathname) {
   }
 
   // 6. Home Route
-  if (clean === '/' || clean === '' || clean.startsWith('/#')) {
+  if (clean === '/' || clean === '' || clean === '/home' || clean.startsWith('/#')) {
     return { page: 'home' };
   }
 
