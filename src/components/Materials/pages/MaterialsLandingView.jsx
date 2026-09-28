@@ -196,10 +196,13 @@ export default function MaterialsLandingView({ onNavigate }) {
                 <span>Technical Desk WhatsApp</span>
               </a>
               <a
-                href={`mailto:${brandDetails.contact.email}?subject=${encodeURIComponent('Material Specification Inquiry — Bhawal Steel')}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(brandDetails.contact.email)}${brandDetails.contact.secondaryEmail ? `&cc=${encodeURIComponent(brandDetails.contact.secondaryEmail)}` : ''}&su=${encodeURIComponent('Material Specification Inquiry — Bhawal Steel')}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-qa-email"
+                title="Compose Email in Gmail"
               >
-                <span>Email Specifications</span>
+                <span>Email Specifications (Gmail)</span>
               </a>
             </div>
           </div>

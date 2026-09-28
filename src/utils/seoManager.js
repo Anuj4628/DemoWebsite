@@ -81,7 +81,7 @@ export function getOrganizationSchema() {
     logo: `${SITE_URL}/assets/bhawal-logo.png`,
     image: `${SITE_URL}/assets/bhawal-logo.png`,
     telephone: brandDetails.contact.phone1Raw,
-    email: brandDetails.contact.email,
+    email: [brandDetails.contact.email, brandDetails.contact.secondaryEmail].filter(Boolean),
     priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',

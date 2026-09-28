@@ -235,17 +235,21 @@ export default function ContactInfoMap() {
                     <span className="item-label">Commercial & RFQ Inquiries</span>
                     <div className="phones-link-group">
                       <a
-                        href={`mailto:${contact.email}`}
+                        href={contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="item-link email-link"
-                        title="Send email to commercial desk"
+                        title={`Compose email to ${contact.email} in Gmail`}
                       >
                         {contact.email}
                       </a>
                       {contact.secondaryEmail && (
                         <a
-                          href={`mailto:${contact.secondaryEmail}`}
+                          href={contact.secondaryGmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.secondaryEmail)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="item-link email-link"
-                          title="Send email to secondary desk"
+                          title={`Compose email to ${contact.secondaryEmail} in Gmail`}
                         >
                           {contact.secondaryEmail}
                         </a>

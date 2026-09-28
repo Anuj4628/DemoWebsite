@@ -346,10 +346,13 @@ export default function MaterialDetailView({ materialSlug, onNavigate }) {
                 <span>WhatsApp Inquiry</span>
               </a>
               <a
-                href={`mailto:${brandDetails.contact.email}?subject=${encodeURIComponent(`RFQ for ${material.name} Products — Bhawal Steel`)}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(brandDetails.contact.email)}${brandDetails.contact.secondaryEmail ? `&cc=${encodeURIComponent(brandDetails.contact.secondaryEmail)}` : ''}&su=${encodeURIComponent(`RFQ for ${material.name} Products — Bhawal Steel`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-rfq-mail"
+                title="Compose Email in Gmail"
               >
-                <span>Email RFQ</span>
+                <span>Email RFQ (Gmail)</span>
               </a>
             </div>
           </div>

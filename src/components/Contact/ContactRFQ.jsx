@@ -154,6 +154,8 @@ export default function ContactRFQ() {
     }
 
     const recipient = brandDetails.contact.email;
+    const cc = brandDetails.contact.secondaryEmail;
+    const ccParam = cc ? `&cc=${encodeURIComponent(cc)}` : '';
     const subject = formData.product
       ? `Get Quote Enquiry - ${formData.product}`
       : 'Get Quote Enquiry';
@@ -169,8 +171,8 @@ export default function ContactRFQ() {
     ];
 
     const body = bodyLines.join('\n');
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${ccParam}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}${ccParam}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // 1. Open Gmail compose directly in a new tab (guarantees Gmail opens with populated details)
     const gmailWindow = window.open(gmailUrl, '_blank');
@@ -443,7 +445,10 @@ export default function ContactRFQ() {
               <div className="rfq-assurance-row">
                 <div className="rfq-assurance-pill">
                   <ShieldCheck size={14} className="pill-icon" aria-hidden="true" />
-                  <span>Transmitted to: {brandDetails.contact.email}</span>
+                  <span>
+                    Transmitted to: {brandDetails.contact.email}
+                    {brandDetails.contact.secondaryEmail && ` / ${brandDetails.contact.secondaryEmail}`}
+                  </span>
                 </div>
                 <div className="rfq-assurance-pill">
                   <Clock size={14} className="pill-icon" aria-hidden="true" />

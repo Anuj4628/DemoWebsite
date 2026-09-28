@@ -160,11 +160,27 @@ export default function Footer({ onNavigate }) {
               <div>
                 <span className="contact-lbl">Commercial Enquiries</span>
                 <div className="contact-phones-wrap">
-                  <a href={`mailto:${contact.email}`} className="contact-val">{contact.email}</a>
+                  <a
+                    href={contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-val"
+                    title={`Compose email to ${contact.email} in Gmail`}
+                  >
+                    {contact.email}
+                  </a>
                   {contact.secondaryEmail && (
                     <>
                       <span className="contact-sep">/</span>
-                      <a href={`mailto:${contact.secondaryEmail}`} className="contact-val">{contact.secondaryEmail}</a>
+                      <a
+                        href={contact.secondaryGmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.secondaryEmail)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-val"
+                        title={`Compose email to ${contact.secondaryEmail} in Gmail`}
+                      >
+                        {contact.secondaryEmail}
+                      </a>
                     </>
                   )}
                 </div>

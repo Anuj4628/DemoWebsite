@@ -135,33 +135,52 @@ export default function ContactDirectCTA() {
             <div className="prominent-contact-display">
               <span className="prominent-label">Official Commercial Enquiries Inbox:</span>
               <a
-                href={`mailto:${contact.email}`}
+                href={contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="prominent-email-link"
-                title="Send Email to Official Inbox"
+                title={`Compose email to ${contact.email} in Gmail`}
               >
                 <Mail size={22} className="prominent-email-icon" aria-hidden="true" />
                 <span className="prominent-email-text">{contact.email}</span>
               </a>
+              {contact.secondaryEmail && (
+                <a
+                  href={contact.secondaryGmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.secondaryEmail)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="prominent-email-link"
+                  title={`Compose email to ${contact.secondaryEmail} in Gmail`}
+                  style={{ marginTop: '0.5rem' }}
+                >
+                  <Mail size={22} className="prominent-email-icon" aria-hidden="true" />
+                  <span className="prominent-email-text">{contact.secondaryEmail}</span>
+                </a>
+              )}
             </div>
 
             {/* Action Buttons */}
             <div className="cta-card-actions">
               <a
-                href={`mailto:${contact.email}`}
+                href={contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-cta-action btn-email-primary"
-                title="Launch Email Client"
+                title="Send Email via Gmail"
               >
                 <span className="btn-cta-fill" aria-hidden="true" />
                 <span className="btn-cta-text-wrap">
-                  <span>SEND EMAIL</span>
+                  <span>SEND EMAIL (GMAIL)</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </span>
               </a>
 
               <a
-                href={`mailto:${contact.email}?subject=Urgent%20Tender%20Inquiry%20%E2%80%94%20Bhawal%20Steel%20%26%20Engineering%20Company`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}${contact.secondaryEmail ? `&cc=${encodeURIComponent(contact.secondaryEmail)}` : ''}&su=${encodeURIComponent('Urgent Tender Inquiry — Bhawal Steel & Engineering Company')}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-cta-action btn-tender-secondary"
-                title="Send Tender Specification"
+                title="Send Tender Specification via Gmail"
               >
                 <span>TENDER ENQUIRY</span>
               </a>

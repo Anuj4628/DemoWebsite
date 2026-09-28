@@ -117,7 +117,31 @@ export default function FinalCTASection({ onNavigate }) {
               </div>
               <div className="assurance-item">
                 <Mail size={16} className="assurance-icon" />
-                <span>{brandDetails.contact.email}</span>
+                <span>
+                  <a
+                    href={brandDetails.contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(brandDetails.contact.email)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                    title={`Compose email to ${brandDetails.contact.email} in Gmail`}
+                  >
+                    {brandDetails.contact.email}
+                  </a>
+                  {brandDetails.contact.secondaryEmail && (
+                    <>
+                      {' / '}
+                      <a
+                        href={brandDetails.contact.secondaryGmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(brandDetails.contact.secondaryEmail)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                        title={`Compose email to ${brandDetails.contact.secondaryEmail} in Gmail`}
+                      >
+                        {brandDetails.contact.secondaryEmail}
+                      </a>
+                    </>
+                  )}
+                </span>
               </div>
             </div>
           </div>

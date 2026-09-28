@@ -21,7 +21,7 @@ export const brandDetails = {
   },
   contact: {
     email: "info@bhawalsengg.com",
-    secondaryEmail: null,
+    secondaryEmail: "bhawal@hotmail.com",
     salesEmail: "info@bhawalsengg.com",
     phone1: "+91 92233 81575",
     phone1Raw: "+919223381575",
@@ -34,10 +34,20 @@ export const brandDetails = {
     whatsApp: "+91 92233 81575",
     whatsAppRaw: "919223381575",
     whatsAppUrl: "https://wa.me/919223381575?text=Hello%20Bhawal%20Steel%20%26%20Engineering%20Company,%20I%20am%20interested%20in%20your%20products",
+    gmailComposeUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=info@bhawalsengg.com",
+    secondaryGmailComposeUrl: "https://mail.google.com/mail/?view=cm&fs=1&to=bhawal@hotmail.com",
     mapSearchUrl: "https://www.google.com/maps/search/?api=1&query=139+Sant+Sena+Maharaja+Marg+Near+Round+Temple+Mumbai+400004",
     mapDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=139+Sant+Sena+Maharaja+Marg+Near+Round+Temple+Mumbai+400004",
     mapEmbedUrl: "https://maps.google.com/maps?q=Bhuwal+Steel+%26+Engineering+Company,+139+Sant+Sena+Maharaja+Marg,+Near+Round+Temple,+Mumbai+-+400004&t=&z=16&ie=UTF8&iwloc=&output=embed"
   }
 };
+
+export function getGmailComposeUrl(email = brandDetails.contact.email, { subject = '', body = '', cc = '' } = {}) {
+  let url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+  if (cc) url += `&cc=${encodeURIComponent(cc)}`;
+  if (subject) url += `&su=${encodeURIComponent(subject)}`;
+  if (body) url += `&body=${encodeURIComponent(body)}`;
+  return url;
+}
 
 

@@ -7,6 +7,7 @@ import { brandDetails } from '../data/navigationData';
 export async function submitQuoteRequest(quotePayload) {
   try {
     const recipient = brandDetails.contact.email;
+    const cc = brandDetails.contact.secondaryEmail;
     const productName = quotePayload.product || quotePayload.productName || 'Steel Products';
     const subject = `Get Quote Enquiry - ${productName}`;
 
@@ -21,8 +22,9 @@ export async function submitQuoteRequest(quotePayload) {
     ];
 
     const body = lines.join('\n');
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const ccParam = cc ? `&cc=${encodeURIComponent(cc)}` : '';
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${ccParam}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}${ccParam}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     const gmailWindow = window.open(gmailUrl, '_blank');
 

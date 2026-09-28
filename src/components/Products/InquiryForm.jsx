@@ -59,6 +59,8 @@ export default function InquiryForm({
     }
 
     const recipient = brandDetails.contact.email;
+    const cc = brandDetails.contact.secondaryEmail;
+    const ccParam = cc ? `&cc=${encodeURIComponent(cc)}` : '';
     const subject = `Get Quote Enquiry - ${productName}`;
 
     const lines = [
@@ -73,8 +75,8 @@ export default function InquiryForm({
     ];
 
     const body = lines.join('\n');
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}${ccParam}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}${ccParam}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // 1. Open Gmail compose directly in a new tab (guarantees Gmail opens with populated details)
     const gmailWindow = window.open(gmailUrl, '_blank');

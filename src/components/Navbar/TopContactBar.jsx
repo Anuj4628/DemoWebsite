@@ -12,15 +12,33 @@ export default function TopContactBar() {
       <div className="top-contact-container">
         {/* Contact Links (Email & Phones) */}
         <div className="top-contact-right">
-          {/* Email */}
+          {/* Primary Email */}
           <a
-            href={`mailto:${contact.email}`}
+            href={contact.gmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.email)}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="top-contact-item"
-            title={`Email ${brandDetails.name}`}
+            title={`Compose email to ${contact.email} in Gmail`}
           >
             <Mail size={13} className="top-icon email-icon" aria-hidden="true" />
             <span className="contact-text email-text">{contact.email}</span>
           </a>
+
+          {contact.secondaryEmail && (
+            <>
+              <span className="top-bar-divider" aria-hidden="true">|</span>
+              <a
+                href={contact.secondaryGmailComposeUrl || `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contact.secondaryEmail)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="top-contact-item"
+                title={`Compose email to ${contact.secondaryEmail} in Gmail`}
+              >
+                <Mail size={13} className="top-icon email-icon" aria-hidden="true" />
+                <span className="contact-text email-text">{contact.secondaryEmail}</span>
+              </a>
+            </>
+          )}
 
           <span className="top-bar-divider" aria-hidden="true">|</span>
 
